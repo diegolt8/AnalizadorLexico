@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crud;
+package vista;
 
 
+import controlador.ctlCargadorArchivo;
 import java.io.*;
-import javax.print.Doc;
 import javax.swing.*;
 
 /**
@@ -15,12 +15,17 @@ import javax.swing.*;
  * @author diegoul818
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+    
+    
+    ctlCargadorArchivo cargar;
+    
 
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+        cargar = new ctlCargadorArchivo();
     }
 
     /**
@@ -36,7 +41,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTALexico = new javax.swing.JTextArea();
         jBAnalizar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -49,7 +53,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTALexico.setColumns(20);
         jTALexico.setRows(5);
+        jTALexico.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTALexico.setEnabled(false);
+        jTALexico.setSelectionColor(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(jTALexico);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -71,13 +77,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jBAnalizar.setText("Analizar");
 
-        jButton1.setText("Limpiar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -86,7 +85,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "Tipo", "Linea", "Columna"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -118,9 +117,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
-                        .addComponent(jBAnalizar)
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton1)))
+                        .addComponent(jBAnalizar)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -131,9 +128,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAnalizar)
-                    .addComponent(jButton1))
+                .addComponent(jBAnalizar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -141,60 +136,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportarActionPerformed
-        
-        /**
-         * Llamada del metodo importar
-         */
-        importar();
-    }//GEN-LAST:event_ImportarActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /**
-         * Llamada del metodo limpiar
-         */
-        limpiar();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+        if(cargar.seleccionar.showDialog(null, "Abrir") == JFileChooser.APPROVE_OPTION){
+            cargar.archivo = cargar.seleccionar.getSelectedFile();
+            if(cargar.archivo.canRead()){
+                if(cargar.archivo.getName().endsWith("")){
+                    String documento = cargar.CargarArchivo(cargar.archivo);
+                    jTALexico.setText(documento);
+                } else{
+                    JOptionPane.showMessageDialog(null, "El archivo no se pudo cargar");
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPrincipal().setVisible(true);
-            }
-        });
+       
+    }//GEN-LAST:event_ImportarActionPerformed
+ public static void main(String[] args) {
+        
+        VentanaPrincipal ventana = new VentanaPrincipal();
+        ventana.setVisible(true);
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Importar;
     private javax.swing.JMenu importar;
     private javax.swing.JButton jBAnalizar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -203,36 +168,4 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * Este metodo importa los archivos que se cargan en 
-     * textArea
-    */
-    private void importar() {
-        String aux = "";
-        String texto = "";
-        String resultado = "";
-        try {
-            JFileChooser file = new JFileChooser(System.getProperty("user.dir"));
-            file.showOpenDialog(this);
-            File archivo = file.getSelectedFile();
-            if (archivo != null) {
-                FileReader archivos = new FileReader(archivo);
-                BufferedReader leer = new BufferedReader(archivos);
-                while ((aux = leer.readLine()) != null) {
-                    texto += aux + "\n";
-                }
-                leer.close();
-            }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Error Importando - " + ex);
-        }
-        jTALexico.setText(texto);
-    }
-    
-    /**
-     * Metodo para limpiar el textArea
-     */
-    private void limpiar(){
-        jTALexico.setText(" ");
-    }
 }

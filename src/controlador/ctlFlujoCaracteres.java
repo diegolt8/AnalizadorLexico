@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analizador.lexico;
+package controlador;
 
 /**
  *
  * @author diegoul818
  */
-public class AnalizadorLexico {
-
-  
+public class ctlFlujoCaracteres {
     
 }
