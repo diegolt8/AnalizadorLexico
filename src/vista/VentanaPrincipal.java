@@ -7,7 +7,6 @@ package vista;
 
 
 import controlador.ctlCargadorArchivo;
-import java.io.*;
 import javax.swing.*;
 
 /**
@@ -15,10 +14,8 @@ import javax.swing.*;
  * @author diegoul818
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
-    
+     
     ctlCargadorArchivo cargar;
-    
 
     /**
      * Creates new form VentanaPrincipal
@@ -146,9 +143,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El archivo no se pudo cargar");
                 }
             }
-        
         }
-       
     }//GEN-LAST:event_ImportarActionPerformed
  public static void main(String[] args) {
         
