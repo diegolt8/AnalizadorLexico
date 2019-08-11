@@ -51,7 +51,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTALexico.setColumns(20);
         jTALexico.setRows(5);
         jTALexico.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTALexico.setEnabled(false);
         jTALexico.setSelectionColor(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(jTALexico);
 
@@ -73,6 +72,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         jBAnalizar.setText("Analizar");
+        jBAnalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAnalizarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,8 +149,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_ImportarActionPerformed
- public static void main(String[] args) {
-        
+
+    private void jBAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnalizarActionPerformed
+        String txt = jTALexico.getText();
+        for (int i = 0; i < txt.length(); i++) {
+            System.out.println((int)txt.charAt(i));
+        }
+    }//GEN-LAST:event_jBAnalizarActionPerformed
+
+    public static void main(String[] args) {
         VentanaPrincipal ventana = new VentanaPrincipal();
         ventana.setVisible(true);
     }

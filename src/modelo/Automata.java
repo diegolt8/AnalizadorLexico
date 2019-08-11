@@ -11,4 +11,11 @@ package modelo;
  */
 public interface Automata {
     
+    /***
+     * Metodo que define el comportamiento interno de los automatas.
+     * @param flujo
+     * @return 
+     */
+    public Lexema ejecutarAutomata(FlujoCaracteres flujo);
+    
 }

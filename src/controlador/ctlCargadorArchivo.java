@@ -19,11 +19,10 @@ public class ctlCargadorArchivo{
     public FileInputStream entrada;
     public FileOutputStream salida;
     
-    
     /**
      * Metodo para cargar los archivos que se quieren mostrar en el textArea
      * @param archivo recibe el archivo que se quiere cargar
-     * @return retorna el archivo que se cargo 
+     * @return retorna un String con el codigo cargado del archivo
      */
     public String CargarArchivo(File archivo) {
         String codigo = "";
@@ -35,6 +34,7 @@ public class ctlCargadorArchivo{
                 codigo += caracter;
             }
         } catch (IOException e) {
+            System.out.println("Error al intentar cargar el archivo.");
         }
         return codigo;
     }
