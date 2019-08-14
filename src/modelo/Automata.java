@@ -18,4 +18,8 @@ public interface Automata {
      */
     public Lexema ejecutarAutomata(FlujoCaracteres flujo);
     
+    public String estado_q0(char caracter);
+    
+    public Lexema estado_qf(String lexema, int fila, int columna);
+    
 }

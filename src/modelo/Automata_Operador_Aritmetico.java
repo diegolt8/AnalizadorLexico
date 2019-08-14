@@ -20,16 +20,14 @@ public class Automata_Operador_Aritmetico implements Automata{
     @Override
     public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
         int posicionActual = flujo.getPosicionActual();
-        
         String estado = "q0";
-        String lexema = "";
+        String lexema = "";        
     
         estado = estado_q0(flujo.getCaracter(posicionActual));
         lexema += flujo.getCaracter(posicionActual);
         
         if("qf".equals(estado)){
-            return new Lexema(lexema, "Operador Logico",
-                    flujo.getPosicionActual(), 0);
+            return estado_qf(lexema, 0, 0);
         }
         return null;
     }
@@ -40,13 +38,26 @@ public class Automata_Operador_Aritmetico implements Automata{
      * @return String que contiene el nuevo estado del automata, por defecto 
      * retorna el valor actual.
      */
-    private String estado_q0(char caracter){
+    @Override
+    public String estado_q0(char caracter){
         String estado = "q0";
         if( caracter == '+' || caracter == '-' || caracter == '*' || 
             caracter == '/' || caracter == '%'){
             estado = "qf";
         }
         return estado;
+    }
+
+    /***
+     * Metodo que evalua el estado final del automata.
+     * @param lexema
+     * @param fila
+     * @param columna
+     * @return Lexema que identifico el automata en el estado final
+     */
+    @Override
+    public Lexema estado_qf(String lexema, int fila, int columna) {
+        return new Lexema(lexema, "Operador Logico", fila, columna);
     }
     
 }

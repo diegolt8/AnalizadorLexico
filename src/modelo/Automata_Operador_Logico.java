@@ -23,7 +23,7 @@ public class Automata_Operador_Logico implements Automata{
         int posicionActual = flujo.getPosicionActual();
         
         String estado = "q0";
-        String estadoActual = "q0";
+        String estadoInicial = "q0";
         String lexema = "";
         
         while(posicionActual < cantidadLetras){
@@ -35,18 +35,18 @@ public class Automata_Operador_Logico implements Automata{
             }
             if("q0".equals(estado)){
                 estado = estado_q0(flujo.getCaracter(posicionActual));
-            }     
+            }           
+            if(estadoInicial.equals(estado)){
+                break;
+            }
             
             lexema += flujo.getCaracter(posicionActual);
             posicionActual++;
+            estadoInicial = estado;
             
-            if(estadoActual.equals(estado)){
-                break;
-            }
             if("qf".equals(estado)){
-                return new Lexema(lexema, "Operador Logico", 
-                        flujo.getPosicionActual(), 0);
-            }
+                return estado_qf(lexema, 0, 0);
+            }            
         }
         return null;
     }
@@ -57,7 +57,8 @@ public class Automata_Operador_Logico implements Automata{
      * @return String que contiene el nuevo estado del automata, por defecto 
      * retorna el valor actual.
      */
-    private String estado_q0(char caracter){
+    @Override
+    public String estado_q0(char caracter){
         String estado = "q0";
         switch (caracter) {
             case '&':
@@ -93,6 +94,18 @@ public class Automata_Operador_Logico implements Automata{
      */
     private String estado_q2(char caracter){
         return caracter == '|' ? "qf" : "q2";
+    }
+
+    /***
+     * Metodo que evalua el estado final del automata.
+     * @param lexema
+     * @param fila
+     * @param columna
+     * @return Lexema que identifico el automata en el estado final
+     */
+    @Override
+    public Lexema estado_qf(String lexema, int fila, int columna) {
+        return new Lexema(lexema, "Operador Logico", fila, columna);
     }
     
 }
