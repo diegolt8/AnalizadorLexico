@@ -18,8 +18,20 @@ public interface Automata {
      */
     public Lexema ejecutarAutomata(FlujoCaracteres flujo);
     
+    /***
+     * Metodo que define el comportamiento del estado inicial del automata
+     * @param caracter
+     * @return 
+     */
     public String estado_q0(char caracter);
     
+    /***
+     * Metodo que define el comportamiento del estado final del automata
+     * @param lexema
+     * @param fila
+     * @param columna
+     * @return 
+     */
     public Lexema estado_qf(String lexema, int fila, int columna);
     
 }

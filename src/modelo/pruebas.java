@@ -15,9 +15,9 @@ public class pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        char[] lexema = {'/','&'};
+        char[] lexema = {':','+'};
         FlujoCaracteres flujo = new FlujoCaracteres(0, lexema, 0, 0);
-        Automata_Operador_Aritmetico aul = new Automata_Operador_Aritmetico();
+        Automata_Operador_Especial aul = new Automata_Operador_Especial();
         Lexema lexem = aul.ejecutarAutomata(flujo);
         if(lexem != null){
             System.out.println(lexem.getToken() + " - Tipo: "+ lexem.getTipoLexema());
