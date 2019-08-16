@@ -19,16 +19,19 @@ public class Automata_Operador_Aritmetico implements Automata{
      */
     @Override
     public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
-        int posicionActual = flujo.getPosicionActual();
+        int posicionInicial = flujo.getPosicionActual();
         String estado = "q0";
         String lexema = "";        
     
-        estado = estado_q0(flujo.getCaracter(posicionActual));
-        lexema += flujo.getCaracter(posicionActual);
+        estado = estado_q0(flujo.getCaracter());
+        lexema += flujo.getCaracter();
+        flujo.moverAdelante();
         
         if("qf".equals(estado)){
             return estado_qf(lexema, 0, 0);
         }
+        
+        flujo.setPosicionActual(posicionInicial);
         return null;
     }
     

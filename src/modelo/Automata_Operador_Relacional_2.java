@@ -20,25 +20,25 @@ public class Automata_Operador_Relacional_2 implements Automata{
     @Override
     public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
         int cantidadLetras = flujo.getCantidadCaracteres();
-        int posicionActual = flujo.getPosicionActual();
+        int posicionInicial = flujo.getPosicionActual();
         
         String estado = "q0";
         String estadoInicial = "q0";
         String lexema = "";
         
-        while(posicionActual < cantidadLetras){
+        while(flujo.getPosicionActual() < cantidadLetras){
             if("q1".equals(estado)){
-                estado = estado_q1(flujo.getCaracter(posicionActual));
+                estado = estado_q1(flujo.getCaracter());
             }
             if("q0".equals(estado)){
-                estado = estado_q0(flujo.getCaracter(posicionActual));
+                estado = estado_q0(flujo.getCaracter());
             }           
             if(estadoInicial.equals(estado)){
                 break;
             }
             
-            lexema += flujo.getCaracter(posicionActual);
-            posicionActual++;
+            lexema += flujo.getCaracter();
+            flujo.moverAdelante();
             estadoInicial = estado;
             
             if("qf".equals(estado)){
@@ -46,6 +46,7 @@ public class Automata_Operador_Relacional_2 implements Automata{
             }            
         }
         
+        flujo.setPosicionActual(posicionInicial);
         return null;
     }
 

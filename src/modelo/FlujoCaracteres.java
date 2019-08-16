@@ -22,7 +22,32 @@ public class FlujoCaracteres {
         this.columna = columna;
         this.caracteres = caracteres;
     }
-
+      
+    //-------------------------------------------------------------------------- 
+    public char getCaracter(){
+        return caracteres[posicionActual];
+    }
+    
+    public int getCantidadCaracteres(){
+        return caracteres.length;
+    }
+    
+    public void moverAdelante(){
+        posicionActual++;
+    }
+    
+    public void moverAtras(){
+        posicionActual--;
+    }
+    
+    public void siguienteFila(){
+        fila++;
+    }
+    
+    public void siguienteColumna(){
+        columna++;
+    }
+    //--------------------------------------------------------------------------
     public int getPosicionActual() {
         return posicionActual;
     }
@@ -33,14 +58,6 @@ public class FlujoCaracteres {
 
     public char[] getCaracteres() {
         return caracteres;
-    }
-    
-    public char getCaracter(int pos){
-        return caracteres[pos];
-    }
-    
-    public int getCantidadCaracteres(){
-        return caracteres.length;
     }
 
     public void setCaracteres(char[] caracteres) {
