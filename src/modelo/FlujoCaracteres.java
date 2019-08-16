@@ -24,26 +24,46 @@ public class FlujoCaracteres {
     }
       
     //-------------------------------------------------------------------------- 
+    /***
+     * Metodo que retorna el caracter segun la posicion del flujo de caracteres
+     * @return char que contiene el caracter del flujo
+     */
     public char getCaracter(){
         return caracteres[posicionActual];
     }
     
+    /***
+     * Metodo que retorna el tamaño del flujo de caracteres
+     * @return int con la cantidad de elementos del flujo de caracteres
+     */
     public int getCantidadCaracteres(){
         return caracteres.length;
     }
     
+    /***
+     * Metodo que suma 1 a la posicion actual del flujo de caracteres
+     */
     public void moverAdelante(){
         posicionActual++;
     }
     
+    /***
+     * Metodo que resta 1 a la posicion actual del flujo de caracteres
+     */
     public void moverAtras(){
         posicionActual--;
     }
     
+    /***
+     * Metodo que suma 1 a la fila del flujo de caracteres
+     */
     public void siguienteFila(){
         fila++;
     }
     
+    /***
+     * Metodo que suma 1 a la columna actual del flujo de caracteres
+     */
     public void siguienteColumna(){
         columna++;
     }

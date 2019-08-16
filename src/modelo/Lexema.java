@@ -10,26 +10,35 @@ package modelo;
  * @author Pepe
  */
 public class Lexema {
-    private String token, tipoLexema;
-    private int linea, columna;
+    private String lexema, tipoLexema;
+    private int linea, columna, token;
         
     public Lexema(){}
 
-    public Lexema(String token, String tipoLexema, int linea, int columna) {
-        this.token = token;
+    public Lexema(String lexema, String tipoLexema, int linea, int columna, int token) {
+        this.lexema = lexema;
         this.tipoLexema = tipoLexema;
         this.linea = linea;
         this.columna = columna;
-    }
-    
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
         this.token = token;
     }
 
+    public String getLexema() {
+        return lexema;
+    }
+
+    public void setLexema(String lexema) {
+        this.lexema = lexema;
+    }
+
+    public int getToken() {
+        return token;
+    }
+
+    public void setToken(int token) {
+        this.token = token;
+    }   
+    
     public int getLinea() {
         return linea;
     }

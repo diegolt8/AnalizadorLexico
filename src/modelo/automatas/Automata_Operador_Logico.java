@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package modelo.automatas;
+
+import modelo.FlujoCaracteres;
+import modelo.Lexema;
 
 /**
  *
@@ -107,7 +110,7 @@ public class Automata_Operador_Logico implements Automata{
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Operador Logico", fila, columna);
+        return new Lexema(lexema, "Operador Logico", fila, columna, lexema.length());
     }
     
 }
