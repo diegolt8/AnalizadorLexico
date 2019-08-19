@@ -26,30 +26,26 @@ public class Automata_Operador_Logico implements Automata{
         int posicionInicial = flujo.getPosicionActual();
         
         String estado = "q0";
-        String estadoInicial = "q0";
         String lexema = "";
         
         while(flujo.getPosicionActual() < cantidadLetras){
-            if("q2".equals(estado)){
+            if("q2".equals(estado))
                 estado = estado_q2(flujo.getCaracter());
-            }
-            if("q1".equals(estado)){
+            
+            if("q1".equals(estado))
                 estado = estado_q1(flujo.getCaracter());
-            }
-            if("q0".equals(estado)){
+            
+            if("q0".equals(estado))
                 estado = estado_q0(flujo.getCaracter());
-            }           
-            if(estadoInicial.equals(estado)){
-                break;
-            }
+                       
+            if("qe".equals(estado))
+                break;            
             
             lexema += flujo.getCaracter();
             flujo.moverAdelante();
-            estadoInicial = estado;
             
-            if("qf".equals(estado)){
-                return estado_qf(lexema, 0, 0);
-            }            
+            if("qf".equals(estado))
+                return estado_qf(lexema, 0, 0);                        
         }
         
         flujo.setPosicionActual(posicionInicial);
@@ -64,7 +60,7 @@ public class Automata_Operador_Logico implements Automata{
      */
     @Override
     public String estado_q0(char caracter){
-        String estado = "q0";
+        String estado = "qe";
         switch (caracter) {
             case '&':
                 estado = "q1";
@@ -74,8 +70,6 @@ public class Automata_Operador_Logico implements Automata{
                 break;    
             case '!':
                 estado = "qf";
-                break;
-            default:
                 break;
         }
         return estado;
@@ -88,7 +82,7 @@ public class Automata_Operador_Logico implements Automata{
      * retorna el valor actual.
      */
     private String estado_q1(char caracter){
-        return caracter == '&' ? "qf" : "q1";
+        return caracter == '&' ? "qf" : "qe";
     }
     
     /***
@@ -98,7 +92,7 @@ public class Automata_Operador_Logico implements Automata{
      * retorna el valor actual.
      */
     private String estado_q2(char caracter){
-        return caracter == '|' ? "qf" : "q2";
+        return caracter == '|' ? "qf" : "qe";
     }
 
     /***

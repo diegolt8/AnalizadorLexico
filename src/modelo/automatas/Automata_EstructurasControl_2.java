@@ -12,11 +12,11 @@ import modelo.Lexema;
  *
  * @author Pepe
  */
-public class Automata_TiposDatos implements Automata{
+public class Automata_EstructurasControl_2 implements Automata{
 
     /***
      * Metodo que contiene el comportamiento completo del automata, el cual se 
-     * encarga de determinar cuales son los lexemas de tipos de datos.
+     * encarga de determinar cuales son los lexemas de estructuras de control.
      * @param flujo
      * @return lexema
      */
@@ -51,7 +51,7 @@ public class Automata_TiposDatos implements Automata{
             
             if("q3".equals(estado))
                 estado = estado_q3(flujo.getCaracter());
-            
+             
             if("q2".equals(estado))
                 estado = estado_q2(flujo.getCaracter());
             
@@ -60,7 +60,7 @@ public class Automata_TiposDatos implements Automata{
             
             if("q0".equals(estado))
                 estado = estado_q0(flujo.getCaracter());
-                      
+                       
             if("qe".equals(estado))
                 break;            
             
@@ -68,7 +68,7 @@ public class Automata_TiposDatos implements Automata{
             flujo.moverAdelante();
             
             if("qf".equals(estado))
-                return estado_qf(lexema, 0, 0);                     
+                return estado_qf(lexema, 0, 0);
         }
         
         flujo.setPosicionActual(posicionInicial);
@@ -84,24 +84,15 @@ public class Automata_TiposDatos implements Automata{
     @Override
     public String estado_q0(char caracter) {
         String estado = "qe";
-        if (caracter == 'V')
+        if (caracter == 'S')
             estado = "q1";
         
-        if (caracter == 'C')
-            estado = "q2";
-        
-        if (caracter == 'D')
-            estado = "q3";
-         
-        if (caracter == 'E')
+        if (caracter == 'P')
             estado = "q4";
         
-        if (caracter == 'B')
-            estado = "q5";
-         
         return estado;
     }
-    
+
     /***
      * Metodo que evalua el estado q1 del automata.
      * @param caracter
@@ -109,7 +100,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q1(char caracter){
-        return caracter == 'a' ? "q6" : "qe";
+        return caracter == 'i' ? "q2" : "qe";
     }
     
     /***
@@ -119,7 +110,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q2(char caracter){
-        return caracter == 'a' ? "q7" : "qe";
+        return caracter == 'n' ? "q3" : "qe";
     }
     
     /***
@@ -129,7 +120,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q3(char caracter){
-        return caracter == 'e' ? "q8" : "qe";
+        return caracter == 'o' ? "qf" : "qe";
     }
     
     /***
@@ -139,7 +130,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q4(char caracter){
-        return caracter == 'n' ? "q9" : "qe";
+        return caracter == 'a' ? "q5" : "qe";
     }
     
     /***
@@ -149,7 +140,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q5(char caracter){
-        return caracter == 'o' ? "q10" : "qe";
+        return caracter == 'r' ? "q6" : "qe";
     }
     
     /***
@@ -159,7 +150,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q6(char caracter){
-        return caracter == 'r' ? "qf" : "qe";
+        return caracter == 'a' ? "q7" : "qe";
     }
     
     /***
@@ -169,7 +160,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q7(char caracter){
-        return (caracter == 'r' || caracter == 'd') ? "qf" : "qe";
+        return caracter == 'C' ? "q8" : "qe";
     }
     
     /***
@@ -179,7 +170,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q8(char caracter){
-        return caracter == 'c' ? "qf" : "qe";
+        return caracter == 'a' ? "q9" : "qe";
     }
     
     /***
@@ -189,7 +180,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q9(char caracter){
-        return caracter == 't' ? "qf" : "qe";
+        return caracter == 'd' ? "q10" : "qe";
     }
 
     /***
@@ -199,7 +190,7 @@ public class Automata_TiposDatos implements Automata{
      * retorna el valor actual.
      */
     private String estado_q10(char caracter){
-        return caracter == 'l' ? "qf" : "qe";
+        return caracter == 'a' ? "qf" : "qe";
     }
     
     /***
@@ -211,7 +202,8 @@ public class Automata_TiposDatos implements Automata{
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Operador Logico", fila, columna, lexema.length());
+        return new Lexema(lexema, "Estructura de control", fila, columna, lexema.length());
     }
+    
     
 }

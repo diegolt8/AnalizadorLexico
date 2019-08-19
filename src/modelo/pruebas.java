@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import modelo.automatas.Automata_TiposDatos;
+import modelo.automatas.Automata_Identificador;
 
 /**
  *
@@ -17,9 +17,9 @@ public class pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        char[] lexema = {'C','a','f'};
+        char[] lexema = {'e','2',' ',' '};
         FlujoCaracteres flujo = new FlujoCaracteres(0, lexema, 0, 0);
-        Automata_TiposDatos aul = new Automata_TiposDatos();
+        Automata_Identificador aul = new Automata_Identificador();
         Lexema lexem = aul.ejecutarAutomata(flujo);
         if(lexem != null){
             System.out.println(lexem.getLexema()+ " - Tipo: "+ lexem.getTipoLexema()+" - Token: "+lexem.getToken());

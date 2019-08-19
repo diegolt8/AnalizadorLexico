@@ -23,16 +23,17 @@ public class Automata_Operador_Aritmetico implements Automata{
     @Override
     public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
         int posicionInicial = flujo.getPosicionActual();
-        String estado = "q0";
+        
+        String estado;
         String lexema = "";        
     
         estado = estado_q0(flujo.getCaracter());
         lexema += flujo.getCaracter();
         flujo.moverAdelante();
         
-        if("qf".equals(estado)){
+        if("qf".equals(estado))
             return estado_qf(lexema, 0, 0);
-        }
+        
         
         flujo.setPosicionActual(posicionInicial);
         return null;
@@ -46,11 +47,10 @@ public class Automata_Operador_Aritmetico implements Automata{
      */
     @Override
     public String estado_q0(char caracter){
-        String estado = "q0";
-        if( caracter == '+' || caracter == '-' || caracter == '*' || 
-            caracter == '/' || caracter == '%'){
+        String estado = "qe";
+        if( caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '%')
             estado = "qf";
-        }
+        
         return estado;
     }
 

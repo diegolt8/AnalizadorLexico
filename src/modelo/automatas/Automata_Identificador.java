@@ -5,6 +5,7 @@
  */
 package modelo.automatas;
 
+import java.util.regex.Pattern;
 import modelo.FlujoCaracteres;
 import modelo.Lexema;
 
@@ -12,11 +13,11 @@ import modelo.Lexema;
  *
  * @author Pepe
  */
-public class Automata_Operador_Asignacion implements Automata{
+public class Automata_Identificador implements Automata{
 
     /***
      * Metodo que contiene el comportamiento completo del automata, el cual se 
-     * encarga de determinar cuales son los lexemas de operadores de Asignacion.
+     * encarga de determinar cuales son los lexemas de operadores logicos.
      * @param flujo
      * @return lexema
      */
@@ -33,11 +34,12 @@ public class Automata_Operador_Asignacion implements Automata{
             
             if("q0".equals(estado))
                 estado = estado_q0(flujo.getCaracter());
-                       
+                
             if("qe".equals(estado))
                 break;            
             
-            lexema += flujo.getCaracter();
+            if(flujo.getCaracter() != ' ' && flujo.getCaracter() != '(')
+                lexema += flujo.getCaracter();
             flujo.moverAdelante();
             
             if("qf".equals(estado))
@@ -47,7 +49,7 @@ public class Automata_Operador_Asignacion implements Automata{
         flujo.setPosicionActual(posicionInicial);
         return null;
     }
-
+    
     /***
      * Metodo que evalua el estado inicial del automata.
      * @param caracter
@@ -55,13 +57,10 @@ public class Automata_Operador_Asignacion implements Automata{
      * retorna el valor actual.
      */
     @Override
-    public String estado_q0(char caracter) {
+    public String estado_q0(char caracter){
         String estado = "qe";
-        if( caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' )
+        if(Pattern.matches("[A-Za-z]", caracter+""))
             estado = "q1";
-        
-        if(caracter == '=')
-            estado = "qf";
         
         return estado;
     }
@@ -73,7 +72,14 @@ public class Automata_Operador_Asignacion implements Automata{
      * retorna el valor actual.
      */
     private String estado_q1(char caracter){
-        return caracter == '=' ? "qf" : "qe";
+        String estado = "qe";
+        if(Pattern.matches("[^&|!+\\-*/%<>=,.;:\\\\\"'()\\[\\]\\^]", caracter+""))
+            estado = "q1";
+         
+        if(caracter == ' ' || caracter == '(')
+            estado = "qf";
+        
+        return estado;
     }
 
     /***
@@ -85,7 +91,7 @@ public class Automata_Operador_Asignacion implements Automata{
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Operador Asignacion", fila, columna, lexema.length());
+        return new Lexema(lexema, "Identificador", fila, columna, lexema.length());
     }
     
 }

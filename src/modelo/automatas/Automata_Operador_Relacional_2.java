@@ -22,31 +22,26 @@ public class Automata_Operador_Relacional_2 implements Automata{
      */
     @Override
     public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
-        int cantidadLetras = flujo.getCantidadCaracteres();
         int posicionInicial = flujo.getPosicionActual();
         
         String estado = "q0";
-        String estadoInicial = "q0";
         String lexema = "";
         
-        while(flujo.getPosicionActual() < cantidadLetras){
-            if("q1".equals(estado)){
+        while(flujo.getPosicionActual() < flujo.getCantidadCaracteres()){
+            if("q1".equals(estado))
                 estado = estado_q1(flujo.getCaracter());
-            }
-            if("q0".equals(estado)){
+            
+            if("q0".equals(estado))
                 estado = estado_q0(flujo.getCaracter());
-            }           
-            if(estadoInicial.equals(estado)){
-                break;
-            }
+                      
+            if("qe".equals(estado))
+                break;            
             
             lexema += flujo.getCaracter();
             flujo.moverAdelante();
-            estadoInicial = estado;
             
-            if("qf".equals(estado)){
-                return estado_qf(lexema, 0, 0);
-            }            
+            if("qf".equals(estado))
+                return estado_qf(lexema, 0, 0);                       
         }
         
         flujo.setPosicionActual(posicionInicial);
@@ -61,10 +56,10 @@ public class Automata_Operador_Relacional_2 implements Automata{
      */
     @Override
     public String estado_q0(char caracter) {
-        String estado = "q0";
-        if( caracter == '<' || caracter == '>' || caracter == '=' || caracter == '!' ){
+        String estado = "qe";
+        if( caracter == '<' || caracter == '>' || caracter == '=' || caracter == '!' )
             estado = "q1";
-        }
+        
         return estado;
     }
 
@@ -75,7 +70,7 @@ public class Automata_Operador_Relacional_2 implements Automata{
      * retorna el valor actual.
      */
     private String estado_q1(char caracter){
-        return caracter == '=' ? "qf" : "q1";
+        return caracter == '=' ? "qf" : "qe";
     }
     
     /***
