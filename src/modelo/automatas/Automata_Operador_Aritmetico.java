@@ -47,11 +47,7 @@ public class Automata_Operador_Aritmetico implements Automata{
      */
     @Override
     public String estado_q0(char caracter){
-        String estado = "qe";
-        if( caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '%')
-            estado = "qf";
-        
-        return estado;
+        return (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '%') ? "qf" : "qe";
     }
 
     /***

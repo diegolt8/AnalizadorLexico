@@ -56,11 +56,7 @@ public class Automata_Operador_Relacional_2 implements Automata{
      */
     @Override
     public String estado_q0(char caracter) {
-        String estado = "qe";
-        if( caracter == '<' || caracter == '>' || caracter == '=' || caracter == '!' )
-            estado = "q1";
-        
-        return estado;
+        return (caracter == '<' || caracter == '>' || caracter == '=' || caracter == '!') ? "q1" : "qe";
     }
 
     /***
