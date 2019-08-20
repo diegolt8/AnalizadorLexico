@@ -1,0 +1,65 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package modelo.automatas;
+
+import modelo.FlujoCaracteres;
+import modelo.Lexema;
+
+/**
+ *
+ * @author Pepe
+ */
+public class Automata_Operador_Relacional_1 implements Automata{
+
+    /***
+     * Metodo que contiene el comportamiento completo del automata, el cual se 
+     * encarga de determinar cuales son los lexemas de operadores relacionales 1.
+     * @param flujo
+     * @return lexema
+     */
+    @Override
+    public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
+        int posicionInicial = flujo.getPosicionActual();
+        
+        String estado;
+        String lexema = "";        
+    
+        estado = estado_q0(flujo.getCaracter());
+        lexema += flujo.getCaracter();
+        flujo.moverAdelante();
+        
+        if("qf".equals(estado))
+            return estado_qf(lexema, 0, 0);
+        
+        
+        flujo.setPosicionActual(posicionInicial);
+        return null;
+    }
+
+    /***
+     * Metodo que evalua el estado inicial del automata.
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto 
+     * retorna el valor actual.
+     */
+    @Override
+    public String estado_q0(char caracter) {
+        return (caracter == '<' || caracter == '>') ? "qf" : "qe";
+    }
+    
+    /***
+     * Metodo que evalua el estado final del automata.
+     * @param lexema
+     * @param fila
+     * @param columna
+     * @return Lexema que identifico el automata en el estado final
+     */
+    @Override
+    public Lexema estado_qf(String lexema, int fila, int columna) {
+        return new Lexema(lexema, "Operador Relacional", fila, columna, lexema.length());
+    }
+    
+}
