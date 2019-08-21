@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import modelo.automatas.Automata_Identificador;
+import controlador.cltAnalizadorLexico;
 
 /**
  *
@@ -17,14 +17,9 @@ public class pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        char[] lexema = {'e','2',' ',' '};
-        FlujoCaracteres flujo = new FlujoCaracteres(0, lexema, 0, 0);
-        Automata_Identificador aul = new Automata_Identificador();
-        Lexema lexem = aul.ejecutarAutomata(flujo);
-        if(lexem != null){
-            System.out.println(lexem.getLexema()+ " - Tipo: "+ lexem.getTipoLexema()+" - Token: "+lexem.getToken());
-        } else {
-            System.out.println("Error Lexico");
-        }        
+        char[] lexema = {'e','w','a',';'};
+        FlujoCaracteres flujo = new FlujoCaracteres(lexema);
+        cltAnalizadorLexico a = new cltAnalizadorLexico();
+        a.analizadorLexico(flujo);      
     }
 }

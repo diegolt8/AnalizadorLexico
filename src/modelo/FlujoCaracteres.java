@@ -16,11 +16,11 @@ public class FlujoCaracteres {
 
     public FlujoCaracteres(){}
 
-    public FlujoCaracteres(int posicionActual, char[] caracteres, int fila, int columna) {
-        this.posicionActual = posicionActual;
-        this.fila = fila;
-        this.columna = columna;
+    public FlujoCaracteres(char[] caracteres) {
+        this.posicionActual = 0;
         this.caracteres = caracteres;
+        this.fila = 1;
+        this.columna = 1;
     }
       
     //-------------------------------------------------------------------------- 
@@ -73,6 +73,7 @@ public class FlujoCaracteres {
     }
 
     public void setPosicionActual(int posicionActual) {
+        this.columna -= (this.posicionActual-posicionActual);
         this.posicionActual = posicionActual;
     }
 
