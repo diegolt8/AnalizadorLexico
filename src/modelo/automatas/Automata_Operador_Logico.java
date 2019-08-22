@@ -22,13 +22,13 @@ public class Automata_Operador_Logico implements Automata{
      */
     @Override
     public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
-        int cantidadLetras = flujo.getCantidadCaracteres();
         int posicionInicial = flujo.getPosicionActual();
+        int columnaInicial = flujo.getColumna();
         
         String estado = "q0";
         String lexema = "";
         
-        while(flujo.getPosicionActual() < cantidadLetras){
+        while(flujo.getPosicionActual() < flujo.getCantidadCaracteres()){
             if("q2".equals(estado))
                 estado = estado_q2(flujo.getCaracter());
             
@@ -43,9 +43,10 @@ public class Automata_Operador_Logico implements Automata{
             
             lexema += flujo.getCaracter();
             flujo.moverAdelante();
+            flujo.siguienteColumna();
             
             if("qf".equals(estado))
-                return estado_qf(lexema, 0, 0);                        
+                return estado_qf(lexema, flujo.getFila(), columnaInicial);                        
         }
         
         flujo.setPosicionActual(posicionInicial);

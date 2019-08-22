@@ -21,7 +21,8 @@ public class Automatas {
     private final Automata_TiposDatos automataTiposDatos;
     private final Automata_Operador_Aritmetico automataOperadorAritmetico;
     private final Automata_Operador_Asignacion automataOperadorAsignacion;
-    private final Automata_Operador_Especial automataOperadorEspecial;
+    private final Automata_Operador_Especial_1 automataOperadorEspecial1;
+    private final Automata_Operador_Especial_2 automataOperadorEspecial2;
     private final Automata_Operador_Logico automataOperadorLogico; 
     private final Automata_Operador_Relacional_1 automataOperadorRelacional1;
     private final Automata_Operador_Relacional_2 automataOperadorRelacional2;
@@ -35,6 +36,8 @@ public class Automatas {
     private final Automata_PalabrasReservada_Stream automataReservadaStream;
     private final Automata_PalabrasReservada_ValorLogico automataReservadaValorLogico;
     private final Automata_PalabrasReservada_VerbosHttp automataReservadaVerbosHttp;
+    private final Automata_ValorNumerico automataValorNumerico;
+    private final Automata_ValorCadena automataValorCadena;
     
     public Automatas() {
         automataDelimitador = new Automata_Delimitador();
@@ -44,7 +47,8 @@ public class Automatas {
         automataTiposDatos = new Automata_TiposDatos();
         automataOperadorAritmetico = new Automata_Operador_Aritmetico();
         automataOperadorAsignacion = new Automata_Operador_Asignacion();
-        automataOperadorEspecial = new Automata_Operador_Especial();
+        automataOperadorEspecial1 = new Automata_Operador_Especial_1();
+        automataOperadorEspecial2 = new Automata_Operador_Especial_2();
         automataOperadorLogico = new Automata_Operador_Logico();
         automataOperadorRelacional1 = new Automata_Operador_Relacional_1();
         automataOperadorRelacional2 = new Automata_Operador_Relacional_2();
@@ -58,6 +62,8 @@ public class Automatas {
         automataReservadaStream = new Automata_PalabrasReservada_Stream();
         automataReservadaValorLogico = new Automata_PalabrasReservada_ValorLogico();
         automataReservadaVerbosHttp = new Automata_PalabrasReservada_VerbosHttp();
+        automataValorNumerico = new Automata_ValorNumerico();
+        automataValorCadena = new Automata_ValorCadena();
     }
     
     public Lexema automataDelimitador(FlujoCaracteres flujo){
@@ -88,8 +94,12 @@ public class Automatas {
         return automataOperadorAsignacion.ejecutarAutomata(flujo);
     }
     
-    public Lexema automataOperadorEspecial(FlujoCaracteres flujo){
-        return automataOperadorEspecial.ejecutarAutomata(flujo);
+    public Lexema automataOperadorEspecial1(FlujoCaracteres flujo){
+        return automataOperadorEspecial1.ejecutarAutomata(flujo);
+    }
+    
+    public Lexema automataOperadorEspecial2(FlujoCaracteres flujo){
+        return automataOperadorEspecial2.ejecutarAutomata(flujo);
     }
     
     public Lexema automataOperadorLogico(FlujoCaracteres flujo){
@@ -142,5 +152,13 @@ public class Automatas {
     
     public Lexema automataReservadaVerbosHttp(FlujoCaracteres flujo){
         return automataReservadaVerbosHttp.ejecutarAutomata(flujo);
+    }
+    
+    public Lexema automataValorNumerico(FlujoCaracteres flujo){
+        return automataValorNumerico.ejecutarAutomata(flujo);
+    }
+    
+     public Lexema automataValorCadena(FlujoCaracteres flujo){
+        return automataValorCadena.ejecutarAutomata(flujo);
     }
 }

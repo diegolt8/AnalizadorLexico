@@ -7,7 +7,7 @@ package modelo.automatas;
 
 import modelo.FlujoCaracteres;
 import modelo.Lexema;
-
+ 
 /**
  *
  * @author Pepe

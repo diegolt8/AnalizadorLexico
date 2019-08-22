@@ -47,12 +47,14 @@ public class Automata_Identificador implements Automata {
             if ("qf".equals(estado)) {
                 return estado_qf(lexema, flujo.getFila(), columnaInicial);
             } else {
-                flujo.moverAdelante();
                 lexema += flujo.getCaracter();
+                flujo.moverAdelante();
                 flujo.siguienteColumna();
             }
         }
-
+        if(!"qe".equals(estado)){
+            return estado_qf(lexema, flujo.getFila(), columnaInicial);
+        }
         flujo.setPosicionActual(posicionInicial);
         return null;
     }
@@ -84,7 +86,7 @@ public class Automata_Identificador implements Automata {
             estado = "q1";
         }
 
-        if (caracter == ' ' || caracter == '(' || caracter == ';' || (int) caracter == 10) {
+        if (caracter == 32 || caracter == 10 || Pattern.matches("[+\\-*/%,.;=()]", caracter + "")) {
             estado = "qf";
         }
 

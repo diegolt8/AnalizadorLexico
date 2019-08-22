@@ -33,6 +33,14 @@ public class FlujoCaracteres {
     }
     
     /***
+     * Metodo que retorna el caracter segun la posicion del flujo de caracteres
+     * @return char que contiene el caracter del flujo
+     */
+    public char getCaracterAnterior(){
+        return caracteres[posicionActual-1];
+    }
+    
+    /***
      * Metodo que retorna el tamaño del flujo de caracteres
      * @return int con la cantidad de elementos del flujo de caracteres
      */
