@@ -5,6 +5,7 @@
  */
 package modelo.automatas;
 
+import java.util.regex.Pattern;
 import modelo.FlujoCaracteres;
 import modelo.Lexema;
 
@@ -12,13 +13,12 @@ import modelo.Lexema;
  *
  * @author Pepe
  */
-public class Automata_PalabrasReservada_Nulo implements Automata {
+public class Automata_ValorCadena implements Automata {
 
     /**
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
-     * encarga de determinar cuales son los lexemas de palabras reservadas por
-     * el sistema.
+     * encarga de determinar cuales son los lexemas de cadenas de caracteres.
      *
      * @param flujo
      * @return lexema
@@ -32,14 +32,6 @@ public class Automata_PalabrasReservada_Nulo implements Automata {
         String lexema = "";
 
         while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
-            if ("q3".equals(estado)) {
-                estado = estado_q3(flujo.getCaracter());
-            }
-
-            if ("q2".equals(estado)) {
-                estado = estado_q2(flujo.getCaracter());
-            }
-
             if ("q1".equals(estado)) {
                 estado = estado_q1(flujo.getCaracter());
             }
@@ -52,17 +44,21 @@ public class Automata_PalabrasReservada_Nulo implements Automata {
                 break;
             }
 
-            lexema += flujo.getCaracter();
-            flujo.moverAdelante();
-            flujo.siguienteColumna();
-
             if ("qf".equals(estado)) {
                 return estado_qf(lexema, flujo.getFila(), columnaInicial);
-            } 
-            
+            } else {
+                lexema += flujo.getCaracter();
+                flujo.moverAdelante();
+                flujo.siguienteColumna();
+            }
+
         }
 
+        if (!"qe".equals(estado)) {
+            return estado_qf(lexema, flujo.getFila(), columnaInicial);
+        }
         flujo.setPosicionActual(posicionInicial);
+
         return null;
     }
 
@@ -76,7 +72,7 @@ public class Automata_PalabrasReservada_Nulo implements Automata {
      */
     @Override
     public String estado_q0(char caracter) {
-        return caracter == 'N' ? "q1" : "qe";
+        return Pattern.matches("[^']", caracter + "") ? "q1" : "qe";
     }
 
     /**
@@ -88,31 +84,7 @@ public class Automata_PalabrasReservada_Nulo implements Automata {
      * retorna el valor actual.
      */
     private String estado_q1(char caracter) {
-        return caracter == 'U' ? "q2" : "qe";
-    }
-
-    /**
-     * *
-     * Metodo que evalua el estado q2 del automata.
-     *
-     * @param caracter
-     * @return String que contiene el nuevo estado del automata, por defecto
-     * retorna el valor actual.
-     */
-    private String estado_q2(char caracter) {
-        return caracter == 'L' ? "q3" : "qe";
-    }
-
-    /**
-     * *
-     * Metodo que evalua el estado q3 del automata.
-     *
-     * @param caracter
-     * @return String que contiene el nuevo estado del automata, por defecto
-     * retorna el valor actual.
-     */
-    private String estado_q3(char caracter) {
-        return caracter == 'O' ? "qf" : "qe";
+        return Pattern.matches("[^']", caracter + "") ? "q1" : "qf";
     }
 
     /**
@@ -126,6 +98,7 @@ public class Automata_PalabrasReservada_Nulo implements Automata {
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Palabra Reservada: Nulo", fila, columna, lexema.length());
+        return new Lexema(lexema, "Valor Cadena", fila, columna, lexema.length());
     }
+
 }

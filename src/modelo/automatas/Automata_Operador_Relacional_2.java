@@ -23,6 +23,7 @@ public class Automata_Operador_Relacional_2 implements Automata{
     @Override
     public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
         int posicionInicial = flujo.getPosicionActual();
+        int columnaInicial = flujo.getColumna();
         
         String estado = "q0";
         String lexema = "";
@@ -39,9 +40,10 @@ public class Automata_Operador_Relacional_2 implements Automata{
             
             lexema += flujo.getCaracter();
             flujo.moverAdelante();
+            flujo.siguienteColumna();
             
             if("qf".equals(estado))
-                return estado_qf(lexema, 0, 0);                       
+                return estado_qf(lexema, flujo.getFila(), columnaInicial);                       
         }
         
         flujo.setPosicionActual(posicionInicial);

@@ -16,11 +16,11 @@ public class FlujoCaracteres {
 
     public FlujoCaracteres(){}
 
-    public FlujoCaracteres(int posicionActual, char[] caracteres, int fila, int columna) {
-        this.posicionActual = posicionActual;
-        this.fila = fila;
-        this.columna = columna;
+    public FlujoCaracteres(char[] caracteres) {
+        this.posicionActual = 0;
         this.caracteres = caracteres;
+        this.fila = 1;
+        this.columna = 1;
     }
       
     //-------------------------------------------------------------------------- 
@@ -30,6 +30,14 @@ public class FlujoCaracteres {
      */
     public char getCaracter(){
         return caracteres[posicionActual];
+    }
+    
+    /***
+     * Metodo que retorna el caracter segun la posicion del flujo de caracteres
+     * @return char que contiene el caracter del flujo
+     */
+    public char getCaracterAnterior(){
+        return caracteres[posicionActual-1];
     }
     
     /***
@@ -73,6 +81,7 @@ public class FlujoCaracteres {
     }
 
     public void setPosicionActual(int posicionActual) {
+        this.columna -= (this.posicionActual-posicionActual);
         this.posicionActual = posicionActual;
     }
 

@@ -12,13 +12,12 @@ import modelo.Lexema;
  *
  * @author Pepe
  */
-public class Automata_Operador_Relacional_1 implements Automata {
+public class Automata_Operador_Especial_2 implements Automata {
 
     /**
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
-     * encarga de determinar cuales son los lexemas de operadores relacionales
-     * 1.
+     * encarga de determinar cuales son los lexemas de operadores especiales.
      *
      * @param flujo
      * @return lexema
@@ -54,7 +53,7 @@ public class Automata_Operador_Relacional_1 implements Automata {
      */
     @Override
     public String estado_q0(char caracter) {
-        return (caracter == '<' || caracter == '>') ? "qf" : "qe";
+        return (caracter == ',' || caracter == ':' || caracter == ',') ? "qf" : "qe";
     }
 
     /**
@@ -68,7 +67,7 @@ public class Automata_Operador_Relacional_1 implements Automata {
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Operador Relacional", fila, columna, lexema.length());
+        return new Lexema(lexema, "Operador Especial", fila, columna, lexema.length());
     }
 
 }
