@@ -5,7 +5,6 @@
  */
 package modelo.automatas;
 
-import java.util.regex.Pattern;
 import modelo.FlujoCaracteres;
 import modelo.Lexema;
 
@@ -13,12 +12,12 @@ import modelo.Lexema;
  *
  * @author Pepe
  */
-public class Automata_ValorNumerico implements Automata {
+public class Automata_Comentario implements Automata {
 
     /**
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
-     * encarga de determinar cuales son los lexemas de valores numericos.
+     * encarga de determinar cuales son los lexemas de comentarios.
      *
      * @param flujo
      * @return lexema
@@ -45,11 +44,7 @@ public class Automata_ValorNumerico implements Automata {
             }
 
             if ("qf".equals(estado)) {
-                if (Pattern.matches("[A-Za-z]", flujo.getCaracter() + "")) {
-                    return null;
-                } else {
-                    return estado_qf(lexema, flujo.getFila(), columnaInicial);
-                }
+                return estado_qf(lexema, flujo.getFila(), columnaInicial);
             } else {
                 lexema += flujo.getCaracter();
                 flujo.moverAdelante();
@@ -73,7 +68,7 @@ public class Automata_ValorNumerico implements Automata {
      */
     @Override
     public String estado_q0(char caracter) {
-        return Pattern.matches("[0-9]", caracter + "") ? "q1" : "qe";
+        return caracter == '#' ? "q1" : "qe";
     }
 
     /**
@@ -85,14 +80,7 @@ public class Automata_ValorNumerico implements Automata {
      * retorna el valor actual.
      */
     private String estado_q1(char caracter) {
-        String estado = "qe";
-        if (Pattern.matches("[0-9]", caracter + "")) {
-            estado = "q1";
-        }
-        if (Pattern.matches("[^0-9]", caracter + "")) {
-            estado = "qf";
-        }
-        return estado;
+        return (caracter == 10 || caracter == 13) ? "qf" : "q1";
     }
 
     /**
@@ -106,6 +94,6 @@ public class Automata_ValorNumerico implements Automata {
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Valor Numerico", fila, columna, lexema.length());
+        return new Lexema(lexema, "Comentarios", fila, columna, lexema.length());
     }
 }

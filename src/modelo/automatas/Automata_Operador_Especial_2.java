@@ -53,7 +53,7 @@ public class Automata_Operador_Especial_2 implements Automata {
      */
     @Override
     public String estado_q0(char caracter) {
-        return (caracter == ',' || caracter == ':' || caracter == ',') ? "qf" : "qe";
+        return (caracter == ',' || caracter == ':' || caracter == '\\') ? "qf" : "qe";
     }
 
     /**

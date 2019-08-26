@@ -7,7 +7,7 @@ package modelo.automatas;
 
 import modelo.FlujoCaracteres;
 import modelo.Lexema;
- 
+
 /**
  *
  * @author Pepe
@@ -75,7 +75,7 @@ public class Automata_Delimitador implements Automata {
             estado = "q1";
         }
 
-        if (caracter == ';' || caracter == '"' || caracter == '(' || caracter == ')' || caracter == '[' || caracter == ']' || caracter == '\'') {
+        if (caracter == ';' || caracter == '"' || caracter == '(' || caracter == ')' || caracter == '[' || caracter == ']') {
             estado = "qf";
         }
 
@@ -119,5 +119,4 @@ public class Automata_Delimitador implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Delimitador", fila, columna, lexema.length());
     }
-
 }

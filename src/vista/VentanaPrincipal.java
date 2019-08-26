@@ -5,27 +5,30 @@
  */
 package vista;
 
-
-import controlador.cltAnalizadorLexico;
-import controlador.ctlCargadorArchivo;
+import controlador.AnalizadorLexico;
+import controlador.CargadorArchivo;
+import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import modelo.ErrorLexico;
+import modelo.Lexema;
 
 /**
  *
  * @author diegoul818
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-     
-    ctlCargadorArchivo cargar;
-    cltAnalizadorLexico analizadorLexico;
+
+    CargadorArchivo cargar;
+    AnalizadorLexico analizadorLexico;
 
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
-        cargar = new ctlCargadorArchivo();
-        analizadorLexico = new cltAnalizadorLexico();
+        cargar = new CargadorArchivo();
+        analizadorLexico = new AnalizadorLexico();
     }
 
     /**
@@ -173,13 +176,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportarActionPerformed
-        if(cargar.seleccionar.showDialog(null, "Abrir") == JFileChooser.APPROVE_OPTION){
+        if (cargar.seleccionar.showDialog(null, "Abrir") == JFileChooser.APPROVE_OPTION) {
             cargar.archivo = cargar.seleccionar.getSelectedFile();
-            if(cargar.archivo.canRead()){
-                if(cargar.archivo.getName().endsWith("")){
+            if (cargar.archivo.canRead()) {
+                if (cargar.archivo.getName().endsWith("")) {
                     String documento = cargar.CargarArchivo(cargar.archivo);
                     jTALexico.setText(documento);
-                } else{
+                } else {
                     JOptionPane.showMessageDialog(null, "El archivo no se pudo cargar");
                 }
             }
@@ -189,15 +192,68 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jBAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnalizarActionPerformed
         String txt = jTALexico.getText();
         analizadorLexico.analizadorLexico(txt);
-        lexemas.setModel(analizadorLexico.tablaLexemas());
-        errores.setModel(analizadorLexico.tablaErrorLexico());
+        lexemas.setModel(tablaLexemas(analizadorLexico.getListaLexema()));
+        errores.setModel(tablaErrorLexico(analizadorLexico.getListaErroresLexico()));
     }//GEN-LAST:event_jBAnalizarActionPerformed
 
-    public static void main(String[] args) {
-        VentanaPrincipal ventana = new VentanaPrincipal();
-        ventana.setVisible(true);
+    /**
+     * *
+     * Metodo que se encarga de crear el modelo para cargar la tabla de lexemas 
+     * con la informacion que requiere mostrar
+     * @param listaLexemas
+     * @return
+     */
+    public DefaultTableModel tablaLexemas(ArrayList<Lexema> listaLexemas) {
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.addColumn("#");
+        model.addColumn("Lexema");
+        model.addColumn("Tipo Lexema");
+        model.addColumn("Token");
+        model.addColumn("Fila");
+        model.addColumn("Columna");
+
+        for (int i = 0; i < listaLexemas.size(); i++) {
+            model.addRow(new Object[]{
+                (i + 1),
+                listaLexemas.get(i).getLexema(),
+                listaLexemas.get(i).getTipoLexema(),
+                listaLexemas.get(i).getToken(),
+                listaLexemas.get(i).getLinea(),
+                listaLexemas.get(i).getColumna()
+            });
+        }
+
+        return model;
     }
-    
+
+    /**
+     * *
+     * Metodo que se encarga de crear el metodo para cargar la tabla de errores 
+     * de lexema con la informacion que requiere mostrar
+     * @param listaErrorLexico
+     * @return
+     */
+    public DefaultTableModel tablaErrorLexico(ArrayList<ErrorLexico> listaErrorLexico) {
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.addColumn("#");
+        model.addColumn("Error");
+        model.addColumn("Fila");
+        model.addColumn("Columna");
+
+        for (int i = 0; i < listaErrorLexico.size(); i++) {
+            model.addRow(new Object[]{
+                (i + 1),
+                listaErrorLexico.get(i).getToken(),
+                listaErrorLexico.get(i).getFila(),
+                listaErrorLexico.get(i).getColumna()
+            });
+        }
+
+        return model;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Importar;
     private javax.swing.JTable errores;
@@ -213,5 +269,4 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextArea jTALexico;
     private javax.swing.JTable lexemas;
     // End of variables declaration//GEN-END:variables
-
 }

@@ -18,7 +18,7 @@ public class Automata_PalabrasReservada_HttpRequest_2 implements Automata {
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de palabras reservadas por
-     * el sistema.
+     * el sistema - Http Request
      *
      * @param flujo
      * @return lexema

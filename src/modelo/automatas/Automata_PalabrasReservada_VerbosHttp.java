@@ -18,7 +18,7 @@ public class Automata_PalabrasReservada_VerbosHttp implements Automata {
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de palabras reservadas por
-     * el sistema.
+     * el sistema - verbos Http
      *
      * @param flujo
      * @return lexema

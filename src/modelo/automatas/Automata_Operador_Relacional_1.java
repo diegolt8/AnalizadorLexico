@@ -18,7 +18,6 @@ public class Automata_Operador_Relacional_1 implements Automata {
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de operadores relacionales
-     * 1.
      *
      * @param flujo
      * @return lexema
@@ -70,5 +69,4 @@ public class Automata_Operador_Relacional_1 implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Operador Relacional", fila, columna, lexema.length());
     }
-
 }

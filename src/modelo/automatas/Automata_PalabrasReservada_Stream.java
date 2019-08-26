@@ -18,7 +18,7 @@ public class Automata_PalabrasReservada_Stream implements Automata {
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de palabras reservadas por
-     * el sistema.
+     * el sistema - Stream
      *
      * @param flujo
      * @return lexema
@@ -72,7 +72,7 @@ public class Automata_PalabrasReservada_Stream implements Automata {
                 }
             }
         }
-        System.out.println ("");
+        System.out.println("");
 
         flujo.setPosicionActual(posicionInicial);
         return null;

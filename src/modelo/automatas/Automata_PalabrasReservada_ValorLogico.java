@@ -18,7 +18,7 @@ public class Automata_PalabrasReservada_ValorLogico implements Automata {
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de palabras reservadas por
-     * el sistema.
+     * el sistema - valores logicos
      *
      * @param flujo
      * @return lexema

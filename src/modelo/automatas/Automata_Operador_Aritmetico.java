@@ -69,5 +69,4 @@ public class Automata_Operador_Aritmetico implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Operador Aritmetico", fila, columna, lexema.length());
     }
-
 }

@@ -18,7 +18,7 @@ public class Automata_PalabrasReservada_Nulo implements Automata {
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de palabras reservadas por
-     * el sistema.
+     * el sistema - Null
      *
      * @param flujo
      * @return lexema
@@ -58,8 +58,8 @@ public class Automata_PalabrasReservada_Nulo implements Automata {
 
             if ("qf".equals(estado)) {
                 return estado_qf(lexema, flujo.getFila(), columnaInicial);
-            } 
-            
+            }
+
         }
 
         flujo.setPosicionActual(posicionInicial);

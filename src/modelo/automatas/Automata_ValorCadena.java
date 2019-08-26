@@ -32,6 +32,10 @@ public class Automata_ValorCadena implements Automata {
         String lexema = "";
 
         while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
+            if ("q2".equals(estado)) {
+                estado = estado_q2(flujo.getCaracter());
+            }
+
             if ("q1".equals(estado)) {
                 estado = estado_q1(flujo.getCaracter());
             }
@@ -44,21 +48,16 @@ public class Automata_ValorCadena implements Automata {
                 break;
             }
 
+            lexema += flujo.getCaracter();
+            flujo.moverAdelante();
+            flujo.siguienteColumna();
+
             if ("qf".equals(estado)) {
                 return estado_qf(lexema, flujo.getFila(), columnaInicial);
-            } else {
-                lexema += flujo.getCaracter();
-                flujo.moverAdelante();
-                flujo.siguienteColumna();
             }
-
         }
 
-        if (!"qe".equals(estado)) {
-            return estado_qf(lexema, flujo.getFila(), columnaInicial);
-        }
         flujo.setPosicionActual(posicionInicial);
-
         return null;
     }
 
@@ -72,7 +71,7 @@ public class Automata_ValorCadena implements Automata {
      */
     @Override
     public String estado_q0(char caracter) {
-        return Pattern.matches("[^']", caracter + "") ? "q1" : "qe";
+        return caracter == '\'' ? "q1" : "qe";
     }
 
     /**
@@ -84,7 +83,19 @@ public class Automata_ValorCadena implements Automata {
      * retorna el valor actual.
      */
     private String estado_q1(char caracter) {
-        return Pattern.matches("[^']", caracter + "") ? "q1" : "qf";
+        return Pattern.matches("[^']", caracter + "") ? "q2" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q2 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q2(char caracter) {
+        return Pattern.matches("[^']", caracter + "") ? "q2" : "qf";
     }
 
     /**
@@ -100,5 +111,4 @@ public class Automata_ValorCadena implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Valor Cadena", fila, columna, lexema.length());
     }
-
 }

@@ -12,15 +12,16 @@ import javax.swing.JFileChooser;
  *
  * @author diegoul818
  */
-public class ctlCargadorArchivo{
-    
+public class CargadorArchivo {
+
     public JFileChooser seleccionar = new JFileChooser();
     public File archivo;
     public FileInputStream entrada;
     public FileOutputStream salida;
-    
+
     /**
      * Metodo para cargar los archivos que se quieren mostrar en el textArea
+     *
      * @param archivo recibe el archivo que se quiere cargar
      * @return retorna un String con el codigo cargado del archivo
      */
@@ -38,5 +39,4 @@ public class ctlCargadorArchivo{
         }
         return codigo;
     }
-
 }

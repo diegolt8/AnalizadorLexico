@@ -259,5 +259,4 @@ public class Automata_TiposDatos implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Tipos de datos", fila, columna, lexema.length());
     }
-
 }

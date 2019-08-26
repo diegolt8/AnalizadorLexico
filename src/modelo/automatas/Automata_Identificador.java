@@ -18,7 +18,7 @@ public class Automata_Identificador implements Automata {
     /**
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
-     * encarga de determinar cuales son los lexemas de operadores logicos.
+     * encarga de determinar cuales son los lexemas de identificadores.
      *
      * @param flujo
      * @return lexema
@@ -52,7 +52,7 @@ public class Automata_Identificador implements Automata {
                 flujo.siguienteColumna();
             }
         }
-        if(!"qe".equals(estado)){
+        if (!"qe".equals(estado)) {
             return estado_qf(lexema, flujo.getFila(), columnaInicial);
         }
         flujo.setPosicionActual(posicionInicial);
@@ -81,16 +81,7 @@ public class Automata_Identificador implements Automata {
      * retorna el valor actual.
      */
     private String estado_q1(char caracter) {
-        String estado = "qe";
-        if (Pattern.matches("[^&|!+\\-*/%<>=,.;:\\\\\"'()\\[\\]\\^]", caracter + "")) {
-            estado = "q1";
-        }
-
-        if (caracter == 32 || caracter == 10 || Pattern.matches("[+\\-*/%,.;=()]", caracter + "")) {
-            estado = "qf";
-        }
-
-        return estado;
+        return (Pattern.matches("[A-Za-z0-9_]", caracter + "")) ? "q1" : "qf";
     }
 
     /**
@@ -106,5 +97,4 @@ public class Automata_Identificador implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Identificador", fila, columna, lexema.length());
     }
-
 }

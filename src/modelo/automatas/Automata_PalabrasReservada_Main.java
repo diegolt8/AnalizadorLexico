@@ -18,7 +18,7 @@ public class Automata_PalabrasReservada_Main implements Automata {
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de palabras reservadas por
-     * el sistema.
+     * el sistema - Main
      *
      * @param flujo
      * @return lexema
@@ -195,5 +195,4 @@ public class Automata_PalabrasReservada_Main implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Palabra Reservada: Main", fila, columna, lexema.length());
     }
-
 }

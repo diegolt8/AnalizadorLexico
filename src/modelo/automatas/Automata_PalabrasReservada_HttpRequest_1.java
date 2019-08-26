@@ -18,7 +18,7 @@ public class Automata_PalabrasReservada_HttpRequest_1 implements Automata {
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de palabras reservadas por
-     * el sistema.
+     * el sistema - Http Request
      *
      * @param flujo
      * @return lexema
@@ -27,7 +27,7 @@ public class Automata_PalabrasReservada_HttpRequest_1 implements Automata {
     public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
         int posicionInicial = flujo.getPosicionActual();
         int columnaInicial = flujo.getColumna();
-        
+
         String estado = "q0";
         String lexema = "";
 

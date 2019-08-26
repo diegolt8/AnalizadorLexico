@@ -251,5 +251,4 @@ public class Automata_EstructurasControl_2 implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Estructura de control", fila, columna, lexema.length());
     }
-
 }

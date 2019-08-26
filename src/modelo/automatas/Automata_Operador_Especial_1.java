@@ -53,11 +53,7 @@ public class Automata_Operador_Especial_1 implements Automata {
             flujo.siguienteColumna();
 
             if ("qf".equals(estado)) {
-                if (Pattern.matches("[A-Za-z]", flujo.getCaracter() + "") && Pattern.matches("[A-Za-z)]", validarPosicion(flujo) + "")) {
-                    return estado_qf(lexema, flujo.getFila(), columnaInicial);
-                } else {
-                    break;
-                }
+                return estado_qf(lexema, flujo.getFila(), columnaInicial);
             }
         }
 
@@ -128,14 +124,4 @@ public class Automata_Operador_Especial_1 implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Operador Especial", fila, columna, lexema.length());
     }
-
-    private char validarPosicion(FlujoCaracteres flujo) {
-        flujo.moverAtras();
-        flujo.moverAtras();
-        char valor = flujo.getCaracter();
-        flujo.moverAdelante();
-        flujo.moverAdelante();
-        return valor;
-    }
-
 }

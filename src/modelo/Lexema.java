@@ -10,10 +10,12 @@ package modelo;
  * @author Pepe
  */
 public class Lexema {
+
     private String lexema, tipoLexema;
     private int linea, columna, token;
-        
-    public Lexema(){}
+
+    public Lexema() {
+    }
 
     public Lexema(String lexema, String tipoLexema, int linea, int columna, int token) {
         this.lexema = lexema;
@@ -37,8 +39,8 @@ public class Lexema {
 
     public void setToken(int token) {
         this.token = token;
-    }   
-    
+    }
+
     public int getLinea() {
         return linea;
     }
@@ -62,6 +64,4 @@ public class Lexema {
     public void setTipoLexema(String tipoLexema) {
         this.tipoLexema = tipoLexema;
     }
-    
-    
 }

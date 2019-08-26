@@ -12,11 +12,13 @@ import modelo.Lexema;
  *
  * @author Pepe
  */
-public class Automata_Operador_Asignacion implements Automata{
+public class Automata_Operador_Asignacion implements Automata {
 
-    /***
-     * Metodo que contiene el comportamiento completo del automata, el cual se 
+    /**
+     * *
+     * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de operadores de Asignacion.
+     *
      * @param flujo
      * @return lexema
      */
@@ -24,62 +26,74 @@ public class Automata_Operador_Asignacion implements Automata{
     public Lexema ejecutarAutomata(FlujoCaracteres flujo) {
         int posicionInicial = flujo.getPosicionActual();
         int columnaInicial = flujo.getColumna();
-        
+
         String estado = "q0";
         String lexema = "";
-        
-        while(flujo.getPosicionActual() < flujo.getCantidadCaracteres()){
-            if("q1".equals(estado))
+
+        while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
+            if ("q1".equals(estado)) {
                 estado = estado_q1(flujo.getCaracter());
-            
-            if("q0".equals(estado))
+            }
+
+            if ("q0".equals(estado)) {
                 estado = estado_q0(flujo.getCaracter());
-                       
-            if("qe".equals(estado))
-                break;            
-            
+            }
+
+            if ("qe".equals(estado)) {
+                break;
+            }
+
             lexema += flujo.getCaracter();
             flujo.moverAdelante();
             flujo.siguienteColumna();
-            
-            if("qf".equals(estado))
-                return estado_qf(lexema, flujo.getFila(), columnaInicial);                    
+
+            if ("qf".equals(estado)) {
+                return estado_qf(lexema, flujo.getFila(), columnaInicial);
+            }
         }
-        
+
         flujo.setPosicionActual(posicionInicial);
         return null;
     }
 
-    /***
+    /**
+     * *
      * Metodo que evalua el estado inicial del automata.
+     *
      * @param caracter
-     * @return String que contiene el nuevo estado del automata, por defecto 
+     * @return String que contiene el nuevo estado del automata, por defecto
      * retorna el valor actual.
      */
     @Override
     public String estado_q0(char caracter) {
         String estado = "qe";
-        if( caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' )
+        if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') {
             estado = "q1";
-        
-        if(caracter == '=')
+        }
+
+        if (caracter == '=') {
             estado = "qf";
-        
+        }
+
         return estado;
     }
-    
-    /***
+
+    /**
+     * *
      * Metodo que evalua el estado q1 del automata.
+     *
      * @param caracter
-     * @return String que contiene el nuevo estado del automata, por defecto 
+     * @return String que contiene el nuevo estado del automata, por defecto
      * retorna el valor actual.
      */
-    private String estado_q1(char caracter){
+    private String estado_q1(char caracter) {
         return caracter == '=' ? "qf" : "qe";
     }
 
-    /***
+    /**
+     * *
      * Metodo que evalua el estado final del automata.
+     *
      * @param lexema
      * @param fila
      * @param columna
@@ -89,5 +103,4 @@ public class Automata_Operador_Asignacion implements Automata{
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Operador Asignacion", fila, columna, lexema.length());
     }
-    
 }

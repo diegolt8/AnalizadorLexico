@@ -13,28 +13,30 @@ import modelo.Lexema;
  * @author Pepe
  */
 public interface Automata {
-    
-    /***
-     * Metodo que define el comportamiento interno de los automatas.
+
+    /**
+     * *
+     * Metodo que define el comportamiento interno de los automatas     *
      * @param flujo
-     * @return 
+     * @return
      */
     public Lexema ejecutarAutomata(FlujoCaracteres flujo);
-    
-    /***
-     * Metodo que define el comportamiento del estado inicial del automata
+
+    /**
+     * *
+     * Metodo que define el comportamiento del estado inicial del automata     *
      * @param caracter
-     * @return 
+     * @return
      */
     public String estado_q0(char caracter);
-    
-    /***
-     * Metodo que define el comportamiento del estado final del automata
+
+    /**
+     * *
+     * Metodo que define el comportamiento del estado final del automata     *
      * @param lexema
      * @param fila
      * @param columna
-     * @return 
+     * @return
      */
     public Lexema estado_qf(String lexema, int fila, int columna);
-    
 }

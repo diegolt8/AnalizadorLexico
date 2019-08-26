@@ -18,7 +18,7 @@ public class Automata_PalabrasReservada_Bucles implements Automata {
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
      * encarga de determinar cuales son los lexemas de palabras reservadas por
-     * el sistema.
+     * el sistema - Bucles
      *
      * @param flujo
      * @return lexema
@@ -373,5 +373,4 @@ public class Automata_PalabrasReservada_Bucles implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         return new Lexema(lexema, "Palabra Reservada: Bucle", fila, columna, lexema.length());
     }
-
 }
