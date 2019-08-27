@@ -31,6 +31,13 @@ public class Automata_Identificador implements Automata {
         String estado = "q0";
         String lexema = "";
 
+        if (posicionInicial != 0) {
+            flujo.moverAtras();
+            if (Pattern.matches("[0-9]", flujo.getCaracter() + "")) {
+                flujo.moverAdelante();
+                return null;
+            }
+        }
         while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
             if ("q1".equals(estado)) {
                 estado = estado_q1(flujo.getCaracter());

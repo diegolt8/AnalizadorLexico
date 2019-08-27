@@ -104,11 +104,7 @@ public class Automata_EstructurasControl_1 implements Automata {
             flujo.siguienteColumna();
 
             if ("qf".equals(estado)) {
-                if (flujo.getCaracter() == 32 || flujo.getCaracter() == 10 || flujo.getCaracter() == '(') {
-                    return estado_qf(lexema, flujo.getFila(), columnaInicial);
-                } else {
-                    break;
-                }
+                return estado_qf(lexema, flujo.getFila(), columnaInicial);
             }
         }
 
