@@ -37,6 +37,7 @@ public class Automata_Identificador implements Automata {
                 flujo.moverAdelante();
                 return null;
             }
+            flujo.moverAdelante();
         }
         while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
             if ("q1".equals(estado)) {

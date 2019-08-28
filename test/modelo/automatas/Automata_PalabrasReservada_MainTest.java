@@ -18,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Pepe
  */
-public class Automata_EstructurasControl_1Test {
+public class Automata_PalabrasReservada_MainTest {
     
-    public Automata_EstructurasControl_1Test() {
+    public Automata_PalabrasReservada_MainTest() {
     }
     
     @BeforeClass
@@ -40,38 +40,38 @@ public class Automata_EstructurasControl_1Test {
     }
 
     /**
-     * Test of ejecutarAutomata method, of class Automata_EstructurasControl_1.
+     * Test of ejecutarAutomata method, of class Automata_PalabrasReservada_Main.
      */
     @Test
-    public void testEjecutarAutomataValida() {
+    public void testEjecutarAutomataValido() {
         System.out.println("---------------------------------------------------------------");
-        System.out.println("Prueba valida para Automata de estructuras de control");
-        char[] palabra = {'P', 'a', 'r', 'a'};
+        System.out.println("Prueba valida para Automata de palabras reservadas main");
+        char[] palabra = {'_', '_', 'm', 'a', 'i', 'n', '_', '_'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
-        Automata_EstructurasControl_1 instance = new Automata_EstructurasControl_1();
+        Automata_PalabrasReservada_Main instance = new Automata_PalabrasReservada_Main();
         Lexema result = instance.ejecutarAutomata(flujo);
-        if (result.getLexema().equals("Para") && result.getTipoLexema().equals("Estructura de control")) {
-            System.out.println("Valor enviado: \"Para\"");
-            System.out.println("Lexema enviado: \"Para\" - resultLexema: \""+result.getLexema()+"\"");
-            System.out.println("Tipo de lexema esperado: \"Estructura de control\" - resultTipoLexema: \""+result.getTipoLexema()+"\"");
+        if (result.getLexema().equals("__main__") && result.getTipoLexema().equals("Palabra Reservada: Main")) {
+            System.out.println("Valor enviado: \"__main__\"");
+            System.out.println("Lexema enviado: \"__main__\" - resultLexema: \""+result.getLexema()+"\"");
+            System.out.println("Tipo de lexema esperado: \"Palabra Reservada: Main\" - resultTipoLexema: \""+result.getTipoLexema()+"\"");
             assertNotNull(result);
         }
     }
-    
+
     /**
-     * Test of ejecutarAutomata method, of class Automata_EstructurasControl_1.
+     * Test of ejecutarAutomata method, of class Automata_PalabrasReservada_Main.
      */
     @Test
-    public void testEjecutarAutomataNoValida() {
+    public void testEjecutarAutomataNoValido() {
         System.out.println("---------------------------------------------------------------");
-        System.out.println("Prueba no valida para Automata de estructuras de control");
-        char[] palabra = {'P', 'a', 'r', 'a', 'a'};
+        System.out.println("Prueba no valida para Automata de palabras reservadas main");
+        char[] palabra = {'_', '_', 'm', 'a', 'i', 'n', '_', '_', '_'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
-        Automata_EstructurasControl_1 instance = new Automata_EstructurasControl_1();
+        Automata_PalabrasReservada_Main instance = new Automata_PalabrasReservada_Main();
         Lexema result = instance.ejecutarAutomata(flujo);
         if(result == null){
             assertNull(result);
-            System.out.println("Valor enviado: \"Paraa\"");
+            System.out.println("Valor enviado: \"__main___\"");
             System.out.println("El objeto es nulo");
         }
     }
