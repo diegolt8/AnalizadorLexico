@@ -5,7 +5,6 @@
  */
 package modelo.automatas;
 
-import java.util.regex.Pattern;
 import modelo.FlujoCaracteres;
 import modelo.Lexema;
 

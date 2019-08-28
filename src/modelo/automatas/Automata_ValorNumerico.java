@@ -46,6 +46,7 @@ public class Automata_ValorNumerico implements Automata {
 
             if ("qf".equals(estado)) {
                 if (Pattern.matches("[A-Za-z]", flujo.getCaracter() + "")) {
+                    flujo.setPosicionActual(posicionInicial);
                     return null;
                 } else {
                     return estado_qf(lexema, flujo.getFila(), columnaInicial);
@@ -59,7 +60,7 @@ public class Automata_ValorNumerico implements Automata {
         if (!"qe".equals(estado)) {
             return estado_qf(lexema, flujo.getFila(), columnaInicial);
         }
-        flujo.setPosicionActual(posicionInicial);
+
         return null;
     }
 

@@ -31,6 +31,7 @@ public class Automata_Operador_Relacional_1 implements Automata {
         String lexema = "";
 
         estado = estado_q0(flujo.getCaracter());
+        
         lexema += flujo.getCaracter();
         flujo.moverAdelante();
         flujo.siguienteColumna();

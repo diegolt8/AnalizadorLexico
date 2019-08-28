@@ -18,61 +18,62 @@ import static org.junit.Assert.*;
  *
  * @author Pepe
  */
-public class Automata_TiposDatosTest {
-
-    public Automata_TiposDatosTest() {
+public class Automata_ComentarioTest {
+    
+    public Automata_ComentarioTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of ejecutarAutomata method, of class Automata_TiposDatos.
+     * Test of ejecutarAutomata method, of class Automata_Comentario.
      */
     @Test
-    public void testEjecutarAutomataValido() {
+    public void testEjecutarAutomataValida() {
         System.out.println("---------------------------------------------------------------");
-        System.out.println("Prueba valida para Automata de tipos de datos");
-        char[] palabra = {'V', 'a', 'r'};
+        System.out.println("Prueba valida para Automata de comentarios");
+        char[] palabra = {'#', 'c', 'o','m'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
-        Automata_TiposDatos instance = new Automata_TiposDatos();
+        Automata_Comentario instance = new Automata_Comentario();
         Lexema result = instance.ejecutarAutomata(flujo);
-        if (result.getLexema().equals("Var") && result.getTipoLexema().equals("Tipos de datos")) {
-            System.out.println("Valor enviado: \"Var\"");
-            System.out.println("Lexema enviado: \"Var\" - resultLexema: \""+result.getLexema()+"\"");
-            System.out.println("Tipo de lexema esperado: \"Tipos de datos\" - resultTipoLexema: \""+result.getTipoLexema()+"\"");
+        if (result.getLexema().equals("#com") && result.getTipoLexema().equals("Comentarios")) {
+            System.out.println("Valor enviado: \"#com\"");
+            System.out.println("Lexema enviado: \"#com\" - resultLexema: \""+result.getLexema()+"\"");
+            System.out.println("Tipo de lexema esperado: \"Comentarios\" - resultTipoLexema: \""+result.getTipoLexema()+"\"");
             assertNotNull(result);
         }
     }
 
     /**
-     * Test of ejecutarAutomata method, of class Automata_TiposDatos.
+     * Test of ejecutarAutomata method, of class Automata_Comentario.
      */
     @Test
-    public void testEjecutarAutomataNoValido() {
+    public void testEjecutarAutomataNoValida() {
         System.out.println("---------------------------------------------------------------");
-        System.out.println("Prueba no valida para Automata de tipos de datos");
-        char[] palabra = {'V', 'a', 'r', 'r'};
+        System.out.println("Prueba no valida para Automata de comentarios");
+        char[] palabra = {'c','o','m'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
-        Automata_TiposDatos instance = new Automata_TiposDatos();
+        Automata_Comentario instance = new Automata_Comentario();
         Lexema result = instance.ejecutarAutomata(flujo);
         if(result == null){
             assertNull(result);
-            System.out.println("Valor enviado: \"Varr\"");
+            System.out.println("Valor enviado: \"com\"");
             System.out.println("El objeto es nulo");
         }
     }
+
 }

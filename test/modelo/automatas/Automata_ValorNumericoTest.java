@@ -18,60 +18,60 @@ import static org.junit.Assert.*;
  *
  * @author Pepe
  */
-public class Automata_TiposDatosTest {
-
-    public Automata_TiposDatosTest() {
+public class Automata_ValorNumericoTest {
+    
+    public Automata_ValorNumericoTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of ejecutarAutomata method, of class Automata_TiposDatos.
+     * Test of ejecutarAutomata method, of class Automata_PalabrasReservada_Nulo.
      */
     @Test
     public void testEjecutarAutomataValido() {
         System.out.println("---------------------------------------------------------------");
-        System.out.println("Prueba valida para Automata de tipos de datos");
-        char[] palabra = {'V', 'a', 'r'};
+        System.out.println("Prueba valida para Automata de valor numerico");
+        char[] palabra = {'1', '0', '0', '0'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
-        Automata_TiposDatos instance = new Automata_TiposDatos();
+        Automata_ValorNumerico instance = new Automata_ValorNumerico();
         Lexema result = instance.ejecutarAutomata(flujo);
-        if (result.getLexema().equals("Var") && result.getTipoLexema().equals("Tipos de datos")) {
-            System.out.println("Valor enviado: \"Var\"");
-            System.out.println("Lexema enviado: \"Var\" - resultLexema: \""+result.getLexema()+"\"");
-            System.out.println("Tipo de lexema esperado: \"Tipos de datos\" - resultTipoLexema: \""+result.getTipoLexema()+"\"");
+        if (result.getLexema().equals("1000") && result.getTipoLexema().equals("Valor Numerico")) {
+            System.out.println("Valor enviado: \"1000\"");
+            System.out.println("Lexema enviado: \"1000\" - resultLexema: \""+result.getLexema()+"\"");
+            System.out.println("Tipo de lexema esperado: \"Valor Numerico\" - resultTipoLexema: \""+result.getTipoLexema()+"\"");
             assertNotNull(result);
         }
     }
 
     /**
-     * Test of ejecutarAutomata method, of class Automata_TiposDatos.
+     * Test of ejecutarAutomata method, of class Automata_PalabrasReservada_Nulo.
      */
     @Test
     public void testEjecutarAutomataNoValido() {
         System.out.println("---------------------------------------------------------------");
-        System.out.println("Prueba no valida para Automata de tipos de datos");
-        char[] palabra = {'V', 'a', 'r', 'r'};
+        System.out.println("Prueba no valida para Automata de valor numerico");
+        char[] palabra = {'1', '0', '0', '0', 'a'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
-        Automata_TiposDatos instance = new Automata_TiposDatos();
+        Automata_ValorNumerico instance = new Automata_ValorNumerico();
         Lexema result = instance.ejecutarAutomata(flujo);
         if(result == null){
             assertNull(result);
-            System.out.println("Valor enviado: \"Varr\"");
+            System.out.println("Valor enviado: \"1000a\"");
             System.out.println("El objeto es nulo");
         }
     }

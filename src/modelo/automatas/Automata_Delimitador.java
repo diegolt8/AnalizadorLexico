@@ -5,6 +5,7 @@
  */
 package modelo.automatas;
 
+import java.util.regex.Pattern;
 import modelo.FlujoCaracteres;
 import modelo.Lexema;
 
@@ -52,7 +53,18 @@ public class Automata_Delimitador implements Automata {
             flujo.siguienteColumna();
 
             if ("qf".equals(estado)) {
-                return estado_qf(lexema, flujo.getFila(), columnaInicial);
+                if ("Met".equals(lexema)) {
+                    if (flujo.getCantidadCaracteres() == flujo.getPosicionActual()) {
+                        return estado_qf(lexema, flujo.getFila(), columnaInicial);
+                    }
+                    if (Pattern.matches("[^A-Za-z0-9_]", flujo.getCaracter() + "")) {
+                        return estado_qf(lexema, flujo.getFila(), columnaInicial);
+                    } else {
+                        break;
+                    }
+                } else {
+                    return estado_qf(lexema, flujo.getFila(), columnaInicial);
+                }
             }
         }
 
