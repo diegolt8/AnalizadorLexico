@@ -5,6 +5,7 @@
  */
 package modelo.automatas;
 
+import java.util.regex.Pattern;
 import modelo.FlujoCaracteres;
 import modelo.Lexema;
 
@@ -57,9 +58,15 @@ public class Automata_PalabrasReservada_Nulo implements Automata {
             flujo.siguienteColumna();
 
             if ("qf".equals(estado)) {
-                return estado_qf(lexema, flujo.getFila(), columnaInicial);
-            }
-
+                if (flujo.getCantidadCaracteres() == flujo.getPosicionActual()) {
+                    return estado_qf(lexema, flujo.getFila(), columnaInicial);
+                }
+                if (Pattern.matches("[^A-Za-z0-9_]", flujo.getCaracter() + "")) {
+                    return estado_qf(lexema, flujo.getFila(), columnaInicial);
+                } else {
+                    break;
+                }
+            } 
         }
 
         flujo.setPosicionActual(posicionInicial);

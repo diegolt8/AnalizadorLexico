@@ -46,13 +46,13 @@ public class Automata_DelimitadorTest {
     public void testEjecutarAutomataValida() {
         System.out.println("---------------------------------------------------------------");
         System.out.println("Prueba valida para Automata de delimitadores");
-        char[] palabra = {';'};
+        char[] palabra = {'M', 'e', 't'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
         Automata_Delimitador instance = new Automata_Delimitador();
         Lexema result = instance.ejecutarAutomata(flujo);
-        if (result.getLexema().equals(";") && result.getTipoLexema().equals("Delimitador")) {
-            System.out.println("Valor enviado: \";\"");
-            System.out.println("Lexema enviado: \";\" - resultLexema: \""+result.getLexema()+"\"");
+        if (result.getLexema().equals("Met") && result.getTipoLexema().equals("Delimitador")) {
+            System.out.println("Valor enviado: \"Met\"");
+            System.out.println("Lexema enviado: \"Met\" - resultLexema: \""+result.getLexema()+"\"");
             System.out.println("Tipo de lexema esperado: \"Delimitador\" - resultTipoLexema: \""+result.getTipoLexema()+"\"");
             assertNotNull(result);
         }
@@ -65,13 +65,13 @@ public class Automata_DelimitadorTest {
     public void testEjecutarAutomataNoValida() {
         System.out.println("---------------------------------------------------------------");
         System.out.println("Prueba no valida para Automata de delimitadores");
-        char[] palabra = {'6'};
+        char[] palabra = {'M', 'e', 't', 't'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
         Automata_Delimitador instance = new Automata_Delimitador();
         Lexema result = instance.ejecutarAutomata(flujo);
         if(result == null){
             assertNull(result);
-            System.out.println("Valor enviado: \"6\"");
+            System.out.println("Valor enviado: \"Mett\"");
             System.out.println("El objeto es nulo");
         }
     }   

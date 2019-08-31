@@ -161,7 +161,7 @@ public class AnalizadorLexico {
 
             lexema = automata.automataComentario(flujo);
             if (lexema != null) {
-                listaLexemas.add(lexema);
+                //listaLexemas.add(lexema);
                 continue;
             }
             lexema = automata.automataValorCadena(flujo);
