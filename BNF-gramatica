@@ -1,0 +1,131 @@
+declaracion_Met 
+      ::= 
+      tipo? identificador 
+      "("lista_parametros")" ("[" "]")? 
+      ( bloque_declaracion | ";" ) 
+
+
+tipo 
+      ::= 
+      tipo_especifico ("[" "]")?
+
+tipo_especifico 
+      ::= 
+      "Bol"
+      | "Var" 
+      | "Ent" 
+      | "Dec"
+      | "Cad" 
+      | "Car"
+
+
+identificador 
+      ::= "a..z,$,_" ( "a..z,$,_,0..9,carácter unicode sobre 00C0")?
+
+
+bloque_declaracion 
+      ::= "''" ( declaracion )? "''"
+
+
+lista_parametros 
+      ::= 
+      parametro ( "," lista_parametros)?
+
+parametro 
+      ::= 
+      tipo identificador ("[" "]")? 
+
+
+declaracion 
+      ::= 
+      declaracion_variable
+      | ( expresion ";" ) 
+      | ( bloque_declaracion ) 
+      | ( Para_declaracion ) 
+      | ( Hacer_declaracion ) 
+      | ( Mientras_declaracion ) 
+      | ( Para_declaracion )  
+      | ( "retorno" ( expresion ) ";" )
+      | ( "romper" ( identificador )? ";" ) 
+      | ( "continuar" ( identificador )? ";" ) 
+      | ( ";" ) 
+
+
+declaracion_variables 
+      ::= 
+       tipo (variable_declarante)* ";" 
+
+
+variable_declarante 
+      ::= 
+      identificador ( "[" "]" )* ( "=" inicializar_variable )?
+
+
+inicializar_variable 
+      ::= 
+      expresion 
+      | ( "''" ( inicializar_variable 
+      ( "," inicializar_variable )? ( "," ))  "''" ) 
+
+
+Si_declaracion 
+      ::= 
+      "Si" "(" expresion ")" declaracion 
+      ( "SiNo" declaracion )?
+
+
+Hacer_declaracion 
+      ::= 
+      "Hacer" declaracion "Mientras" "(" expresion ")" ";" 
+
+
+Mientras_declaracion 
+      ::= 
+      "Mientras" "(" expresion ")" declaracion 
+
+
+Para_declaracion 
+      ::= 
+      "Para" "(" ( declaracion_variables | ( expresion ";" ) | ";" ) 
+      ( expresion ) ";" 
+      ( expresion ) ";" 
+      ")" declaracion
+
+
+Cad 
+      ::= "'" (Cadena)? "'" 
+
+
+expresion_cadena 
+      ::= ( expresion 
+      ( "+" 
+      | "+=" ) 
+      expresion ) 
+
+documentacion 
+      ::= "#" "... texto ..."
+
+
+expresion_numerica 
+      ::= 
+      ( ( "-" 
+      | "++" 
+      | "--" ) 
+      expresion ) 
+      | ( expresion 
+      ( "++" 
+      | "--" ) ) 
+      | ( expresion 
+      ( "+" 
+      | "+=" 
+      | "-" 
+      | "-=" 
+      | "*" 
+      | "*=" 
+      | "/" 
+      | "/=" 
+      | "%" 
+      | "%=" ) 
+      expresion ) 
+
+ 
