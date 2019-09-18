@@ -13,7 +13,7 @@ import modelo.Lexema;
  *
  * @author Pepe
  */
-public class Automata_PalabrasReservada_HttpRequest_1 implements Automata {
+public class Automata_PalabrasReservada_HttpRequest implements Automata {
 
     /**
      * *
@@ -33,6 +33,86 @@ public class Automata_PalabrasReservada_HttpRequest_1 implements Automata {
         String lexema = "";
 
         while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
+            if ("q49".equals(estado)) {
+                estado = estado_q29(flujo.getCaracter());
+            }
+
+            if ("q48".equals(estado)) {
+                estado = estado_q28(flujo.getCaracter());
+            }
+            
+            if ("q47".equals(estado)) {
+                estado = estado_q29(flujo.getCaracter());
+            }
+
+            if ("q46".equals(estado)) {
+                estado = estado_q28(flujo.getCaracter());
+            }
+
+            if ("q45".equals(estado)) {
+                estado = estado_q27(flujo.getCaracter());
+            }
+
+            if ("q44".equals(estado)) {
+                estado = estado_q26(flujo.getCaracter());
+            }
+
+            if ("q43".equals(estado)) {
+                estado = estado_q25(flujo.getCaracter());
+            }
+
+            if ("q42".equals(estado)) {
+                estado = estado_q24(flujo.getCaracter());
+            }
+
+            if ("q41".equals(estado)) {
+                estado = estado_q23(flujo.getCaracter());
+            }
+
+            if ("q40".equals(estado)) {
+                estado = estado_q22(flujo.getCaracter());
+            }
+
+            if ("q39".equals(estado)) {
+                estado = estado_q21(flujo.getCaracter());
+            }
+            
+            if ("q38".equals(estado)) {
+                estado = estado_q29(flujo.getCaracter());
+            }
+
+            if ("q37".equals(estado)) {
+                estado = estado_q28(flujo.getCaracter());
+            }
+
+            if ("q36".equals(estado)) {
+                estado = estado_q27(flujo.getCaracter());
+            }
+
+            if ("q35".equals(estado)) {
+                estado = estado_q26(flujo.getCaracter());
+            }
+
+            if ("q34".equals(estado)) {
+                estado = estado_q25(flujo.getCaracter());
+            }
+
+            if ("q33".equals(estado)) {
+                estado = estado_q24(flujo.getCaracter());
+            }
+
+            if ("q32".equals(estado)) {
+                estado = estado_q23(flujo.getCaracter());
+            }
+
+            if ("q31".equals(estado)) {
+                estado = estado_q22(flujo.getCaracter());
+            }
+
+            if ("q30".equals(estado)) {
+                estado = estado_q21(flujo.getCaracter());
+            }
+            
             if ("q29".equals(estado)) {
                 estado = estado_q29(flujo.getCaracter());
             }
@@ -187,7 +267,25 @@ public class Automata_PalabrasReservada_HttpRequest_1 implements Automata {
      */
     @Override
     public String estado_q0(char caracter) {
-        return caracter == 'T' ? "q1" : "qe";
+        String estado = "qe";
+        
+        if (caracter == 'T') {
+            estado = "q1";
+        }
+
+        if (caracter == 'C') {
+            estado = "q30";
+        }
+        
+        if (caracter == 'P') {
+            estado = "q35";
+        }
+
+        if (caracter == 'R') {
+            estado = "q42";
+        }
+
+        return estado;
     }
 
     /**
@@ -562,6 +660,246 @@ public class Automata_PalabrasReservada_HttpRequest_1 implements Automata {
      */
     private String estado_q29(char caracter) {
         return caracter == 'r' ? "qf" : "qe";
+    }
+    
+        /**
+     * *
+     * Metodo que evalua el estado q19 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q30(char caracter) {
+        return caracter == 'a' ? "q31" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q20 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q31(char caracter) {
+        return caracter == 'm' ? "q32" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q21 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q32(char caracter) {
+        return caracter == 'p' ? "q33" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q22 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q33(char caracter) {
+        return caracter == 'o' ? "q34" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q23 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q34(char caracter) {
+        return caracter == 's' ? "qf" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q24 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q35(char caracter) {
+        return caracter == 'a' ? "q36" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q25 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q36(char caracter) {
+        return caracter == 'r' ? "q37" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q26 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q37(char caracter) {
+        return caracter == 'a' ? "q38" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q27 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q38(char caracter) {
+        return caracter == 'm' ? "q39" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q28 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q39(char caracter) {
+        return caracter == 'e' ? "q40" : "qe";
+    }
+    
+        /**
+     * *
+     * Metodo que evalua el estado q19 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q40(char caracter) {
+        return caracter == 't' ? "q41" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q20 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q41(char caracter) {
+        return caracter == 'r' ? "q33" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q21 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q42(char caracter) {
+        return caracter == 'e' ? "q43" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q22 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q43(char caracter) {
+        return caracter == 's' ? "q44" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q23 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q44(char caracter) {
+        return caracter == 'p' ? "q45" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q24 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q45(char caracter) {
+        return caracter == 'u' ? "q46" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q25 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q46(char caracter) {
+        return caracter == 'e' ? "q47" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q26 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q47(char caracter) {
+        return caracter == 's' ? "q48" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q27 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q48(char caracter) {
+        return caracter == 't' ? "q49" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q28 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q49(char caracter) {
+        return caracter == 'a' ? "qf" : "qe";
     }
 
     /**

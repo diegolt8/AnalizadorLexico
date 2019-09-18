@@ -13,7 +13,7 @@ import modelo.Lexema;
  *
  * @author Pepe
  */
-public class Automata_EstructurasControl_1 implements Automata {
+public class Automata_EstructurasControl implements Automata {
 
     /**
      * *
@@ -32,6 +32,30 @@ public class Automata_EstructurasControl_1 implements Automata {
         String lexema = "";
 
         while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
+            if ("q21".equals(estado)) {
+                estado = estado_q15(flujo.getCaracter());
+            }
+
+            if ("q20".equals(estado)) {
+                estado = estado_q14(flujo.getCaracter());
+            }
+
+            if ("q19".equals(estado)) {
+                estado = estado_q13(flujo.getCaracter());
+            }
+
+            if ("q18".equals(estado)) {
+                estado = estado_q12(flujo.getCaracter());
+            }
+
+            if ("q17".equals(estado)) {
+                estado = estado_q11(flujo.getCaracter());
+            }
+
+            if ("q16".equals(estado)) {
+                estado = estado_q10(flujo.getCaracter());
+            }
+            
             if ("q15".equals(estado)) {
                 estado = estado_q15(flujo.getCaracter());
             }
@@ -159,7 +183,7 @@ public class Automata_EstructurasControl_1 implements Automata {
      * retorna el valor actual.
      */
     private String estado_q1(char caracter) {
-        return caracter == 'i' ? "qf" : "qe";
+        return caracter == 'i' ? "q16" : "qe";
     }
 
     /**
@@ -195,7 +219,7 @@ public class Automata_EstructurasControl_1 implements Automata {
      * retorna el valor actual.
      */
     private String estado_q4(char caracter) {
-        return caracter == 'a' ? "qf" : "qe";
+        return caracter == 'a' ? "q18" : "qe";
     }
 
     /**
@@ -330,6 +354,78 @@ public class Automata_EstructurasControl_1 implements Automata {
         return caracter == 's' ? "qf" : "qe";
     }
 
+        /**
+     * *
+     * Metodo que evalua el estado q1 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q16(char caracter) {
+        return caracter == 'n' ? "q17" : "qf";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q2 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q17(char caracter) {
+        return caracter == 'o' ? "qf" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q3 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q18(char caracter) {
+        return caracter == 'C' ? "q19" : "qf";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q4 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q19(char caracter) {
+        return caracter == 'a' ? "q20" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q5 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q20(char caracter) {
+        return caracter == 'd' ? "q21" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q6 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q21(char caracter) {
+        return caracter == 'a' ? "qf" : "qe";
+    }
+    
     /**
      * *
      * Metodo que evalua el estado final del automata.
@@ -341,6 +437,27 @@ public class Automata_EstructurasControl_1 implements Automata {
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Estructura de control", fila, columna, lexema.length());
+        String tipoLexema = "Estructura control ";
+        switch (lexema){
+            case "Si":
+                tipoLexema += "Si";
+                break;
+            case "Para":
+                tipoLexema += "Para";
+                break;            
+            case "Hacer":
+                tipoLexema += "Hacer";
+                break;
+            case "Mientras":
+                tipoLexema += "Mientras";
+                break;
+            case "Sino":
+                tipoLexema += "Sino";
+                break;
+            case "ParaCada":
+                tipoLexema += "ParaCada";
+                break;
+        }
+        return new Lexema(lexema, tipoLexema, fila, columna, lexema.length());
     }
 }

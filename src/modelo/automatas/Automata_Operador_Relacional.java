@@ -12,12 +12,12 @@ import modelo.Lexema;
  *
  * @author Pepe
  */
-public class Automata_Operador_Especial_1 implements Automata {
+public class Automata_Operador_Relacional implements Automata {
 
     /**
      * *
      * Metodo que contiene el comportamiento completo del automata, el cual se
-     * encarga de determinar cuales son los lexemas de operadores especiales.
+     * encarga de determinar cuales son los lexemas de operadores relacionales
      *
      * @param flujo
      * @return lexema
@@ -31,10 +31,6 @@ public class Automata_Operador_Especial_1 implements Automata {
         String lexema = "";
 
         while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
-            if ("q2".equals(estado)) {
-                estado = estado_q2(flujo.getCaracter());
-            }
-
             if ("q1".equals(estado)) {
                 estado = estado_q1(flujo.getCaracter());
             }
@@ -52,6 +48,19 @@ public class Automata_Operador_Especial_1 implements Automata {
             flujo.siguienteColumna();
 
             if ("qf".equals(estado)) {
+                
+                if (flujo.getPosicionActual() != flujo.getCantidadCaracteres()){
+                    if ("<".equals(lexema) || ">".equals(lexema)){                        
+                        if (flujo.getCaracter() == '='){
+                            lexema += '=';
+                            flujo.moverAdelante();
+                            flujo.siguienteColumna();
+                        } else {
+                            return estado_qf(lexema, flujo.getFila(), columnaInicial);
+                        }
+                    }
+                }
+                
                 return estado_qf(lexema, flujo.getFila(), columnaInicial);
             }
         }
@@ -71,15 +80,12 @@ public class Automata_Operador_Especial_1 implements Automata {
     @Override
     public String estado_q0(char caracter) {
         String estado = "qe";
-        if (caracter == '+') {
+        
+        if (caracter == '=' || caracter == '!') {
             estado = "q1";
         }
 
-        if (caracter == '-') {
-            estado = "q2";
-        }
-
-        if (caracter == '.') {
+        if (caracter == '<' || caracter == '>') {
             estado = "qf";
         }
 
@@ -95,19 +101,7 @@ public class Automata_Operador_Especial_1 implements Automata {
      * retorna el valor actual.
      */
     private String estado_q1(char caracter) {
-        return caracter == '+' ? "qf" : "qe";
-    }
-
-    /**
-     * *
-     * Metodo que evalua el estado q2 del automata.
-     *
-     * @param caracter
-     * @return String que contiene el nuevo estado del automata, por defecto
-     * retorna el valor actual.
-     */
-    private String estado_q2(char caracter) {
-        return caracter == '-' ? "qf" : "qe";
+        return caracter == '=' ? "qf" : "qe";
     }
 
     /**
@@ -121,6 +115,6 @@ public class Automata_Operador_Especial_1 implements Automata {
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Operador Especial", fila, columna, lexema.length());
+        return new Lexema(lexema, "Operador Relacional", fila, columna, lexema.length());
     }
 }
