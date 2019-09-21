@@ -18,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Pepe
  */
-public class Automata_Operador_Especial_2Test {
+public class Automata_Operador_EspecialTest {
     
-    public Automata_Operador_Especial_2Test() {
+    public Automata_Operador_EspecialTest() {
     }
     
     @BeforeClass
@@ -40,38 +40,38 @@ public class Automata_Operador_Especial_2Test {
     }
 
     /**
-     * Test of ejecutarAutomata method, of class Automata_Operador_Especial_2.
+     * Test of ejecutarAutomata method, of class Automata_Operador_Especial.
      */
     @Test
     public void testEjecutarAutomataValido() {
         System.out.println("---------------------------------------------------------------");
-        System.out.println("Prueba valida para Automata de operadores especiales");
-        char[] palabra = {','};
+        System.out.println("Prueba valida para Automata de operador especial");
+        char[] palabra = {'+', '+'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
-        Automata_Operador_Especial_2 instance = new Automata_Operador_Especial_2();
+        Automata_Operador_Especial instance = new Automata_Operador_Especial();
         Lexema result = instance.ejecutarAutomata(flujo);
-        if (result.getLexema().equals(",") && result.getTipoLexema().equals("Operador Especial")) {
-            System.out.println("Valor enviado: \",\"");
-            System.out.println("Lexema enviado: \",\" - resultLexema: \""+result.getLexema()+"\"");
+        if (result.getLexema().equals("++") && result.getTipoLexema().equals("Operador Especial")) {
+            System.out.println("Valor enviado: \"++\"");
+            System.out.println("Lexema enviado: \"++\" - resultLexema: \""+result.getLexema()+"\"");
             System.out.println("Tipo de lexema esperado: \"operador especial\" - resultTipoLexema: \""+result.getTipoLexema()+"\"");
             assertNotNull(result);
         }
     }
 
     /**
-     * Test of ejecutarAutomata method, of class Automata_Operador_Especial_2.
+     * Test of ejecutarAutomata method, of class Automata_Operador_Especial.
      */
     @Test
     public void testEjecutarAutomataNoValido() {
         System.out.println("---------------------------------------------------------------");
-        System.out.println("Prueba no valida para Automata de operadores especiales");
-        char[] palabra = {'*'};
+        System.out.println("Prueba no valida para Automata de operador especial");
+        char[] palabra = {'+', '-'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
-        Automata_Operador_Especial_2 instance = new Automata_Operador_Especial_2();
+        Automata_Operador_Especial instance = new Automata_Operador_Especial();
         Lexema result = instance.ejecutarAutomata(flujo);
         if(result == null){
             assertNull(result);
-            System.out.println("Valor enviado: \"*\"");
+            System.out.println("Valor enviado: \"+-\"");
             System.out.println("El objeto es nulo");
         }
     }

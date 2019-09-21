@@ -129,6 +129,30 @@ public class Automata_Delimitador implements Automata {
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Delimitador", fila, columna, lexema.length());
+        String tipoLexema = "";
+        switch (lexema){
+            case "Met":
+                tipoLexema = "Declarador metodo";
+                break;
+            case ";":
+                tipoLexema = "Punto y coma";
+                break;            
+            case "(":
+                tipoLexema = "Parentesis apertura";
+                break;
+            case ")":
+                tipoLexema = "Parentesis cierre";
+                break;
+            case "[":
+                tipoLexema = "Llave apertura";
+                break;
+            case "]":
+                tipoLexema = "Llave cierre";
+                break;
+            case "\"":
+                tipoLexema = "Comilla doble";
+                break;
+        }
+        return new Lexema(lexema, tipoLexema, fila, columna, lexema.length());
     }
 }

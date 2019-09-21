@@ -67,7 +67,7 @@ public class Automata_IdentificadorTest {
         System.out.println("Prueba no valida para Automata de identificador");
         char[] palabra = {'6', 'd'};
         FlujoCaracteres flujo = new FlujoCaracteres(palabra);
-        Automata_TiposDatos instance = new Automata_TiposDatos();
+        Automata_Identificador instance = new Automata_Identificador();
         Lexema result = instance.ejecutarAutomata(flujo);
         if(result == null){
             assertNull(result);

@@ -73,12 +73,7 @@ public class AnalizadorLexico {
                 listaLexemas.add(lexema);
                 continue;
             }
-            lexema = automata.automataReservadaHttpRequest1(flujo);
-            if (lexema != null) {
-                listaLexemas.add(lexema);
-                continue;
-            }
-            lexema = automata.automataReservadaHttpRequest2(flujo);
+            lexema = automata.automataReservadaHttpRequest(flujo);
             if (lexema != null) {
                 listaLexemas.add(lexema);
                 continue;
@@ -99,32 +94,22 @@ public class AnalizadorLexico {
                 continue;
             }
 
-            lexema = automata.automataOperadorRelacional2(flujo);
-            if (lexema != null) {
-                listaLexemas.add(lexema);
-                continue;
-            }
-            lexema = automata.automataOperadorRelacional1(flujo);
-            if (lexema != null) {
-                listaLexemas.add(lexema);
-                continue;
-            }
-
-            lexema = automata.automataOperadorEspecial1(flujo);
-            if (lexema != null) {
-                listaLexemas.add(lexema);
-                continue;
-            }
-            lexema = automata.automataOperadorEspecial2(flujo);
-            if (lexema != null) {
-                listaLexemas.add(lexema);
-                continue;
-            }
             lexema = automata.automataOperadorAsignacion(flujo);
             if (lexema != null) {
                 listaLexemas.add(lexema);
                 continue;
             }
+            lexema = automata.automataOperadorRelacional(flujo);
+            if (lexema != null) {
+                listaLexemas.add(lexema);
+                continue;
+            }
+
+            lexema = automata.automataOperadorEspecial(flujo);
+            if (lexema != null) {
+                listaLexemas.add(lexema);
+                continue;
+            }            
             lexema = automata.automataOperadorAritmetico(flujo);
             if (lexema != null) {
                 listaLexemas.add(lexema);
@@ -137,12 +122,7 @@ public class AnalizadorLexico {
                 continue;
             }
 
-            lexema = automata.automataEstructurasControl1(flujo);
-            if (lexema != null) {
-                listaLexemas.add(lexema);
-                continue;
-            }
-            lexema = automata.automataEstructurasControl2(flujo);
+            lexema = automata.automataEstructurasControl(flujo);
             if (lexema != null) {
                 listaLexemas.add(lexema);
                 continue;
