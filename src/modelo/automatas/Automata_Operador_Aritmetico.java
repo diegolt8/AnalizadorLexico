@@ -67,6 +67,24 @@ public class Automata_Operador_Aritmetico implements Automata {
      */
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
-        return new Lexema(lexema, "Operador Aritmetico", fila, columna, lexema.length());
+        String tipoLexema = "Operador ";
+        switch (lexema){
+            case "+":
+                tipoLexema += "suma";
+                break;
+            case "-":
+                tipoLexema += "resta";
+                break;            
+            case "*":
+                tipoLexema += "multiplicacion";
+                break;
+            case "/":
+                tipoLexema += "division";
+                break;
+            case "%":
+                tipoLexema += "division modular";
+                break;
+        }
+        return new Lexema(lexema, tipoLexema, fila, columna, lexema.length());
     }
 }
