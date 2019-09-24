@@ -1,0 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package analizadorSintactico_modelo.gramaticas;
+
+import analizadorSintactico_modelo.FlujoLexema;
+import analizadorSintactico_modelo.Gramatica;
+import analizadorSintactico_modelo.Sentencia;
+
+/**
+ *
+ * @author Pepe
+ */
+public class Gramatica_Metodo implements Gramatica{
+
+    @Override
+    public Sentencia analizar(FlujoLexema flujoLexema) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+}
