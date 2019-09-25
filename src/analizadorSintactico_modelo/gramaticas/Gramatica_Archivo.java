@@ -22,7 +22,9 @@ public class Gramatica_Archivo implements Gramatica{
     public Sentencia analizar(FlujoLexema flujoLexema) {        
         Gramatica_Main gramaticaMain = new Gramatica_Main();
         Gramatica_Metodo gramaticaMetodo = new Gramatica_Metodo();
+        
         Archivo archivo = new Archivo();        
+        
         do {
             Main main = (Main) gramaticaMain.analizar(flujoLexema);
             if (main != null){

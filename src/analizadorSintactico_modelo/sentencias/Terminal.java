@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analizadorSintactico_modelo.sentencias.medios;
+package analizadorSintactico_modelo.sentencias;
 
 import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_modelo.Sentencia;

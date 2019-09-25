@@ -5,7 +5,6 @@
  */
 package analizadorSintactico_modelo.sentencias;
 
-import analizadorSintactico_modelo.sentencias.medios.ListaSentencia;
 import analizadorSintactico_modelo.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +16,13 @@ import java.util.List;
 public class Archivo extends Sentencia {
 
     private Main main;
-    private ListaSentencia<Metodo> listaMetodos;
+    private ListaMetodos<Metodo> listaMetodos;
 
     /*
      * Constructor
      */
     public Archivo() {
-        this.listaMetodos = new ListaSentencia<>();
+        this.listaMetodos = new ListaMetodos<>();
     }
 
     // Gets y sets
@@ -36,11 +35,11 @@ public class Archivo extends Sentencia {
         this.main = main;
     }
 
-    public ListaSentencia<Metodo> getListaMetodos() {
+    public ListaMetodos<Metodo> getListaMetodos() {
         return listaMetodos;
     }
 
-    public void setListaMetodos(ListaSentencia<Metodo> listaMetodos) {
+    public void setListaMetodos(ListaMetodos<Metodo> listaMetodos) {
         this.listaMetodos = listaMetodos;
     }
     //-------------------------------------------------------------------------
@@ -53,7 +52,7 @@ public class Archivo extends Sentencia {
             hijos.add(main);
         }
 
-        if (!listaMetodos.getSentencias().isEmpty()) {
+        if (!listaMetodos.getMetodos().isEmpty()) {
             hijos.add(listaMetodos);
         }
 
@@ -67,7 +66,7 @@ public class Archivo extends Sentencia {
 
     @Override
     public String toString() {
-        return "";
+        return "Unidad de compilacion";
     }
 
 }
