@@ -9,38 +9,38 @@ import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
-import analizadorSintactico_modelo.sentencias.Parametro;
+import analizadorSintactico_modelo.sentencias.DeclaracionVariable;
+import analizadorSintactico_modelo.sentencias.DeclaranteVariable;
+import analizadorSintactico_modelo.sentencias.ListaDeclarante;
 
 /**
  *
  * @author Pepe
  */
-public class Gramatica_Parametro implements Gramatica{
+public class Gramatica_DeclaracionVariable implements Gramatica {
 
     @Override
     public Sentencia analizar(FlujoLexema flujoLexema) {
         
-        Parametro parametro = new Parametro();
-        flujoLexema.guardarPosicion();
+        Gramatica_ListaDeclarante gramaticaListaDeclaramte = new Gramatica_ListaDeclarante();
         
+        DeclaracionVariable declaracionVariable = new DeclaracionVariable();
+             
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.TIPO_DATO_BOL && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.TIPO_DATO_CAD &&
             flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.TIPO_DATO_CAR && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.TIPO_DATO_DEC &&
             flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.TIPO_DATO_ENT && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.TIPO_DATO_VAR) {            
             return null;
         }
-        parametro.setTipoDato(flujoLexema.getLexema());
+        declaracionVariable.setTipoDato(flujoLexema.getLexema());
         flujoLexema.avanzar();
         
-        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.IDENTIFICADOR){
-            // error sintactico
-            flujoLexema.backTrack();
-            return null;
+        ListaDeclarante<DeclaranteVariable> listaDeclarante = (ListaDeclarante<DeclaranteVariable>) gramaticaListaDeclaramte.analizar(flujoLexema);
+        if (listaDeclarante.getDeclarantes().isEmpty()) {
+            //error sintactico
         }
-        parametro.setNombreParametro(flujoLexema.getLexema());
-        flujoLexema.avanzar();
+        declaracionVariable.setListaDeclarantes(listaDeclarante);
         
-        return parametro;
+        return declaracionVariable;
     }
-
-
+    
 }

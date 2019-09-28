@@ -5,9 +5,9 @@
  */
 package analizadorSintactico_modelo.sentencias;
 
-import analizadorSintactico_modelo.sentencias.newpackage.Terminal;
 import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_modelo.Sentencia;
+import analizadorSintactico_modelo.sentencias.newpackage.Terminal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +15,13 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class Parametro extends Sentencia{
+public class DeclaracionVariable extends Sentencia {
 
     private Lexema tipoDato;
-    private Lexema nombreParametro;
+    private ListaDeclarante<DeclaranteVariable> listaDeclarantes;
 
-    public Parametro() {
+    public DeclaracionVariable() {
+        this.listaDeclarantes = new ListaDeclarante<>();
     }
 
     public Lexema getTipoDato() {
@@ -31,20 +32,21 @@ public class Parametro extends Sentencia{
         this.tipoDato = tipoDato;
     }
 
-    public Lexema getNombreParametro() {
-        return nombreParametro;
+    public ListaDeclarante<DeclaranteVariable> getListaDeclarantes() {
+        return listaDeclarantes;
     }
 
-    public void setNombreParametro(Lexema nombreParametro) {
-        this.nombreParametro = nombreParametro;
-    }   
+    public void setListaDeclarantes(ListaDeclarante<DeclaranteVariable> listaDeclarantes) {
+        this.listaDeclarantes = listaDeclarantes;
+    }    
     
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
         hijos.add(new Terminal(tipoDato));
-        hijos.add(new Terminal(nombreParametro));
+        
+        hijos.add(listaDeclarantes);
         
         return hijos;
     }
@@ -56,7 +58,7 @@ public class Parametro extends Sentencia{
 
     @Override
     public String toString() {
-        return "Parametro: " + nombreParametro.getLexema() + " - Tipo: " + tipoDato.getLexema();
+        return "Declaracion";
     }
     
 }
