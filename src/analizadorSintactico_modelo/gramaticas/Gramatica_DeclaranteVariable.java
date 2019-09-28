@@ -9,6 +9,7 @@ import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
+import analizadorSintactico_modelo.SintacticException;
 import analizadorSintactico_modelo.sentencias.DeclaranteVariable;
 import analizadorSintactico_modelo.sentencias.InicializadorVariable;
 
@@ -41,7 +42,7 @@ public class Gramatica_DeclaranteVariable implements Gramatica {
         
         InicializadorVariable inicializadorVariable = (InicializadorVariable) gramaticaInicializadorVariable.analizar(flujoLexema);
         if (inicializadorVariable == null) {
-            //error lexico
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.EXPRESION);
         }
         declaranteVariable.setInicializadorVariable(inicializadorVariable);
         

@@ -24,15 +24,17 @@ public class SintacticException extends RuntimeException{
     private TipoLexemaEnum esperado;
 
     public SintacticException(Lexema antes, TipoLexemaEnum esperado) {
-
         super("Error en " + antes.getLinea() + "-" + antes.getColumna()
                 + ": Simbolo no esperado: " + antes.getTipoLexema().name() + ". se esperaba " + esperado
         );
-
         this.antes = antes;
         this.esperado = esperado;
     }
 
+    public SintacticException(String Mensaje) {
+        super(Mensaje);
+    }
+   
     public Lexema getAntes() {
         return antes;
     }

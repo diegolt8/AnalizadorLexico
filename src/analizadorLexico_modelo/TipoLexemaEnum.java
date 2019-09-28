@@ -11,7 +11,15 @@ package analizadorLexico_modelo;
  */
 public enum TipoLexemaEnum {    
     
-    
+    EXPRESION,
+    EXPRESION_LOGICA,
+    EXPRESION_NUMERICA,
+    EXPRESION_RELACIONAL,
+    DECLARANTE,
+    DECLARACION_VARIABLE,
+    PARAMETRO,
+    TERMINO_CADENA,
+    LITERAL_NUMERICO,
     
     PR_MAIN,
     
@@ -46,6 +54,10 @@ public enum TipoLexemaEnum {
     
     OPE_ESP_SUMA,
     OPE_ESP_RESTA,
+    
+    OPE_LOG_AND,
+    OPE_LOG_OR,
+    OPE_LOG_NOT,
     
     OPE_REL_MAYOR,
     OPE_REL_MENOR,

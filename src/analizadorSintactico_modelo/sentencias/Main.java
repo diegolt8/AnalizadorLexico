@@ -16,22 +16,6 @@ public class Main extends Sentencia{
 
     ListaSentencias<Sentencia> listaSentencia;
     
-    @Override
-    public ArrayList<Sentencia> llenarHijos() {
-        hijos = new ArrayList<>();
-        return (ArrayList<Sentencia>) hijos;
-    }
-
-    @Override
-    public String parse() {
-        return "";
-    }
-
-    @Override
-    public String toString() {
-        return "Metodo: Main";
-    }
-
     public Main() {
         this.listaSentencia = new ListaSentencias<>();
     }
@@ -45,5 +29,24 @@ public class Main extends Sentencia{
     }
     
     
-    
+    @Override
+    public ArrayList<Sentencia> llenarHijos() {
+        hijos = new ArrayList<>();
+        
+        if (!listaSentencia.getSentencias().isEmpty()) {
+            hijos.add(listaSentencia);
+        }
+        
+        return (ArrayList<Sentencia>) hijos;
+    }
+
+    @Override
+    public String parse() {
+        return "";
+    }
+
+    @Override
+    public String toString() {
+        return "Metodo: Main";
+    }
 }

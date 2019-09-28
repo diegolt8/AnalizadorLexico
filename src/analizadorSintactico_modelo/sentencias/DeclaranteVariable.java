@@ -7,7 +7,6 @@ package analizadorSintactico_modelo.sentencias;
 
 import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_modelo.Sentencia;
-import analizadorSintactico_modelo.sentencias.newpackage.Terminal;
 import java.util.ArrayList;
 import java.util.List;
 

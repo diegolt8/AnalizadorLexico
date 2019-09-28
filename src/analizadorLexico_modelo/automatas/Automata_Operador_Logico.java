@@ -124,23 +124,14 @@ public class Automata_Operador_Logico implements Automata {
     public Lexema estado_qf(String lexema, int fila, int columna) {
         TipoLexemaEnum tipoLexema = null;
         switch (lexema){
-            case "++":
-                tipoLexema = TipoLexemaEnum.OPE_ESP_SUMA;
+            case "||":
+                tipoLexema = TipoLexemaEnum.OPE_LOG_OR;
                 break;
-            case "--":
-                tipoLexema = TipoLexemaEnum.OPE_ESP_RESTA;
+            case "&&":
+                tipoLexema = TipoLexemaEnum.OPE_LOG_AND;
                 break;            
-            case ".":
-                tipoLexema = TipoLexemaEnum.PUNTO;
-                break;
-            case ",":
-                tipoLexema = TipoLexemaEnum.COMA;
-                break;
-            case ":":
-                tipoLexema = TipoLexemaEnum.DOS_PUNTOS;
-                break;
-            case "\\":
-                tipoLexema = TipoLexemaEnum.BACK_SLASH_ESCAPE;
+            case "!":
+                tipoLexema = TipoLexemaEnum.OPE_LOG_NOT;
                 break;
         }
         return new Lexema(lexema, tipoLexema, fila, columna, lexema.length());
