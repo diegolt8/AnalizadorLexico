@@ -5,9 +5,13 @@
  */
 package analizadorSintactico_modelo.gramaticas;
 
+import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
+import analizadorSintactico_modelo.sentencias.ListaParametros;
+import analizadorSintactico_modelo.sentencias.Metodo;
+import analizadorSintactico_modelo.sentencias.Parametro;
 
 /**
  *
@@ -17,7 +21,52 @@ public class Gramatica_Metodo implements Gramatica{
 
     @Override
     public Sentencia analizar(FlujoLexema flujoLexema) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Gramatica_ListaParametros gramaticaListaParametros = new Gramatica_ListaParametros();
+                   
+        Metodo metodo = new Metodo();
+        flujoLexema.guardarPosicion();
+              
+        if (flujoLexema.posicionFinal()) {
+            return null;
+        }
+        
+        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.DEFINICION_METODO){
+            return null;
+        }        
+        flujoLexema.avanzar();
+        
+        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.IDENTIFICADOR){
+            // error Lexico
+            flujoLexema.backTrack();
+            return null;
+        }
+        metodo.setNombreMetodo(flujoLexema.getLexema());
+        flujoLexema.avanzar();
+    
+        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PARENTESIS_ABIERTO){
+            // error Lexico
+            flujoLexema.backTrack();
+            return null;
+        }
+        flujoLexema.avanzar();
+        
+        ListaParametros<Parametro> listaParametros = (ListaParametros<Parametro>) gramaticaListaParametros.analizar(flujoLexema);
+        if (listaParametros == null){
+            flujoLexema.backTrack();
+            return null;
+        }
+        metodo.setListaParametros(listaParametros);
+        
+        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PARENTESIS_CERRADO){
+            // error Lexico
+            flujoLexema.backTrack();
+            return null;
+        }
+        flujoLexema.avanzar();
+        
+        
+        return metodo;
     }
     
 }

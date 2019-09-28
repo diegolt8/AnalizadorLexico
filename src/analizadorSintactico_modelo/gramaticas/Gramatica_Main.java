@@ -11,7 +11,8 @@ import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
 import analizadorSintactico_modelo.SintacticException;
 import analizadorSintactico_modelo.sentencias.Main;
-import analizadorSintactico_modelo.sentencias.medios.ListaSentencia;
+import analizadorSintactico_modelo.sentencias.ListaSentencias;
+
 
 /**
  *
@@ -42,7 +43,7 @@ public class Gramatica_Main implements Gramatica {
             throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.COMILLA_DOBLE);
         }
 
-        ListaSentencia<Sentencia> listasentencia = (ListaSentencia) new GramaticaSentencia().analizar(flujoLexema);
+        ListaSentencias<Sentencia> listasentencia = (ListaSentencias) new GramaticaSentencias().analizar(flujoLexema);
 
         if (!listasentencia.getSentencias().isEmpty()) {
             main.setListaSentencia(listasentencia);

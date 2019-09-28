@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analizadorSintactico_modelo.sentencias.medios;
+package analizadorSintactico_modelo.sentencias;
 
 import analizadorSintactico_modelo.Sentencia;
 import java.util.ArrayList;
@@ -14,32 +14,32 @@ import java.util.List;
  * @author Pepe
  * @param <T>
  */
-public class ListaSentencia<T extends Sentencia> extends Sentencia {
+public class ListaSentencias<T extends Sentencia> extends Sentencia {
 
-    private final List<T> sentencias;
+    private final List<T> listaSentencias;
 
-    public ListaSentencia(List<T> sentencias) {
-        this.sentencias = sentencias;
+    public ListaSentencias(List<T> sentencias) {
+        this.listaSentencias = sentencias;
     }
 
-    public ListaSentencia() {
-        sentencias = new ArrayList<>();
+    public ListaSentencias() {
+        listaSentencias = new ArrayList<>();
     }
     
         
     public void add(T sentencia) {
-        sentencias.add(sentencia);
+        listaSentencias.add(sentencia);
     }
 
     public List<T> getSentencias() {
-        return sentencias;
+        return listaSentencias;
     }
         
 
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        sentencias.forEach((t) -> {
+        listaSentencias.forEach((t) -> {
             hijos.add(t);
         });
         return hijos;
@@ -47,11 +47,11 @@ public class ListaSentencia<T extends Sentencia> extends Sentencia {
 
     @Override
     public String toString() {
-        return null;
+        return "Lista de sentencias";
     }    
 
     @Override
     public String parse() {
-        return null;
+        return "";
     }
 }

@@ -6,7 +6,6 @@
 package analizadorSintactico_modelo.sentencias;
 
 import analizadorSintactico_modelo.Sentencia;
-import analizadorSintactico_modelo.sentencias.medios.ListaSentencia;
 import java.util.ArrayList;
 
 /**
@@ -15,32 +14,33 @@ import java.util.ArrayList;
  */
 public class Main extends Sentencia{
 
-    ListaSentencia<Sentencia> listaSentencia;
+    ListaSentencias<Sentencia> listaSentencia;
     
     @Override
     public ArrayList<Sentencia> llenarHijos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        hijos = new ArrayList<>();
+        return (ArrayList<Sentencia>) hijos;
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Metodo: Main";
     }
 
     public Main() {
-        this.listaSentencia = new ListaSentencia<>();
+        this.listaSentencia = new ListaSentencias<>();
     }
 
-    public ListaSentencia<Sentencia> getListaSentencia() {
+    public ListaSentencias<Sentencia> getListaSentencia() {
         return listaSentencia;
     }
 
-    public void setListaSentencia(ListaSentencia<Sentencia> listaSentencia) {
+    public void setListaSentencia(ListaSentencias<Sentencia> listaSentencia) {
         this.listaSentencia = listaSentencia;
     }
     

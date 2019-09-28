@@ -12,6 +12,11 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import analizadorLexico_modelo.ErrorLexico;
 import analizadorLexico_modelo.Lexema;
+import analizadorSintactico_controlador.AnalizadorSintactico;
+import analizadorSintactico_modelo.Sentencia;
+import analizadorSintactico_modelo.sentencias.Archivo;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
 
 /**
  *
@@ -21,6 +26,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     CargadorArchivo cargar;
     AnalizadorLexico analizadorLexico;
+    AnalizadorSintactico analizadorSintactico;
 
     /**
      * Creates new form VentanaPrincipal
@@ -29,6 +35,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         cargar = new CargadorArchivo();
         analizadorLexico = new AnalizadorLexico();
+        analizadorSintactico = new AnalizadorSintactico();
     }
 
     /**
@@ -46,7 +53,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jSplitPane2 = new javax.swing.JSplitPane();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        arbolDerivacion = new javax.swing.JTree();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTALexico = new javax.swing.JTextArea();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -95,7 +102,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jScrollPane4.setViewportView(jTree1);
+        jScrollPane4.setViewportView(arbolDerivacion);
 
         jSplitPane1.setLeftComponent(jScrollPane4);
 
@@ -192,6 +199,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String txt = jTALexico.getText();
         analizadorLexico.analizadorLexico(txt);
         lexemas.setModel(tablaLexemas(analizadorLexico.getListaLexema()));
+        ArrayList<Lexema> lista = analizadorLexico.getListaLexema();
+        analizadorSintactico.analisar(lista);  
+        
+        Archivo a = analizadorSintactico.getArchivo();
+        a.llenarHijos();
+        arbolDerivacion.setModel(new DefaultTreeModel(a));
         //errores.setModel(tablaErrorLexico(analizadorLexico.getListaErroresLexico()));
     }//GEN-LAST:event_btnCorrerActionPerformed
 
@@ -254,6 +267,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTree arbolDerivacion;
     private javax.swing.JButton btnCorrer;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JPanel jPanel1;
@@ -266,7 +280,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTextArea jTALexico;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTree jTree1;
     private javax.swing.JTable lexemas;
     // End of variables declaration//GEN-END:variables
 }

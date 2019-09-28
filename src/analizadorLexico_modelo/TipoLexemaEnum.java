@@ -11,6 +11,8 @@ package analizadorLexico_modelo;
  */
 public enum TipoLexemaEnum {    
     
+    
+    
     PR_MAIN,
     
     STR_IMPR,

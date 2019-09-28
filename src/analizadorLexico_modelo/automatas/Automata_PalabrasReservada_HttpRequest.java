@@ -69,6 +69,11 @@ public class Automata_PalabrasReservada_HttpRequest implements Automata {
 
             if ("q41".equals(estado)) {
                 estado = estado_q41(flujo.getCaracter());
+                if ("q33".equals(estado)) {
+                    lexema += flujo.getCaracter();
+                    flujo.moverAdelante();
+                    flujo.siguienteColumna();
+                }
             }
 
             if ("q40".equals(estado)) {
@@ -829,7 +834,7 @@ public class Automata_PalabrasReservada_HttpRequest implements Automata {
      * retorna el valor actual.
      */
     private String estado_q43(char caracter) {
-        return caracter == 's' ? "qf" : "qe";
+        return caracter == 's' ? "q44" : "qe";
     }
 
     /**
