@@ -9,6 +9,7 @@ import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
+import analizadorSintactico_modelo.SintacticException;
 import analizadorSintactico_modelo.sentencias.Parametro;
 
 /**
@@ -32,9 +33,7 @@ public class Gramatica_Parametro implements Gramatica{
         flujoLexema.avanzar();
         
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.IDENTIFICADOR){
-            // error sintactico
-            flujoLexema.backTrack();
-            return null;
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.IDENTIFICADOR); 
         }
         parametro.setNombreParametro(flujoLexema.getLexema());
         flujoLexema.avanzar();

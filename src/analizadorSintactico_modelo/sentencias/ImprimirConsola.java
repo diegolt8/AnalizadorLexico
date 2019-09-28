@@ -13,11 +13,11 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class InicializadorVariable extends Sentencia {
+public class ImprimirConsola extends Sentencia {
 
     private Sentencia expresion;
 
-    public InicializadorVariable() {
+    public ImprimirConsola() {
     }
 
     public Sentencia getExpresion() {
@@ -31,7 +31,7 @@ public class InicializadorVariable extends Sentencia {
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-       
+        
         if (expresion != null) {
             hijos.add(expresion);
         }
@@ -40,13 +40,13 @@ public class InicializadorVariable extends Sentencia {
     }
 
     @Override
-    public String parse() {       
+    public String parse() {
         return "";
     }
 
     @Override
     public String toString() {
-        return "Inicializador variable";
+        return "Imprimir en consola";
     }
     
 }

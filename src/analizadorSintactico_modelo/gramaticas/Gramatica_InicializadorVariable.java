@@ -5,10 +5,11 @@
  */
 package analizadorSintactico_modelo.gramaticas;
 
+import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
-import analizadorSintactico_modelo.gramaticas.newpackage.Gramatica_Expresion;
+import analizadorSintactico_modelo.SintacticException;
 import analizadorSintactico_modelo.sentencias.InicializadorVariable;
 
 /**
@@ -26,8 +27,7 @@ public class Gramatica_InicializadorVariable implements Gramatica {
         
         Sentencia expresion = gramaticaExpresion.analizar(flujoLexema);
         if (expresion == null) {
-            // error sintactico
-            return null;
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.EXPRESION); 
         }
         inicializadorVariable.setExpresion(expresion);
         

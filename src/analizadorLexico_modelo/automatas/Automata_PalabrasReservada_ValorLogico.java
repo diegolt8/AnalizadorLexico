@@ -35,6 +35,10 @@ public class Automata_PalabrasReservada_ValorLogico implements Automata {
         String lexema = "";
 
         while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
+            if ("q12".equals(estado)) {
+                estado = estado_q12(flujo.getCaracter());
+            }
+            
             if ("q11".equals(estado)) {
                 estado = estado_q11(flujo.getCaracter());
             }
@@ -258,9 +262,20 @@ public class Automata_PalabrasReservada_ValorLogico implements Automata {
      * retorna el valor actual.
      */
     private String estado_q11(char caracter) {
-        return caracter == 'r' ? "q4" : "qe";
+        return caracter == 'r' ? "q12" : "qe";
     }
 
+    /**
+     * *
+     * Metodo que evalua el estado q12 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q12(char caracter) {
+        return caracter == 'o' ? "qf" : "qe";
+    }
     /**
      * *
      * Metodo que evalua el estado final del automata.

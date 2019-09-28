@@ -12,6 +12,7 @@ import java.util.List;
 /**
  *
  * @author Pepe
+ * @param <T>
  */
 public class ListaMetodos<T extends Sentencia> extends Sentencia{
 
@@ -31,8 +32,7 @@ public class ListaMetodos<T extends Sentencia> extends Sentencia{
 
     public List<T> getMetodos() {
         return listaMetodos;
-    }
-        
+    }        
     
     @Override
     public List<Sentencia> llenarHijos() {

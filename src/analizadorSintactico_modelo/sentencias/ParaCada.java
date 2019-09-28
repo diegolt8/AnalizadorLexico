@@ -8,36 +8,36 @@ package analizadorSintactico_modelo.sentencias;
 import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_modelo.Sentencia;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Pepe
  */
-public class Metodo extends Sentencia{
-    
-    private Lexema nombreMetodo;
-    private ListaParametros<Parametro> listaParametros;
+public class ParaCada extends Sentencia {
+
+    private DeclaracionVariable declarancion;
+    private Lexema identificador;
     private ListaSentencias<Sentencia> listaSentencias;
 
-    public Metodo() {
-        this.listaParametros = new ListaParametros<>();
+    public ParaCada() {
         this.listaSentencias = new ListaSentencias<>();
     }
 
-    public Lexema getNombreMetodo() {
-        return nombreMetodo;
+    public DeclaracionVariable getDeclaracion() {
+        return declarancion;
     }
 
-    public void setNombreMetodo(Lexema nombreMetodo) {
-        this.nombreMetodo = nombreMetodo;
+    public void setDeclaracion(DeclaracionVariable declaracionInicio) {
+        this.declarancion = declaracionInicio;
     }
 
-    public ListaParametros<Parametro> getListaParametros() {
-        return listaParametros;
+    public Lexema getIdentificador() {
+        return identificador;
     }
 
-    public void setListaParametros(ListaParametros<Parametro> listaParametros) {
-        this.listaParametros = listaParametros;
+    public void setIdentificador(Lexema identificador) {
+        this.identificador = identificador;
     }
 
     public ListaSentencias<Sentencia> getListaSentencias() {
@@ -47,22 +47,24 @@ public class Metodo extends Sentencia{
     public void setListaSentencias(ListaSentencias<Sentencia> listaSentencias) {
         this.listaSentencias = listaSentencias;
     }
-    
+      
     @Override
-    public ArrayList<Sentencia> llenarHijos() {
+    public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        hijos.add(new Terminal(nombreMetodo));
+        if (declarancion != null) {
+            hijos.add(declarancion);
+        }
         
-        if (!listaParametros.getParametros().isEmpty()) {
-            hijos.add(listaParametros);
+        if (identificador != null) {
+            hijos.add(new Terminal(identificador));
         }
         
         if (!listaSentencias.getSentencias().isEmpty()) {
             hijos.add(listaSentencias);
         }
         
-        return (ArrayList<Sentencia>) hijos;
+        return hijos;
     }
 
     @Override
@@ -72,7 +74,7 @@ public class Metodo extends Sentencia{
 
     @Override
     public String toString() {
-        return "Metodo: " + nombreMetodo.getLexema();
+        return "Estructura de control PARACADA";
     }
     
 }

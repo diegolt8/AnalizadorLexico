@@ -13,40 +13,41 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class InicializadorVariable extends Sentencia {
+public class Sino extends Sentencia {
 
-    private Sentencia expresion;
+    private ListaSentencias<Sentencia> listaSentencias;
 
-    public InicializadorVariable() {
+    public Sino() {
+        this.listaSentencias = new ListaSentencias<>();
     }
 
-    public Sentencia getExpresion() {
-        return expresion;
+    public ListaSentencias<Sentencia> getListaSentencias() {
+        return listaSentencias;
     }
 
-    public void setExpresion(Sentencia expresion) {
-        this.expresion = expresion;
+    public void setListaSentencias(ListaSentencias<Sentencia> listaSentencias) {
+        this.listaSentencias = listaSentencias;
     }
     
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-       
-        if (expresion != null) {
-            hijos.add(expresion);
+        
+        if (!listaSentencias.getSentencias().isEmpty()) {
+            hijos.add(listaSentencias);
         }
         
         return hijos;
     }
 
     @Override
-    public String parse() {       
+    public String parse() {
         return "";
     }
 
     @Override
     public String toString() {
-        return "Inicializador variable";
+        return "Estructura de control SINO";
     }
     
 }

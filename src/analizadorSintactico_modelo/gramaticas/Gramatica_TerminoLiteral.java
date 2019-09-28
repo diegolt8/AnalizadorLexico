@@ -11,7 +11,7 @@ import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
 import analizadorSintactico_modelo.sentencias.LiteralNumerico;
 import analizadorSintactico_modelo.sentencias.TerminoLiteral;
-import analizadorSintactico_modelo.sentencias.newpackage.Terminal;
+import analizadorSintactico_modelo.sentencias.Terminal;
 
 /**
  *

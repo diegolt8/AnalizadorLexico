@@ -5,9 +5,11 @@
  */
 package analizadorSintactico_modelo.gramaticas;
 
+import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
+import analizadorSintactico_modelo.SintacticException;
 import analizadorSintactico_modelo.sentencias.Archivo;
 import analizadorSintactico_modelo.sentencias.Main;
 import analizadorSintactico_modelo.sentencias.Metodo;
@@ -26,13 +28,17 @@ public class Gramatica_Archivo implements Gramatica{
         Archivo archivo = new Archivo();        
         
         do {
+            if (flujoLexema.posicionFinal()){
+                break;
+            }
+            
             Main main = (Main) gramaticaMain.analizar(flujoLexema);
             if (main != null){
                 if (archivo.getMain() == null){
                     archivo.setMain(main);
                     continue;
                 } else {
-                    // se genera error sintactico
+                    throw new SintacticException("Error sintactico: Solo se puede definir un metodo main");
                 }
             }
             

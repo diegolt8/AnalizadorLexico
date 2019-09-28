@@ -9,7 +9,9 @@ import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
+import analizadorSintactico_modelo.SintacticException;
 import analizadorSintactico_modelo.sentencias.ListaParametros;
+import analizadorSintactico_modelo.sentencias.ListaSentencias;
 import analizadorSintactico_modelo.sentencias.Metodo;
 import analizadorSintactico_modelo.sentencias.Parametro;
 
@@ -23,6 +25,7 @@ public class Gramatica_Metodo implements Gramatica{
     public Sentencia analizar(FlujoLexema flujoLexema) {
         
         Gramatica_ListaParametros gramaticaListaParametros = new Gramatica_ListaParametros();
+        Gramatica_BloqueSentencias gramaticaBloqueSentencias = new Gramatica_BloqueSentencias();
                    
         Metodo metodo = new Metodo();
         flujoLexema.guardarPosicion();
@@ -37,17 +40,13 @@ public class Gramatica_Metodo implements Gramatica{
         flujoLexema.avanzar();
         
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.IDENTIFICADOR){
-            // error Lexico
-            flujoLexema.backTrack();
-            return null;
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.IDENTIFICADOR);
         }
         metodo.setNombreMetodo(flujoLexema.getLexema());
         flujoLexema.avanzar();
     
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PARENTESIS_ABIERTO){
-            // error Lexico
-            flujoLexema.backTrack();
-            return null;
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.PARENTESIS_ABIERTO);
         }
         flujoLexema.avanzar();
         
@@ -59,12 +58,12 @@ public class Gramatica_Metodo implements Gramatica{
         metodo.setListaParametros(listaParametros);
         
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PARENTESIS_CERRADO){
-            // error Lexico
-            flujoLexema.backTrack();
-            return null;
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.PARENTESIS_CERRADO);
         }
         flujoLexema.avanzar();
         
+        ListaSentencias<Sentencia> listaSentencias = (ListaSentencias<Sentencia>) gramaticaBloqueSentencias.analizar(flujoLexema);
+        metodo.setListaSentencias(listaSentencias);        
         
         return metodo;
     }

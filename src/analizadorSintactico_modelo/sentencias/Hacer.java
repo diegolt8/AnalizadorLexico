@@ -5,39 +5,21 @@
  */
 package analizadorSintactico_modelo.sentencias;
 
-import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_modelo.Sentencia;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Pepe
  */
-public class Metodo extends Sentencia{
-    
-    private Lexema nombreMetodo;
-    private ListaParametros<Parametro> listaParametros;
+public class Hacer extends Sentencia {
+
     private ListaSentencias<Sentencia> listaSentencias;
+    private ExpresionLogica expresionLogica;
 
-    public Metodo() {
-        this.listaParametros = new ListaParametros<>();
+    public Hacer() {
         this.listaSentencias = new ListaSentencias<>();
-    }
-
-    public Lexema getNombreMetodo() {
-        return nombreMetodo;
-    }
-
-    public void setNombreMetodo(Lexema nombreMetodo) {
-        this.nombreMetodo = nombreMetodo;
-    }
-
-    public ListaParametros<Parametro> getListaParametros() {
-        return listaParametros;
-    }
-
-    public void setListaParametros(ListaParametros<Parametro> listaParametros) {
-        this.listaParametros = listaParametros;
     }
 
     public ListaSentencias<Sentencia> getListaSentencias() {
@@ -47,22 +29,28 @@ public class Metodo extends Sentencia{
     public void setListaSentencias(ListaSentencias<Sentencia> listaSentencias) {
         this.listaSentencias = listaSentencias;
     }
+
+    public ExpresionLogica getExpresionLogica() {
+        return expresionLogica;
+    }
+
+    public void setExpresionLogica(ExpresionLogica expresionLogica) {
+        this.expresionLogica = expresionLogica;
+    }
     
     @Override
-    public ArrayList<Sentencia> llenarHijos() {
+    public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
-        hijos.add(new Terminal(nombreMetodo));
-        
-        if (!listaParametros.getParametros().isEmpty()) {
-            hijos.add(listaParametros);
-        }
         
         if (!listaSentencias.getSentencias().isEmpty()) {
             hijos.add(listaSentencias);
         }
         
-        return (ArrayList<Sentencia>) hijos;
+        if (expresionLogica != null) {
+            hijos.add(expresionLogica);
+        }
+        
+        return hijos;
     }
 
     @Override
@@ -72,7 +60,7 @@ public class Metodo extends Sentencia{
 
     @Override
     public String toString() {
-        return "Metodo: " + nombreMetodo.getLexema();
+        return "Estructura de control HACER";
     }
     
 }

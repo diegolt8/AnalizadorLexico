@@ -9,6 +9,7 @@ import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
+import analizadorSintactico_modelo.SintacticException;
 import analizadorSintactico_modelo.sentencias.DeclaracionVariable;
 import analizadorSintactico_modelo.sentencias.DeclaranteVariable;
 import analizadorSintactico_modelo.sentencias.ListaDeclarante;
@@ -36,7 +37,7 @@ public class Gramatica_DeclaracionVariable implements Gramatica {
         
         ListaDeclarante<DeclaranteVariable> listaDeclarante = (ListaDeclarante<DeclaranteVariable>) gramaticaListaDeclaramte.analizar(flujoLexema);
         if (listaDeclarante.getDeclarantes().isEmpty()) {
-            //error sintactico
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.IDENTIFICADOR);
         }
         declaracionVariable.setListaDeclarantes(listaDeclarante);
         

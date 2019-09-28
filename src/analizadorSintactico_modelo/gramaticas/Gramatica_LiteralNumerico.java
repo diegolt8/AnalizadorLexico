@@ -9,6 +9,7 @@ import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
+import analizadorSintactico_modelo.SintacticException;
 import analizadorSintactico_modelo.sentencias.LiteralNumerico;
 
 /**
@@ -34,8 +35,7 @@ public class Gramatica_LiteralNumerico implements Gramatica {
         flujoLexema.avanzar();
         
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.VALOR_NUMERICO) {
-            //error sintactico
-            return null;
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.VALOR_NUMERICO); 
         }
         literalNumerico.setParteDecimal(flujoLexema.getLexema());
         flujoLexema.avanzar();
