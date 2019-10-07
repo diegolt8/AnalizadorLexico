@@ -13,10 +13,8 @@ import javax.swing.table.DefaultTableModel;
 import analizadorLexico_modelo.ErrorLexico;
 import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_controlador.AnalizadorSintactico;
-import analizadorSintactico_modelo.Sentencia;
 import analizadorSintactico_modelo.sentencias.Archivo;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
 
 /**
  *
@@ -58,6 +56,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTALexico = new javax.swing.JTextArea();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        consola = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lexemas = new javax.swing.JTable();
@@ -117,19 +117,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jSplitPane2.setTopComponent(jSplitPane1);
 
-        jTabbedPane1.setAutoscrolls(true);
+        jTabbedPane1.setToolTipText("");
 
         jPanel2.setFont(new java.awt.Font("Source Code Pro Light", 0, 12)); // NOI18N
+
+        consola.setEditable(false);
+        consola.setColumns(20);
+        consola.setRows(5);
+        jScrollPane3.setViewportView(consola);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 212, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Consola", jPanel2);
@@ -155,12 +160,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Lexemas", jPanel1);
 
-        jSplitPane2.setRightComponent(jTabbedPane1);
+        jSplitPane2.setBottomComponent(jTabbedPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +179,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
         );
 
         pack();
@@ -270,11 +275,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTree arbolDerivacion;
     private javax.swing.JButton btnCorrer;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JTextArea consola;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;

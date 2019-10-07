@@ -35,6 +35,14 @@ public class Automata_PalabrasReservada_VerbosHttp implements Automata {
         String lexema = "";
 
         while (flujo.getPosicionActual() < flujo.getCantidadCaracteres()) {
+            if ("q26".equals(estado)) {
+                estado = estado_q26(flujo.getCaracter());
+            }
+
+            if ("q25".equals(estado)) {
+                estado = estado_q25(flujo.getCaracter());
+            }
+            
             if ("q24".equals(estado)) {
                 estado = estado_q24(flujo.getCaracter());
             }
@@ -375,7 +383,7 @@ public class Automata_PalabrasReservada_VerbosHttp implements Automata {
      * retorna el valor actual.
      */
     private String estado_q15(char caracter) {
-        return caracter == 'c' ? "q8" : "qe";
+        return caracter == 'c' ? "q25" : "qe";
     }
 
     /**
@@ -423,7 +431,7 @@ public class Automata_PalabrasReservada_VerbosHttp implements Automata {
      * retorna el valor actual.
      */
     private String estado_q19(char caracter) {
-        return caracter == 'h' ? "q8" : "qe";
+        return caracter == 'h' ? "q25" : "qe";
     }
 
     /**
@@ -483,9 +491,33 @@ public class Automata_PalabrasReservada_VerbosHttp implements Automata {
      * retorna el valor actual.
      */
     private String estado_q24(char caracter) {
-        return caracter == 'n' ? "q8" : "qe";
+        return caracter == 'n' ? "q25" : "qe";
     }
 
+    /**
+     * *
+     * Metodo que evalua el estado q25 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q25(char caracter) {
+        return caracter == 'a' ? "q26" : "qe";
+    }
+
+    /**
+     * *
+     * Metodo que evalua el estado q26 del automata.
+     *
+     * @param caracter
+     * @return String que contiene el nuevo estado del automata, por defecto
+     * retorna el valor actual.
+     */
+    private String estado_q26(char caracter) {
+        return caracter == 'r' ? "qf" : "qe";
+    }
+    
     /**
      * *
      * Metodo que evalua el estado final del automata.

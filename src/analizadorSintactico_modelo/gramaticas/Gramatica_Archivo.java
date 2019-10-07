@@ -48,7 +48,12 @@ public class Gramatica_Archivo implements Gramatica{
             }
             
             break;
-        } while(true);             
+        } while(true);
+        
+        if (archivo.getMain() == null) {
+            throw new SintacticException("Error sintactico: Falta definir el metodo main");
+        }
+        
         return archivo;
     }
     
