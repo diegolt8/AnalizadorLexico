@@ -41,7 +41,7 @@ public class Gramatica_Si implements Gramatica {
         flujoLexema.avanzar();
         
         ExpresionLogica expresionLogica = (ExpresionLogica) gramaticaExpresionLogica.analizar(flujoLexema);
-        if (expresionLogica != null) {
+        if (expresionLogica == null) {
             throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.EXPRESION_LOGICA); 
         }
         si.setCondicion(expresionLogica);

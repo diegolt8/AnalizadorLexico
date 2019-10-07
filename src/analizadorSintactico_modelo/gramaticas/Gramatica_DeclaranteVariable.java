@@ -42,7 +42,7 @@ public class Gramatica_DeclaranteVariable implements Gramatica {
         
         InicializadorVariable inicializadorVariable = (InicializadorVariable) gramaticaInicializadorVariable.analizar(flujoLexema);
         if (inicializadorVariable == null) {
-            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.EXPRESION);
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.INICIALIZADOR_VARIABLE);
         }
         declaranteVariable.setInicializadorVariable(inicializadorVariable);
         

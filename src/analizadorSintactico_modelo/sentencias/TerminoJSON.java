@@ -14,20 +14,13 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class TerminoRelacional extends Sentencia {
+public class TerminoJSON extends Sentencia {
 
-    private ExpresionNumerica expresionNumerica;
     private Lexema literalCadena;
+    private TerminoLiteral terminoLiteral;
+    private TerminoJSON terminoJSON;
 
-    public TerminoRelacional() {
-    }
-
-    public ExpresionNumerica getExpresionNumerica() {
-        return expresionNumerica;
-    }
-
-    public void setExpresionNumerica(ExpresionNumerica expresionNumerica) {
-        this.expresionNumerica = expresionNumerica;
+    public TerminoJSON() {
     }
 
     public Lexema getLiteralCadena() {
@@ -36,19 +29,41 @@ public class TerminoRelacional extends Sentencia {
 
     public void setLiteralCadena(Lexema literalCadena) {
         this.literalCadena = literalCadena;
-    }    
-    
+    }
+
+    public TerminoLiteral getTerminoLiteral() {
+        return terminoLiteral;
+    }
+
+    public void setTerminoLiteral(TerminoLiteral terminoLiteral) {
+        this.terminoLiteral = terminoLiteral;
+    }
+
+    public TerminoJSON getTerminoJSON() {
+        return terminoJSON;
+    }
+
+    public void setTerminoJSON(TerminoJSON terminoJSON) {
+        this.terminoJSON = terminoJSON;
+    }
+        
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        if (expresionNumerica != null) {
-            hijos.add(expresionNumerica);
-        }
-        
         if (literalCadena != null) {
             hijos.add(new Terminal(literalCadena));
         }
+        
+        if (terminoLiteral != null) {
+            hijos.add(terminoLiteral);
+        }
+        
+        if (terminoJSON != null) {
+            hijos.add(terminoJSON);
+        }
+        
+        
         
         return hijos;
     }
@@ -60,7 +75,7 @@ public class TerminoRelacional extends Sentencia {
 
     @Override
     public String toString() {
-        return "Termino Relacional";
+        return "Termino JSON";
     }
     
 }

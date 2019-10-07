@@ -20,26 +20,19 @@ import analizadorSintactico_modelo.sentencias.TerminoNumerico;
 public class Gramatica_ExpresionNumerica implements Gramatica {
 
     @Override
-    public Sentencia analizar(FlujoLexema flujoLexema) {
-        
+    public Sentencia analizar(FlujoLexema flujoLexema) {      
+
         Gramatica_TerminoNumerico gramaticaTerminoNumerico = new Gramatica_TerminoNumerico();
         
         ExpresionNumerica expresionNumerica = new ExpresionNumerica();
-        
-        if (flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.PARENTESIS_ABIERTO) {
-            expresionNumerica.setParentesisAbierto(flujoLexema.getLexema());
-            flujoLexema.avanzar();
-        }
         
         TerminoNumerico terminoNumerico = (TerminoNumerico) gramaticaTerminoNumerico.analizar(flujoLexema);
         if (terminoNumerico == null) {
             return null;
         }
-        expresionNumerica.setTerminoNumerico(terminoNumerico);
+        expresionNumerica.setTermino(terminoNumerico);
         
-        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_SUMA && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_RESTA &&
-            flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_DIVISION && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_MULTIPLICACION &&
-            flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_MODULO) {
+        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_SUMA && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_RESTA) {
             return expresionNumerica;
         }
         expresionNumerica.setOperador(flujoLexema.getLexema());
@@ -49,17 +42,9 @@ public class Gramatica_ExpresionNumerica implements Gramatica {
         if (expreNumerica == null) {
             throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.EXPRESION_NUMERICA);
         }
-        expresionNumerica.setExpresionNumerica(expreNumerica);
-        
-        if (expresionNumerica.getParentesisAbierto() != null) {
-            if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PARENTESIS_CERRADO) {
-                throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.PARENTESIS_CERRADO);
-            } 
-            expresionNumerica.setParentesisCerrado(flujoLexema.getLexema());
-            flujoLexema.avanzar();
-        }
+        expresionNumerica.setExpresion(expreNumerica);      
         
         return expresionNumerica;
     }
-    
+
 }

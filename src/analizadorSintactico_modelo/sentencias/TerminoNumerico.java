@@ -16,66 +16,51 @@ import java.util.List;
  */
 public class TerminoNumerico extends Sentencia {
 
-    private Lexema signo;
-    private LiteralNumerico literalNuerico;
-    private Lexema identificador;
-    private Lexema operadorEspecial;
+    private FactorNumerico factor;
+    private Lexema operador;
+    private TerminoNumerico termino;
 
     public TerminoNumerico() {
     }
 
-    public Lexema getSigno() {
-        return signo;
+    public FactorNumerico getFactor() {
+        return factor;
     }
 
-    public void setSigno(Lexema signo) {
-        this.signo = signo;
+    public void setFactor(FactorNumerico factor) {
+        this.factor = factor;
     }
 
-    public LiteralNumerico getLiteralNuerico() {
-        return literalNuerico;
+    public Lexema getOperador() {
+        return operador;
     }
 
-    public void setLiteralNuerico(LiteralNumerico literalNuerico) {
-        this.literalNuerico = literalNuerico;
+    public void setOperador(Lexema operador) {
+        this.operador = operador;
     }
 
-    public Lexema getIdentificador() {
-        return identificador;
+    public TerminoNumerico getTermino() {
+        return termino;
     }
 
-    public void setIdentificador(Lexema identificador) {
-        this.identificador = identificador;
+    public void setTermino(TerminoNumerico termino) {
+        this.termino = termino;
     }
-
-    public Lexema getOperadorEspecial() {
-        return operadorEspecial;
-    }
-
-    public void setOperadorEspecial(Lexema operadorEspecial) {
-        this.operadorEspecial = operadorEspecial;
-    }
-    
-    
     
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        if (signo != null) {
-            hijos.add(new Terminal(signo));
+        if (factor != null) {
+            hijos.add(factor);
         }
         
-        if (literalNuerico != null) {
-            hijos.add(literalNuerico);
+        if (operador != null) {
+            hijos.add(new Terminal(operador));
         }
         
-        if (identificador != null) {
-            hijos.add(new Terminal(identificador));
-        }
-        
-        if (operadorEspecial != null) {
-            hijos.add(new Terminal(operadorEspecial));
+        if (termino != null) {
+            hijos.add(termino);
         }
         
         return hijos;
@@ -88,7 +73,7 @@ public class TerminoNumerico extends Sentencia {
 
     @Override
     public String toString() {
-        return "terminoNumerico";
+        return "Termino numerico";
     }
     
 }

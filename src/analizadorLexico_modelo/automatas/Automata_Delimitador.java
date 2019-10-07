@@ -89,7 +89,7 @@ public class Automata_Delimitador implements Automata {
             estado = "q1";
         }
 
-        if (caracter == ';' || caracter == '"' || caracter == '(' || caracter == ')' || caracter == '[' || caracter == ']') {
+        if (caracter == ';' || caracter == '"' || caracter == '(' || caracter == ')' || caracter == '[' || caracter == ']' || caracter == '{' || caracter == '}') {
             estado = "qf";
         }
 
@@ -132,13 +132,13 @@ public class Automata_Delimitador implements Automata {
     @Override
     public Lexema estado_qf(String lexema, int fila, int columna) {
         TipoLexemaEnum tipoLexema = null;
-        switch (lexema){
+        switch (lexema) {
             case "Met":
                 tipoLexema = TipoLexemaEnum.DEFINICION_METODO;
                 break;
             case ";":
                 tipoLexema = TipoLexemaEnum.PUNTO_Y_COMA;
-                break;            
+                break;
             case "(":
                 tipoLexema = TipoLexemaEnum.PARENTESIS_ABIERTO;
                 break;
@@ -146,9 +146,15 @@ public class Automata_Delimitador implements Automata {
                 tipoLexema = TipoLexemaEnum.PARENTESIS_CERRADO;
                 break;
             case "[":
-                tipoLexema = TipoLexemaEnum.LLAVE_ABIERTA;
+                tipoLexema = TipoLexemaEnum.CORCHETE_ABIERTO;
                 break;
             case "]":
+                tipoLexema = TipoLexemaEnum.CORCHETE_CERRADO;
+                break;
+            case "{":
+                tipoLexema = TipoLexemaEnum.LLAVE_ABIERTA;
+                break;
+            case "}":
                 tipoLexema = TipoLexemaEnum.LLAVE_CERRADA;
                 break;
             case "\"":

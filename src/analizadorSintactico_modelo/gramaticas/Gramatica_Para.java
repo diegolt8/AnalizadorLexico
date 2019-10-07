@@ -12,8 +12,8 @@ import analizadorSintactico_modelo.Sentencia;
 import analizadorSintactico_modelo.SintacticException;
 import analizadorSintactico_modelo.sentencias.DeclaracionVariable;
 import analizadorSintactico_modelo.sentencias.DeclaranteVariable;
+import analizadorSintactico_modelo.sentencias.ExpresionLogica;
 import analizadorSintactico_modelo.sentencias.ExpresionNumerica;
-import analizadorSintactico_modelo.sentencias.ExpresionRelacional;
 import analizadorSintactico_modelo.sentencias.ListaSentencias;
 import analizadorSintactico_modelo.sentencias.Para;
 
@@ -28,7 +28,7 @@ public class Gramatica_Para implements Gramatica {
         
         Gramatica_DeclaracionVariable gramaticaDeclaracionVariable = new Gramatica_DeclaracionVariable();
         Gramatica_DeclaranteVariable gramaticaDeclaranteVariable = new Gramatica_DeclaranteVariable();
-        Gramatica_ExpresionRelacional gramaticaExpresionRelacional = new Gramatica_ExpresionRelacional();
+        Gramatica_ExpresionLogica gramaticaExpresionLogica = new Gramatica_ExpresionLogica();
         Gramatica_ExpresionNumerica gramaticaExpresionNumerica = new Gramatica_ExpresionNumerica();
         Gramatica_ListaSentencias gramaticaListaSentencias = new Gramatica_ListaSentencias();
         
@@ -60,11 +60,11 @@ public class Gramatica_Para implements Gramatica {
         }
         flujoLexema.avanzar();
         
-        ExpresionRelacional expresionRelacional = (ExpresionRelacional) gramaticaExpresionRelacional.analizar(flujoLexema);
-        if (expresionRelacional == null) {
+        ExpresionLogica expresionLogica = (ExpresionLogica) gramaticaExpresionLogica.analizar(flujoLexema);
+        if (expresionLogica == null) {
             throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.EXPRESION_RELACIONAL); 
         }
-        para.setExpresionRelacional(expresionRelacional);
+        para.setExpresionLogica(expresionLogica);
         
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PUNTO_Y_COMA) {
             throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.PUNTO_Y_COMA); 

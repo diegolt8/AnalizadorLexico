@@ -16,6 +16,8 @@ import java.util.List;
 public class InicializadorVariable extends Sentencia {
 
     private Sentencia expresion;
+    private HTTP http;
+    private RespuestaHTTP respuestaHttp;
 
     public InicializadorVariable() {
     }
@@ -27,6 +29,22 @@ public class InicializadorVariable extends Sentencia {
     public void setExpresion(Sentencia expresion) {
         this.expresion = expresion;
     }
+
+    public HTTP getHttp() {
+        return http;
+    }
+
+    public void setHttp(HTTP http) {
+        this.http = http;
+    }
+
+    public RespuestaHTTP getRespuestaHttp() {
+        return respuestaHttp;
+    }
+
+    public void setRespuestaHttp(RespuestaHTTP respuestaHttp) {
+        this.respuestaHttp = respuestaHttp;
+    }
     
     @Override
     public List<Sentencia> llenarHijos() {
@@ -34,6 +52,14 @@ public class InicializadorVariable extends Sentencia {
        
         if (expresion != null) {
             hijos.add(expresion);
+        }
+        
+        if (http != null) {
+            hijos.add(http);
+        }
+        
+        if (respuestaHttp != null) {
+            hijos.add(respuestaHttp);
         }
         
         return hijos;

@@ -30,9 +30,9 @@ public class Gramatica_RespuestaHTTP implements Gramatica {
         if (http == null) {
             return null;
         }
-        
+                
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PUNTO) {
-            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.PUNTO); 
+            return null;
         }
         flujoLexema.avanzar();
         

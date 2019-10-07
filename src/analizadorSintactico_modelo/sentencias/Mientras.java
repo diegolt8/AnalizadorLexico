@@ -42,25 +42,25 @@ public class Mientras extends Sentencia {
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        if (!listaSentencias.getSentencias().isEmpty()) {
-            hijos.add(listaSentencias);
-        }
-        
         if (expresionLogica != null) {
             hijos.add(expresionLogica);
         }
+        
+        if (!listaSentencias.getSentencias().isEmpty()) {
+            hijos.add(listaSentencias);
+        }       
         
         return hijos;
     }
     
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Estructura de control MIENTRAS";
     }
     
 }

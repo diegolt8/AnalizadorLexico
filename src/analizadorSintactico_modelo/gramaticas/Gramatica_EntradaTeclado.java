@@ -33,6 +33,12 @@ public class Gramatica_EntradaTeclado implements Gramatica {
         }
         flujoLexema.avanzar();
         
+        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.IDENTIFICADOR) {
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.IDENTIFICADOR);
+        }
+        entradaTeclado.setIdentificador(flujoLexema.getLexema());
+        flujoLexema.avanzar();
+        
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PARENTESIS_CERRADO) {
             throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.PARENTESIS_CERRADO);
         }

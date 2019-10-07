@@ -5,12 +5,12 @@
  */
 package analizadorSintactico_modelo.gramaticas;
 
-import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
-import analizadorSintactico_modelo.SintacticException;
+import analizadorSintactico_modelo.sentencias.HTTP;
 import analizadorSintactico_modelo.sentencias.InicializadorVariable;
+import analizadorSintactico_modelo.sentencias.RespuestaHTTP;
 
 /**
  *
@@ -22,16 +22,35 @@ public class Gramatica_InicializadorVariable implements Gramatica {
     public Sentencia analizar(FlujoLexema flujoLexema) {
         
         Gramatica_Expresion gramaticaExpresion = new Gramatica_Expresion();
+        Gramatica_HTTP gramaticaHTTP = new Gramatica_HTTP();
+        Gramatica_RespuestaHTTP gramaticaRespuestaHTTP = new Gramatica_RespuestaHTTP();
         
         InicializadorVariable inicializadorVariable = new InicializadorVariable();
         
-        Sentencia expresion = gramaticaExpresion.analizar(flujoLexema);
-        if (expresion == null) {
-            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.EXPRESION); 
-        }
-        inicializadorVariable.setExpresion(expresion);
+        flujoLexema.guardarPosicion();
         
-        return inicializadorVariable;
+        Sentencia expresion = gramaticaExpresion.analizar(flujoLexema);
+        if (expresion != null) {
+            inicializadorVariable.setExpresion(expresion);
+            return inicializadorVariable;
+        }
+        flujoLexema.backTrack();
+        
+        RespuestaHTTP respuestaHTTP = (RespuestaHTTP) gramaticaRespuestaHTTP.analizar(flujoLexema);
+        if (respuestaHTTP != null) {
+            inicializadorVariable.setRespuestaHttp(respuestaHTTP);
+            return inicializadorVariable;
+        }
+        flujoLexema.backTrack();
+
+        HTTP http = (HTTP) gramaticaHTTP.analizar(flujoLexema);
+        if (http != null) {
+            inicializadorVariable.setHttp(http);
+            return inicializadorVariable;
+        }
+        flujoLexema.backTrack();
+        
+        return null;
     }
     
 }

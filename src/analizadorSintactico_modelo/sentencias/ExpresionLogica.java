@@ -16,29 +16,27 @@ import java.util.List;
  */
 public class ExpresionLogica extends Sentencia {
 
-    private ExpresionRelacional expresionRelacional;
+    private TerminoLogico terminoLogico;
+    private Lexema operador;
     private ExpresionLogica expresionLogica;
-    private Lexema operadorLogico;
-    private Lexema operadorLogicoNegacion;
-    private Lexema valorLogico;
 
     public ExpresionLogica() {
     }
 
-    public Lexema getOperadorLogicoNegacion() {
-        return operadorLogicoNegacion;
+    public TerminoLogico getTerminoLogico() {
+        return terminoLogico;
     }
 
-    public void setOperadorLogicoNegacion(Lexema operadorLogicoNegacion) {
-        this.operadorLogicoNegacion = operadorLogicoNegacion;
+    public void setTerminoLogico(TerminoLogico terminoLogico) {
+        this.terminoLogico = terminoLogico;
     }
 
-    public ExpresionRelacional getExpresionRelacional() {
-        return expresionRelacional;
+    public Lexema getOperador() {
+        return operador;
     }
 
-    public void setExpresionRelacional(ExpresionRelacional expresionRelacional) {
-        this.expresionRelacional = expresionRelacional;
+    public void setOperador(Lexema operador) {
+        this.operador = operador;
     }
 
     public ExpresionLogica getExpresionLogica() {
@@ -49,46 +47,22 @@ public class ExpresionLogica extends Sentencia {
         this.expresionLogica = expresionLogica;
     }
 
-    public Lexema getOperadorLogico() {
-        return operadorLogico;
-    }
-
-    public void setOperadorLogico(Lexema operadorLogico) {
-        this.operadorLogico = operadorLogico;
-    }
-
-    public Lexema getValorLogico() {
-        return valorLogico;
-    }
-
-    public void setValorLogico(Lexema valorLogico) {
-        this.valorLogico = valorLogico;
-    }
-
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
+
+        if (terminoLogico != null) {
+            hijos.add(terminoLogico);
+        }
         
-        if (operadorLogicoNegacion != null) {
-            hijos.add(new Terminal(operadorLogicoNegacion));
+        if (operador != null) {
+            hijos.add(new Terminal(operador));
         }
- 
-        if (valorLogico != null) {
-            hijos.add(new Terminal(valorLogico));
-        }
-
-        if (expresionRelacional != null) {
-            hijos.add(expresionRelacional);
-        }
-
-        if (operadorLogico != null) {
-            hijos.add(new Terminal(operadorLogico));
-        }
-
+        
         if (expresionLogica != null) {
             hijos.add(expresionLogica);
         }
-
+        
         return hijos;
     }
 
