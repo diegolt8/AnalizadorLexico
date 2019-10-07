@@ -26,8 +26,7 @@ public class Gramatica_ListaParametros implements Gramatica{
         Parametro parametro;        
         
         ListaParametros<Parametro> listaParamentros = new ListaParametros<>();
-        flujoLexema.guardarPosicion();    
-            
+        flujoLexema.guardarPosicion();                
         
         parametro = (Parametro) gramaticaParametro.analizar(flujoLexema);
         if (parametro == null) {

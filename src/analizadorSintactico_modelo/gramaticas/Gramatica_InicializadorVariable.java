@@ -27,28 +27,28 @@ public class Gramatica_InicializadorVariable implements Gramatica {
         
         InicializadorVariable inicializadorVariable = new InicializadorVariable();
         
-        flujoLexema.guardarPosicion();
+        int posicion = flujoLexema.getPosActual();
         
         Sentencia expresion = gramaticaExpresion.analizar(flujoLexema);
         if (expresion != null) {
             inicializadorVariable.setExpresion(expresion);
             return inicializadorVariable;
         }
-        flujoLexema.backTrack();
+        flujoLexema.setPosActual(posicion);
         
         RespuestaHTTP respuestaHTTP = (RespuestaHTTP) gramaticaRespuestaHTTP.analizar(flujoLexema);
         if (respuestaHTTP != null) {
             inicializadorVariable.setRespuestaHttp(respuestaHTTP);
             return inicializadorVariable;
         }
-        flujoLexema.backTrack();
+        flujoLexema.setPosActual(posicion);
 
         HTTP http = (HTTP) gramaticaHTTP.analizar(flujoLexema);
         if (http != null) {
             inicializadorVariable.setHttp(http);
             return inicializadorVariable;
         }
-        flujoLexema.backTrack();
+        flujoLexema.setPosActual(posicion);
         
         return null;
     }
