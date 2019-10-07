@@ -14,27 +14,40 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class EntradaTeclado extends Sentencia{
+public class HTTPEliminar extends Sentencia{
     
-    private Lexema identificador;
+    private Lexema url;
+    private HTTPParametros parametros;
 
-    public EntradaTeclado() {
+    public HTTPEliminar() {
     }
 
-    public Lexema getIdentificador() {
-        return identificador;
+    public Lexema getUrl() {
+        return url;
     }
 
-    public void setIdentificador(Lexema identificador) {
-        this.identificador = identificador;
+    public void setUrl(Lexema url) {
+        this.url = url;
     }
-       
+
+    public HTTPParametros getParametros() {
+        return parametros;
+    }
+
+    public void setParametros(HTTPParametros parametros) {
+        this.parametros = parametros;
+    }
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        if (identificador != null) {
-            hijos.add(new Terminal(identificador)); 
+        if (url != null) {
+            hijos.add(new Terminal(url));
+        }
+        
+        if (parametros != null) {
+            hijos.add(parametros);
         }
         
         return hijos;
@@ -47,7 +60,7 @@ public class EntradaTeclado extends Sentencia{
 
     @Override
     public String toString() {
-        return "Entrada de teclado";
+        return "Eliminar";
     }
     
 }

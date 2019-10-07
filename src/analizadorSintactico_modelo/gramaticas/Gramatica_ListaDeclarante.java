@@ -40,12 +40,13 @@ public class Gramatica_ListaDeclarante implements Gramatica{
             flujoLexema.avanzar();
             
             declaranteVariable = (DeclaranteVariable) gramaticaDeclaranteVariable.analizar(flujoLexema);
-            if (declaranteVariable == null) {
-                throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.DECLARANTE); 
+            if (declaranteVariable != null) {
+                listaDeclarantes.add(declaranteVariable);  
+                continue;
             }
-            listaDeclarantes.add(declaranteVariable);  
             
-            break;
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.DECLARANTE); 
+            
         } while (true);
         
         return listaDeclarantes;

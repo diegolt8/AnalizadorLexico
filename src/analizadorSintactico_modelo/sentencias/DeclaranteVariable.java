@@ -71,7 +71,7 @@ public class DeclaranteVariable extends Sentencia {
 
     @Override
     public String toString() {
-        return "Declarante: ";
+        return "Declarante: " + identificador.getLexema();
     }
     
 }

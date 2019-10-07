@@ -5,6 +5,7 @@
  */
 package analizadorSintactico_modelo.sentencias;
 
+import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_modelo.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,27 +14,40 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class TerminoLiteral extends Sentencia{
+public class HTTPCrear extends Sentencia {
 
-    private Sentencia terminoLiteral;
+    private Lexema url;
+    private JSON json;
 
-    public TerminoLiteral() {
+    public HTTPCrear() {
     }
 
-    public Sentencia getTerminoLiteral() {
-        return terminoLiteral;
+    public Lexema getUrl() {
+        return url;
     }
 
-    public void setTerminoLiteral(Sentencia terminoLiteral) {
-        this.terminoLiteral = terminoLiteral;
-    }    
+    public void setUrl(Lexema url) {
+        this.url = url;
+    }
+
+    public JSON getJson() {
+        return json;
+    }
+
+    public void setJson(JSON json) {
+        this.json = json;
+    }
     
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        if (terminoLiteral != null) {
-            hijos.add(terminoLiteral);
+        if (url != null) {
+            hijos.add(new Terminal(url));
+        }
+        
+        if (json != null) {
+            hijos.add(json);
         }
         
         return hijos;
@@ -46,7 +60,7 @@ public class TerminoLiteral extends Sentencia{
 
     @Override
     public String toString() {
-        return "Termino literal";
+        return "Crear";
     }
     
 }

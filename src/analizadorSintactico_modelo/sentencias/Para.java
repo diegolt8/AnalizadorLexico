@@ -17,7 +17,7 @@ public class Para extends Sentencia {
 
     private DeclaracionVariable declaracionVariable;
     private DeclaranteVariable declaranteVariable;
-    private ExpresionRelacional expresionRelacional;
+    private ExpresionLogica expresionLogica;
     private ExpresionNumerica expresionNumerica;
     private ListaSentencias<Sentencia> listaSentencias;
 
@@ -41,12 +41,12 @@ public class Para extends Sentencia {
         this.declaranteVariable = declaranteVariable;
     }
 
-    public ExpresionRelacional getExpresionRelacional() {
-        return expresionRelacional;
+    public ExpresionLogica getExpresionLogica() {
+        return expresionLogica;
     }
 
-    public void setExpresionRelacional(ExpresionRelacional expresionRelacional) {
-        this.expresionRelacional = expresionRelacional;
+    public void setExpresionLogica(ExpresionLogica expresionLogica) {
+        this.expresionLogica = expresionLogica;
     }
 
     public ExpresionNumerica getExpresionNumerica() {
@@ -77,8 +77,8 @@ public class Para extends Sentencia {
             hijos.add(declaranteVariable);
         }
         
-        if (expresionRelacional != null) {
-            hijos.add(expresionRelacional);
+        if (expresionLogica != null) {
+            hijos.add(expresionLogica);
         }
         
         if (expresionNumerica != null) {

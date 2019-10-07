@@ -13,27 +13,40 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class TerminoLiteral extends Sentencia{
+public class HTTPParametros extends Sentencia {
 
-    private Sentencia terminoLiteral;
+    private TerminoLiteral terminoLiteral;
+    private JSON json;
 
-    public TerminoLiteral() {
+    public HTTPParametros() {
     }
 
-    public Sentencia getTerminoLiteral() {
+    public TerminoLiteral getTerminoLiteral() {
         return terminoLiteral;
     }
 
-    public void setTerminoLiteral(Sentencia terminoLiteral) {
+    public void setTerminoLiteral(TerminoLiteral terminoLiteral) {
         this.terminoLiteral = terminoLiteral;
-    }    
-    
+    }
+
+    public JSON getJson() {
+        return json;
+    }
+
+    public void setJson(JSON json) {
+        this.json = json;
+    }
+       
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
         if (terminoLiteral != null) {
             hijos.add(terminoLiteral);
+        }
+        
+        if (json != null) {
+            hijos.add(json);
         }
         
         return hijos;
@@ -46,7 +59,7 @@ public class TerminoLiteral extends Sentencia{
 
     @Override
     public String toString() {
-        return "Termino literal";
+        return "Parametros";
     }
     
 }

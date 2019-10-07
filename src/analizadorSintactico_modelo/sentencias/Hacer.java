@@ -42,14 +42,14 @@ public class Hacer extends Sentencia {
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        if (!listaSentencias.getSentencias().isEmpty()) {
-            hijos.add(listaSentencias);
-        }
-        
         if (expresionLogica != null) {
             hijos.add(expresionLogica);
         }
         
+        if (!listaSentencias.getSentencias().isEmpty()) {
+            hijos.add(listaSentencias);
+        }
+                
         return hijos;
     }
 

@@ -13,27 +13,27 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class TerminoLiteral extends Sentencia{
+public class JSON extends Sentencia {
 
-    private Sentencia terminoLiteral;
+    private TerminoJSON terminoJSON;
 
-    public TerminoLiteral() {
+    public JSON() {
     }
 
-    public Sentencia getTerminoLiteral() {
-        return terminoLiteral;
+    public TerminoJSON getTerminoJSON() {
+        return terminoJSON;
     }
 
-    public void setTerminoLiteral(Sentencia terminoLiteral) {
-        this.terminoLiteral = terminoLiteral;
-    }    
+    public void setTerminoJSON(TerminoJSON terminoJSON) {
+        this.terminoJSON = terminoJSON;
+    }
     
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        if (terminoLiteral != null) {
-            hijos.add(terminoLiteral);
+        if (terminoJSON != null) {
+            hijos.add(terminoJSON);
         }
         
         return hijos;
@@ -46,7 +46,7 @@ public class TerminoLiteral extends Sentencia{
 
     @Override
     public String toString() {
-        return "Termino literal";
+        return "JSON";
     }
     
 }

@@ -16,45 +16,19 @@ import java.util.List;
  */
 public class ExpresionNumerica extends Sentencia {
 
-    private TerminoNumerico terminoNumerico;
-    private ExpresionNumerica expresionNumerica;
+    private TerminoNumerico termino;
     private Lexema operador;
-    private Lexema parentesisAbierto;
-    private Lexema parentesisCerrado;
+    private ExpresionNumerica expresion;
 
     public ExpresionNumerica() {
     }
 
-    public Lexema getParentesisAbierto() {
-        return parentesisAbierto;
+    public TerminoNumerico getTermino() {
+        return termino;
     }
 
-    public void setParentesisAbierto(Lexema parentesisAbierto) {
-        this.parentesisAbierto = parentesisAbierto;
-    }
-
-    public Lexema getParentesisCerrado() {
-        return parentesisCerrado;
-    }
-
-    public void setParentesisCerrado(Lexema parentesisCerrado) {
-        this.parentesisCerrado = parentesisCerrado;
-    }
-    
-    public TerminoNumerico getTerminoNumerico() {
-        return terminoNumerico;
-    }
-
-    public void setTerminoNumerico(TerminoNumerico terminoNumerico) {
-        this.terminoNumerico = terminoNumerico;
-    }
-
-    public ExpresionNumerica getExpresionNumerica() {
-        return expresionNumerica;
-    }
-
-    public void setExpresionNumerica(ExpresionNumerica expresionNumerica) {
-        this.expresionNumerica = expresionNumerica;
+    public void setTermino(TerminoNumerico termino) {
+        this.termino = termino;
     }
 
     public Lexema getOperador() {
@@ -63,32 +37,32 @@ public class ExpresionNumerica extends Sentencia {
 
     public void setOperador(Lexema operador) {
         this.operador = operador;
-    }   
+    }
+
+    public ExpresionNumerica getExpresion() {
+        return expresion;
+    }
+
+    public void setExpresion(ExpresionNumerica expresion) {
+        this.expresion = expresion;
+    }
     
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        if (parentesisAbierto != null) {
-            hijos.add(new Terminal(parentesisAbierto));
-        }
-        
-        if (terminoNumerico != null) {
-            hijos.add(terminoNumerico);
+        if (termino != null) {
+            hijos.add(termino);
         }
         
         if (operador != null) {
             hijos.add(new Terminal(operador));
         }
         
-        if (expresionNumerica != null) {
-            hijos.add(expresionNumerica);
-        }     
-        
-        if (parentesisCerrado != null) {
-            hijos.add(new Terminal(parentesisCerrado));
+        if (expresion != null) {
+            hijos.add(expresion);
         }
-        
+       
         return hijos;
     }
 

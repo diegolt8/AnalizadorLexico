@@ -5,7 +5,6 @@
  */
 package analizadorSintactico_modelo.gramaticas;
 
-import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;

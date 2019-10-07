@@ -14,11 +14,12 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class EntradaTeclado extends Sentencia{
-    
-    private Lexema identificador;
+public class PeticionHTTP extends Sentencia {
 
-    public EntradaTeclado() {
+    private Lexema identificador;
+    private VerboHTTP verboHTTP;
+
+    public PeticionHTTP() {
     }
 
     public Lexema getIdentificador() {
@@ -28,13 +29,25 @@ public class EntradaTeclado extends Sentencia{
     public void setIdentificador(Lexema identificador) {
         this.identificador = identificador;
     }
-       
+
+    public VerboHTTP getVerboHTTP() {
+        return verboHTTP;
+    }
+
+    public void setVerboHTTP(VerboHTTP verboHTTP) {
+        this.verboHTTP = verboHTTP;
+    }
+    
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
         if (identificador != null) {
-            hijos.add(new Terminal(identificador)); 
+            hijos.add(new Terminal(identificador));
+        }
+        
+        if (verboHTTP != null) {
+            hijos.add(verboHTTP);
         }
         
         return hijos;
@@ -47,7 +60,7 @@ public class EntradaTeclado extends Sentencia{
 
     @Override
     public String toString() {
-        return "Entrada de teclado";
+        return "Peticion HTTP";
     }
     
 }

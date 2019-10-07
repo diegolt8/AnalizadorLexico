@@ -13,27 +13,27 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class TerminoLiteral extends Sentencia{
+public class VerboHTTP extends Sentencia {
 
-    private Sentencia terminoLiteral;
+    private Sentencia verboHTTP;
 
-    public TerminoLiteral() {
+    public VerboHTTP() {
     }
 
-    public Sentencia getTerminoLiteral() {
-        return terminoLiteral;
+    public Sentencia getVerboHTTP() {
+        return verboHTTP;
     }
 
-    public void setTerminoLiteral(Sentencia terminoLiteral) {
-        this.terminoLiteral = terminoLiteral;
-    }    
+    public void setVerboHTTP(Sentencia verboHTTP) {
+        this.verboHTTP = verboHTTP;
+    }
     
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         
-        if (terminoLiteral != null) {
-            hijos.add(terminoLiteral);
+        if (verboHTTP != null) {
+            hijos.add(verboHTTP);
         }
         
         return hijos;
@@ -46,7 +46,7 @@ public class TerminoLiteral extends Sentencia{
 
     @Override
     public String toString() {
-        return "Termino literal";
+        return "Verbo HTTP";
     }
     
 }

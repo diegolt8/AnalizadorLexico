@@ -10,7 +10,7 @@ import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
 import analizadorSintactico_modelo.SintacticException;
-import analizadorSintactico_modelo.sentencias.LiteralNumerico;
+import analizadorSintactico_modelo.sentencias.FactorNumerico;
 import analizadorSintactico_modelo.sentencias.TerminoNumerico;
 
 /**
@@ -22,38 +22,28 @@ public class Gramatica_TerminoNumerico implements Gramatica {
     @Override
     public Sentencia analizar(FlujoLexema flujoLexema) {
         
-        Gramatica_LiteralNumerico gramaticaLiteralNumerico = new Gramatica_LiteralNumerico();
+        Gramatica_FactorNumerico gramaticaFactorNumerico = new Gramatica_FactorNumerico();
         
         TerminoNumerico terminoNumerico = new TerminoNumerico();
-        
-        if (flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.OPE_RESTA) {
-            terminoNumerico.setSigno(flujoLexema.getLexema());
-            flujoLexema.avanzar();
-            
-            LiteralNumerico literalNumerico = (LiteralNumerico) gramaticaLiteralNumerico.analizar(flujoLexema);
-            if (literalNumerico == null) {
-                throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.LITERAL_NUMERICO); 
-            } 
-            terminoNumerico.setLiteralNuerico(literalNumerico);
-            return terminoNumerico;           
-        } else {
-            LiteralNumerico literalNumerico = (LiteralNumerico) gramaticaLiteralNumerico.analizar(flujoLexema);
-            if (literalNumerico != null) {
-                terminoNumerico.setLiteralNuerico(literalNumerico);
-                return terminoNumerico;
-            }
-        }
-        
-        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.IDENTIFICADOR) {
+
+        FactorNumerico factorNumerico = (FactorNumerico) gramaticaFactorNumerico.analizar(flujoLexema);
+        if (factorNumerico == null) {
             return null;
         }
-        terminoNumerico.setIdentificador(flujoLexema.getLexema());
+        terminoNumerico.setFactor(factorNumerico);
+        
+        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_DIVISION && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_MULTIPLICACION &&
+                flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_MODULO) {
+            return terminoNumerico;
+        }
+        terminoNumerico.setOperador(flujoLexema.getLexema());
         flujoLexema.avanzar();
         
-        if (flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.OPE_ESP_SUMA || flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.OPE_ESP_RESTA){
-            terminoNumerico.setOperadorEspecial(flujoLexema.getLexema());
-            flujoLexema.avanzar();
+        TerminoNumerico terNumerico = (TerminoNumerico) analizar(flujoLexema);
+        if (terNumerico == null) {
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.TERMINO_NUMERICO);
         }
+        terminoNumerico.setTermino(terNumerico);        
         
         return terminoNumerico;
     }
