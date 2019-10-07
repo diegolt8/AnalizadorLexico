@@ -62,7 +62,7 @@ public class Gramatica_Para implements Gramatica {
         
         ExpresionLogica expresionLogica = (ExpresionLogica) gramaticaExpresionLogica.analizar(flujoLexema);
         if (expresionLogica == null) {
-            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.EXPRESION_RELACIONAL); 
+            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.EXPRESION_LOGICA); 
         }
         para.setExpresionLogica(expresionLogica);
         

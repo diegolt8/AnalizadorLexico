@@ -34,10 +34,11 @@ public class Gramatica_TerminoLiteral implements Gramatica {
         
         if (flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.VALOR_CADENA) {
             terminoLiteral.setTerminoLiteral(new Terminal(flujoLexema.getLexema()));
-        }
-        flujoLexema.avanzar();
+            flujoLexema.avanzar();
+            return terminoLiteral;
+        }        
         
-        return terminoLiteral;
+        return null;
     }
     
 }
