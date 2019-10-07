@@ -47,4 +47,22 @@ public class FlujoLexema {
     public boolean posicionFinal(){
         return posActual == listaLexemas.size();
     }
+
+    public int getPosActual() {
+        return posActual;
+    }
+
+    public void setPosActual(int posActual) {
+        this.posActual = posActual;
+    }
+
+    public int getPosTemp() {
+        return posTemp;
+    }
+
+    public void setPosTemp(int posTemp) {
+        this.posTemp = posTemp;
+    }
+    
+    
 }

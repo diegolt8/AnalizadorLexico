@@ -31,7 +31,7 @@ public class Gramatica_TerminoNumerico implements Gramatica {
             return null;
         }
         terminoNumerico.setFactor(factorNumerico);
-        
+                
         if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_DIVISION && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_MULTIPLICACION &&
                 flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_MODULO) {
             return terminoNumerico;

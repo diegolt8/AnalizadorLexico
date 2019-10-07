@@ -112,7 +112,7 @@ public class Gramatica_TerminoLogico implements Gramatica {
             if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_REL_IGUAL_IGUAL && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_REL_DIFERENTE &&
                     flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_REL_MAYOR && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_REL_MENOR &&
                     flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_REL_MAYOR_IGUAL && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_REL_MENOR_IGUAL) {
-                throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.OPERADOR_RELACIONAL);
+                return terminoLogico;
             }
             terminoLogico.setOperadorRelacional(flujoLexema.getLexema());
             flujoLexema.avanzar();
