@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Pepe
  */
-public class Parametro extends Sentencia{
+public class Parametro extends Sentencia {
 
     private Lexema tipoDato;
     private Lexema nombreParametro;
@@ -36,26 +36,29 @@ public class Parametro extends Sentencia{
 
     public void setNombreParametro(Lexema nombreParametro) {
         this.nombreParametro = nombreParametro;
-    }   
-    
+    }
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         hijos.add(new Terminal(tipoDato));
         hijos.add(new Terminal(nombreParametro));
-        
+
         return hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        str.append("var ");
+        str.append(nombreParametro.getLexema());
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Parametro: " + nombreParametro.getLexema() + " - Tipo: " + tipoDato.getLexema();
     }
-    
+
 }

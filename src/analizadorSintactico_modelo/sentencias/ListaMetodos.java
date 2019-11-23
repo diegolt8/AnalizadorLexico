@@ -45,7 +45,11 @@ public class ListaMetodos<T extends Sentencia> extends Sentencia{
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        for (T metodo : listaMetodos) {
+            str.append(metodo.parse());
+        }
+        return str.toString();
     }
 
     @Override

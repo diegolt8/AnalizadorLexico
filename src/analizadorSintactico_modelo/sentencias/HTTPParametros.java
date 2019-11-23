@@ -54,7 +54,7 @@ public class HTTPParametros extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+        return json.parse();
     }
 
     @Override

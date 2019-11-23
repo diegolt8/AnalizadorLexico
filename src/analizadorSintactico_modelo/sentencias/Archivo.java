@@ -43,7 +43,7 @@ public class Archivo extends Sentencia {
         this.listaMetodos = listaMetodos;
     }
     //-------------------------------------------------------------------------
-    
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
@@ -61,7 +61,20 @@ public class Archivo extends Sentencia {
 
     @Override
     public String parse() {
-        return null;
+        StringBuilder str = new StringBuilder();
+        str.append("<!DOCTYPE html>\n"
+                + "   <html>\n"
+                + "       <head>\n"
+                + "       </head>\n"
+                + "       <body>\n"
+                + "           <script src=\"https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js\"></script>\n"
+                + "           <script>\n");
+        str.append(main.parse());
+        str.append(listaMetodos.parse());
+        str.append("         \n\t</script>\n"
+                + "       </body>\n"
+                + "   </html>");
+        return str.toString();
     }
 
     @Override

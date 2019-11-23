@@ -52,12 +52,16 @@ public class DeclaracionVariable extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        str.append("var ");
+        str.append(listaDeclarantes.parse()).append(";");
+        
+        return str.toString();
     }
 
     @Override
     public String toString() {
-        return "Declaracion";
+        return "Declaracion variable";
     }
     
 }

@@ -35,7 +35,7 @@ public class Terminal extends Sentencia{
 
     @Override
     public String parse() {
-        return null;
+        return lexema.getLexema();
     }
 
     @Override

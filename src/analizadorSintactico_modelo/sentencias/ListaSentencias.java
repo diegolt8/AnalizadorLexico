@@ -25,8 +25,7 @@ public class ListaSentencias<T extends Sentencia> extends Sentencia {
     public ListaSentencias() {
         listaSentencias = new ArrayList<>();
     }
-    
-        
+
     public void add(T sentencia) {
         listaSentencias.add(sentencia);
     }
@@ -34,7 +33,6 @@ public class ListaSentencias<T extends Sentencia> extends Sentencia {
     public List<T> getSentencias() {
         return listaSentencias;
     }
-        
 
     @Override
     public List<Sentencia> llenarHijos() {
@@ -48,10 +46,14 @@ public class ListaSentencias<T extends Sentencia> extends Sentencia {
     @Override
     public String toString() {
         return "Lista de sentencias";
-    }    
+    }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        for(Sentencia sentencia : listaSentencias) {
+            str.append(sentencia.parse());
+        }
+        return str.toString();
     }
 }

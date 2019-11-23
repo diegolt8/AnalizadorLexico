@@ -39,4 +39,17 @@ public class CargadorArchivo {
         }
         return codigo;
     }
+
+    public String GuardarArchivo(File archivo, String documento) {
+        String mensaje = null;
+        try {
+            salida = new FileOutputStream(archivo);
+            byte[] text = documento.getBytes();
+            salida.write(text);
+            mensaje = "Archivo guardado";
+        } catch (Exception e) {
+
+        }
+        return mensaje;
+    }
 }

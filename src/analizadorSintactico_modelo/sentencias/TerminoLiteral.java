@@ -41,7 +41,11 @@ public class TerminoLiteral extends Sentencia{
 
     @Override
     public String parse() {
-        return "";
+         StringBuilder str = new StringBuilder();
+        if (terminoLiteral != null) {
+            str.append(terminoLiteral.parse());
+        }
+        return str.toString();
     }
 
     @Override

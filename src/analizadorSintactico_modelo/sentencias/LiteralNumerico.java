@@ -45,33 +45,46 @@ public class LiteralNumerico extends Sentencia {
 
     public void setParteDecimal(Lexema parteDecimal) {
         this.parteDecimal = parteDecimal;
-    }   
-    
+    }
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         if (signo != null) {
             hijos.add(new Terminal(signo));
         }
-        
+
         hijos.add(new Terminal(parteEntera));
-        
+
         if (parteDecimal != null) {
             hijos.add(new Terminal(parteDecimal));
         }
-        
+
         return hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+
+        if (signo != null) {
+            str.append("-");
+        }
+
+        str.append(parteEntera.getLexema());
+
+        if (parteDecimal != null) {
+            str.append(".");
+            str.append(parteDecimal.getLexema());
+        }
+
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Literal numerico";
     }
-    
+
 }

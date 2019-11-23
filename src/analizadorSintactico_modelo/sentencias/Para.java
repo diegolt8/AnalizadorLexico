@@ -94,7 +94,35 @@ public class Para extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+       StringBuilder str = new StringBuilder();
+
+        str.append("\t   for").append(" ").append("(");
+
+        if (declaracionVariable != null) {
+            str.append(declaracionVariable.parse());
+            str.append(expresionLogica.parse());
+            str.append(";").append(" ");
+            str.append(expresionNumerica.parse());
+            str.append(")").append(" ").append("{\n");
+            for (Sentencia sentencia : listaSentencias.getSentencias()) {
+                str.append(sentencia.parse());
+            }
+            str.append("\n\t\t}");
+        } 
+        
+        if (declaranteVariable != null) {
+            str.append(declaranteVariable.parse());
+            str.append(expresionLogica.parse());
+            str.append(";").append(" ");
+            str.append(expresionNumerica.parse());
+            str.append(")").append(" ").append("{\n");
+            for (Sentencia sentencia : listaSentencias.getSentencias()) {
+                str.append(sentencia.parse());
+            }
+        }
+        
+
+        return str.toString();
     }
 
     @Override

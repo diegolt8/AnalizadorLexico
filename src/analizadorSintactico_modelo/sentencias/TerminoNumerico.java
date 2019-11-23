@@ -68,7 +68,13 @@ public class TerminoNumerico extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        str.append(factor.parse());
+        if(operador != null) {
+            str.append(operador.getLexema());
+            str.append(termino.parse());
+        }
+        return str.toString();
     }
 
     @Override

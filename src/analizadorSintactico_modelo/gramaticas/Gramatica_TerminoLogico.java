@@ -91,6 +91,10 @@ public class Gramatica_TerminoLogico implements Gramatica {
             terminoLogico.setLiteralCadena1(flujoLexema.getLexema());
             flujoLexema.avanzar();
             
+            if (flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.PARENTESIS_CERRADO) {
+                return null;
+            }
+            
             if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_REL_IGUAL_IGUAL && flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.OPE_REL_DIFERENTE) {
                 throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.OPERADOR_RELACIONAL);
             }

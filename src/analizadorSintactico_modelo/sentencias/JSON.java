@@ -27,26 +27,34 @@ public class JSON extends Sentencia {
     public void setTerminoJSON(TerminoJSON terminoJSON) {
         this.terminoJSON = terminoJSON;
     }
-    
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         if (terminoJSON != null) {
             hijos.add(terminoJSON);
         }
-        
+
         return hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+
+        str.append("{");
+        if (terminoJSON != null) {
+            str.append(terminoJSON.parse());
+        }
+        str.append("}");
+
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "JSON";
     }
-    
+
 }

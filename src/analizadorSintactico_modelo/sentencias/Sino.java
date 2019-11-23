@@ -28,21 +28,28 @@ public class Sino extends Sentencia {
     public void setListaSentencias(ListaSentencias<Sentencia> listaSentencias) {
         this.listaSentencias = listaSentencias;
     }
-    
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         if (!listaSentencias.getSentencias().isEmpty()) {
             hijos.add(listaSentencias);
         }
-        
+
         return hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        str.append(" else ");
+        str.append("{\n");
+        for (Sentencia sentencia : listaSentencias.getSentencias()) {
+            str.append("       ").append(sentencia.parse());
+        }
+        str.append("\n\t  }");
+        return str.toString();
     }
 
     @Override
@@ -50,4 +57,20 @@ public class Sino extends Sentencia {
         return "Estructura de control SINO";
     }
     
+    /*__main__()"
+Retorno 0;
+"
+
+Met metodo()"
+ Si(Verdadero)"
+    Ent o = 0;
+  Si(Verdadero)"
+    Ent i = 0;
+   "
+ " Sino "
+    Ent e = 1; 
+  "
+" */
+    
+
 }

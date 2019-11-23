@@ -80,8 +80,12 @@ public class HTTPModificar extends Sentencia {
     }
 
     @Override
-    public String parse() {
-        return "";
+    public String parse() {StringBuilder str = new StringBuilder();
+        str.append("\n\t\t").append("axios.put").append("(").append(url.getLexema()).append(", ");
+        str.append(json.parse());
+        str.append(")");
+        str.append("\n\t\t.then( res => {" + "\n" + "\t\t  console.log(res.data) } )" + "\n" + "\t\t.catch(function (error) {" + "\n" + "\t\t console.log(error) })");
+        return str.toString();
     }
 
     @Override

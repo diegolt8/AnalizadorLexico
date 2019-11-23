@@ -14,6 +14,7 @@ import analizadorLexico_modelo.ErrorLexico;
 import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_controlador.AnalizadorSintactico;
 import analizadorSintactico_modelo.sentencias.Archivo;
+import java.io.File;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
@@ -25,6 +26,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     CargadorArchivo cargar;
     AnalizadorLexico analizadorLexico;
     AnalizadorSintactico analizadorSintactico;
+    JFileChooser seleccionar = new JFileChooser();
+    File archivo;
 
     /**
      * Creates new form VentanaPrincipal
@@ -46,7 +49,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
+        btnAbrir = new javax.swing.JButton();
         btnCorrer = new javax.swing.JButton();
         jSplitPane2 = new javax.swing.JSplitPane();
         jSplitPane1 = new javax.swing.JSplitPane();
@@ -67,11 +70,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnGuardar.setBackground(new java.awt.Color(255, 255, 255));
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/abrir.PNG"))); // NOI18N
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnAbrir.setBackground(new java.awt.Color(255, 255, 255));
+        btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/abrir.PNG"))); // NOI18N
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnAbrirActionPerformed(evt);
             }
         });
 
@@ -88,16 +91,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCorrer, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnCorrer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAbrir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCorrer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -134,7 +140,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Consola", jPanel2);
@@ -160,7 +166,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Lexemas", jPanel1);
@@ -177,17 +183,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
         // TODO add your handling code here:
-         if (cargar.seleccionar.showDialog(null, "Abrir") == JFileChooser.APPROVE_OPTION) {
+        if (cargar.seleccionar.showDialog(null, "Abrir") == JFileChooser.APPROVE_OPTION) {
             cargar.archivo = cargar.seleccionar.getSelectedFile();
             if (cargar.archivo.canRead()) {
                 if (cargar.archivo.getName().endsWith("")) {
@@ -198,25 +204,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnCorrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrerActionPerformed
         String txt = jTALexico.getText();
         analizadorLexico.analizadorLexico(txt);
         lexemas.setModel(tablaLexemas(analizadorLexico.getListaLexema()));
         ArrayList<Lexema> lista = analizadorLexico.getListaLexema();
-        analizadorSintactico.analisar(lista);  
-        
+        analizadorSintactico.analisar(lista);
+         File file = new File("/home/vi74ly/AnalizadorLexico/src/recursos/Archivo.html");
         Archivo a = analizadorSintactico.getArchivo();
         a.llenarHijos();
         arbolDerivacion.setModel(new DefaultTreeModel(a));
+        String documento = a.parse();
+                String mensaje = cargar.GuardarArchivo(file, documento);
+                if (mensaje != null) {
+                    JOptionPane.showMessageDialog(null, mensaje);
+        }
+        System.out.println(a.parse());
         //errores.setModel(tablaErrorLexico(analizadorLexico.getListaErroresLexico()));
     }//GEN-LAST:event_btnCorrerActionPerformed
 
     /**
      * *
-     * Metodo que se encarga de crear el modelo para cargar la tabla de lexemas 
+     * Metodo que se encarga de crear el modelo para cargar la tabla de lexemas
      * con la informacion que requiere mostrar
+     *
      * @param listaLexemas
      * @return
      */
@@ -240,14 +253,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 listaLexemas.get(i).getColumna()
             });
         }
-        
+
         return model;
     }
 
     /**
      * *
-     * Metodo que se encarga de crear el metodo para cargar la tabla de errores 
+     * Metodo que se encarga de crear el metodo para cargar la tabla de errores
      * de lexema con la informacion que requiere mostrar
+     *
      * @param listaErrorLexico
      * @return
      */
@@ -273,8 +287,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolDerivacion;
+    private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCorrer;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JTextArea consola;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

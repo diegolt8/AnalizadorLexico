@@ -45,34 +45,38 @@ public class InicializadorVariable extends Sentencia {
     public void setRespuestaHttp(RespuestaHTTP respuestaHttp) {
         this.respuestaHttp = respuestaHttp;
     }
-    
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-       
+
         if (expresion != null) {
             hijos.add(expresion);
         }
-        
+
         if (http != null) {
             hijos.add(http);
         }
-        
+
         if (respuestaHttp != null) {
             hijos.add(respuestaHttp);
         }
-        
+
         return hijos;
     }
 
     @Override
-    public String parse() {       
-        return "";
+    public String parse() {
+        StringBuilder str = new StringBuilder();
+        if (expresion != null) {
+            str.append(expresion.parse());
+        }
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Inicializador variable";
     }
-    
+
 }
