@@ -66,7 +66,15 @@ public class DeclaranteVariable extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+          StringBuilder str = new StringBuilder();
+
+        str.append(identificador.getLexema()).append(" ");
+        if (operadorAsignacion != null) {
+            str.append(operadorAsignacion.getLexema()).append(" ");
+            str.append(inicializadorVariable.parse());
+        }
+        
+        return str.toString();
     }
 
     @Override

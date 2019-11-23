@@ -55,7 +55,7 @@ public class PeticionHTTP extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+        return verboHTTP.parse();
     }
 
     @Override

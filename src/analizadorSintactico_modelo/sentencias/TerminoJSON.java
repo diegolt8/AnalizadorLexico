@@ -6,6 +6,7 @@
 package analizadorSintactico_modelo.sentencias;
 
 import analizadorLexico_modelo.Lexema;
+import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,36 +47,50 @@ public class TerminoJSON extends Sentencia {
     public void setTerminoJSON(TerminoJSON terminoJSON) {
         this.terminoJSON = terminoJSON;
     }
-        
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         if (literalCadena != null) {
             hijos.add(new Terminal(literalCadena));
         }
-        
+
         if (terminoLiteral != null) {
             hijos.add(terminoLiteral);
         }
-        
+
         if (terminoJSON != null) {
             hijos.add(terminoJSON);
         }
-        
-        
-        
+
         return hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+
+        str.append(literalCadena.getLexema().replace("'", "\""));
+        str.append(": ");
+        Terminal lexema = (Terminal) terminoLiteral.getTerminoLiteral();
+        if (lexema.getLexema().getTipoLexema() == TipoLexemaEnum.VALOR_CADENA) {
+            str.append(lexema.getLexema().getLexema().replace("'", "\""));
+        } else {
+            str.append(terminoLiteral.parse());
+        }
+        
+        if (terminoJSON != null) {
+            str.append(", ");
+            str.append(terminoJSON.parse());
+        }
+
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Termino JSON";
     }
-    
+
 }

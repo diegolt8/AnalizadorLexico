@@ -55,12 +55,34 @@ public class HTTPEliminar extends Sentencia{
 
     @Override
     public String parse() {
-        return "";
+          StringBuilder str = new StringBuilder();
+        str.append("\n\t\t").append("axios.delete").append("(").append(url.getLexema().substring(0, url.getLexema().length() - 1));
+
+        if (parametros != null) {
+            if (parametros.getTerminoLiteral() != null) {
+                str.append("/").append(parametros.getTerminoLiteral().parse().replace("'", "")).append("'");
+            } else {
+                str.append(", " + "\n" + " params: \n");
+                str.append(parametros.parse());
+            }
+        }
+
+        str.append(")");
+        str.append("\n\t\t.then( res => {" + "\n" + "\t\t  console.log(res.data) } )" + "\n" + "\t\t.catch(function (error) {" + "\n" + "\t\t console.log(error) })");
+
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Eliminar";
     }
+    
+    /*
+    __main__()"
+a.Eliminar('http://jsonplaceholder.typicode.com/posts').Parametros().Path('1');
+Retorno 0;
+"
+    */ 
     
 }

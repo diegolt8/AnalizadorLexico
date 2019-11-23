@@ -36,30 +36,38 @@ public class TerminoCadena extends Sentencia {
     public void setTerminoCadena(TerminoCadena terminoCadena) {
         this.terminoCadena = terminoCadena;
     }
-        
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         if (terminoLiteral != null) {
             hijos.add(terminoLiteral);
         }
-        
+
         if (terminoCadena != null) {
             hijos.add(terminoCadena);
         }
-        
+
         return hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        if (terminoCadena != null) {
+            str.append(terminoCadena.parse());
+        }
+
+        if (terminoLiteral != null) {
+            str.append(terminoLiteral.parse());
+        }
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Termino cadena";
     }
-    
+
 }

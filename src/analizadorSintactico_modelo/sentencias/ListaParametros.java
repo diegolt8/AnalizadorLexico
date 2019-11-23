@@ -14,19 +14,18 @@ import java.util.List;
  * @author Pepe
  * @param <T>
  */
-public class ListaParametros<T extends Sentencia> extends Sentencia{
+public class ListaParametros<T extends Sentencia> extends Sentencia {
 
     private final List<T> listaParametros;
 
     public ListaParametros(List<T> listaParametros) {
         this.listaParametros = listaParametros;
     }
-    
+
     public ListaParametros() {
         this.listaParametros = new ArrayList<>();
     }
-    
-    
+
     public void add(T sentencia) {
         listaParametros.add(sentencia);
     }
@@ -34,7 +33,7 @@ public class ListaParametros<T extends Sentencia> extends Sentencia{
     public List<T> getParametros() {
         return listaParametros;
     }
-    
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
@@ -46,12 +45,16 @@ public class ListaParametros<T extends Sentencia> extends Sentencia{
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        for (Sentencia sentencia : listaParametros) {
+            str.append(sentencia.parse()).append(",");
+        }
+        return str.toString();
     }
 
     @Override
-    public String toString() {        
+    public String toString() {
         return "Lista de parametros";
     }
-    
+
 }

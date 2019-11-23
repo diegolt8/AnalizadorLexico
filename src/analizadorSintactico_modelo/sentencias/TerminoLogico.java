@@ -6,6 +6,7 @@
 package analizadorSintactico_modelo.sentencias;
 
 import analizadorLexico_modelo.Lexema;
+import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,32 +106,32 @@ public class TerminoLogico extends Sentencia {
 
     public void setValorLogico(Lexema valorLogico) {
         this.valorLogico = valorLogico;
-    }  
-    
+    }
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         if (literalCadena1 != null) {
             hijos.add(new Terminal(literalCadena1));
         }
-        
+
         if (expresionNumerica1 != null) {
             hijos.add(expresionNumerica1);
         }
-        
+
         if (operadorRelacional != null) {
             hijos.add(new Terminal(operadorRelacional));
         }
-        
+
         if (literalCadena2 != null) {
             hijos.add(new Terminal(literalCadena2));
         }
-        
+
         if (expresionNumerica2 != null) {
             hijos.add(expresionNumerica2);
         }
-        
+
         if (negacion != null) {
             hijos.add(new Terminal(negacion));
         }
@@ -138,15 +139,15 @@ public class TerminoLogico extends Sentencia {
         if (valorLogico != null) {
             hijos.add(new Terminal(valorLogico));
         }
-        
+
         if (parentesisAbierto != null) {
             hijos.add(new Terminal(parentesisAbierto));
         }
-        
+
         if (expresionLogica != null) {
             hijos.add(expresionLogica);
         }
-        
+
         if (parentesisCerrado != null) {
             hijos.add(new Terminal(parentesisCerrado));
         }
@@ -155,12 +156,39 @@ public class TerminoLogico extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+
+        if (literalCadena1 != null) {
+            str.append(literalCadena1.getLexema());
+            str.append(" ").append(operadorRelacional.getLexema()).append(" ");
+            str.append(literalCadena2.getLexema());
+        } else if (expresionNumerica1 != null) {
+            str.append(expresionNumerica1.parse());
+            str.append(" ").append(operadorRelacional.getLexema()).append(" ");
+            str.append(expresionNumerica2.parse());
+        } else {
+            if (negacion != null) {
+                str.append("!");
+            }
+            if (valorLogico != null) {
+                if (valorLogico.getTipoLexema() == TipoLexemaEnum.VLR_VERDADERO) {
+                    str.append("true");
+                } else {
+                    str.append("false");
+                }
+            } else {
+                str.append("(");
+                str.append(expresionLogica.parse());
+                str.append(")");
+            }
+        }
+
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Termino Relacional";
     }
-    
+
 }

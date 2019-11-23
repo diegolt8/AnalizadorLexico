@@ -68,7 +68,15 @@ public class ExpresionLogica extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        
+        str.append(terminoLogico.parse());
+        if (operador != null) {
+            str.append(" ");
+            str.append(operador.getLexema()).append(" ");
+            str.append(expresionLogica.parse());
+        }
+        return str.toString();
     }
 
     @Override
