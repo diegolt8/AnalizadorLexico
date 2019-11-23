@@ -5,6 +5,7 @@
  */
 package analizadorSintactico_modelo.sentencias;
 
+import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_modelo.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,19 @@ public class InicializadorVariable extends Sentencia {
     private Sentencia expresion;
     private HTTP http;
     private RespuestaHTTP respuestaHttp;
+    private Lexema identificador;
 
     public InicializadorVariable() {
     }
 
+    public Lexema getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(Lexema identificador) {
+        this.identificador = identificador;
+    }
+    
     public Sentencia getExpresion() {
         return expresion;
     }
@@ -61,7 +71,11 @@ public class InicializadorVariable extends Sentencia {
         if (respuestaHttp != null) {
             hijos.add(respuestaHttp);
         }
-
+        
+        if (identificador != null) {
+            hijos.add(new Terminal(identificador));
+        }
+        
         return hijos;
     }
 
