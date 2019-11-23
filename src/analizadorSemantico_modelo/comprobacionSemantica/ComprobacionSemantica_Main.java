@@ -27,12 +27,13 @@ public class ComprobacionSemantica_Main implements ComprobacionSemantica {
         ComprobacionSemantica_Para d = new ComprobacionSemantica_Para();
         ComprobacionSemantica_Hacer e = new ComprobacionSemantica_Hacer();
         ComprobacionSemantica_Mientras f = new ComprobacionSemantica_Mientras();
+        ComprobacionSemantica_Imprimir g = new ComprobacionSemantica_Imprimir();
 
         flujoSentencia.aumentarContexto();
         ReglasSemanticas reglasSemanticas = new ReglasSemanticas();
         Main main = (Main) flujoSentencia.getNodoActual();
         ListaSentencias<Sentencia> listaSentencia = main.getListaSentencia();
-
+        
         for (Sentencia sentencia : listaSentencia.getSentencias()) {
             if (reglasSemanticas.nombreClase(sentencia).equals("DeclaracionVariable")) {
                 flujoSentencia.setNodoActual(sentencia);
@@ -58,8 +59,12 @@ public class ComprobacionSemantica_Main implements ComprobacionSemantica {
                 flujoSentencia.setNodoActual(sentencia);
                 f.comprobacionSemantica(flujoSentencia);
             }
+            if (reglasSemanticas.nombreClase(sentencia).equals("ImprimirConsola")) {
+                flujoSentencia.setNodoActual(sentencia);
+                g.comprobacionSemantica(flujoSentencia);
+            }
         }
-
+        
         flujoSentencia.limpiarContexto();
         flujoSentencia.disminuirContexto();
 

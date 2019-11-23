@@ -27,6 +27,7 @@ public class ComprobacionSemantica_Hacer implements ComprobacionSemantica {
         ComprobacionSemantica_Para d = new ComprobacionSemantica_Para();
         ComprobacionSemantica_Hacer e = new ComprobacionSemantica_Hacer();
         ComprobacionSemantica_Mientras f = new ComprobacionSemantica_Mientras();
+        ComprobacionSemantica_Imprimir g = new ComprobacionSemantica_Imprimir();
 
         Hacer hacer = (Hacer) flujoSentencia.getNodoActual();
         ListaSentencias<Sentencia> listaSentencia = hacer.getListaSentencias();
@@ -61,6 +62,10 @@ public class ComprobacionSemantica_Hacer implements ComprobacionSemantica {
             if (reglasSemanticas.nombreClase(sentencia).equals("Mientras")) {
                 flujoSentencia.setNodoActual(sentencia);
                 f.comprobacionSemantica(flujoSentencia);
+            }
+            if (reglasSemanticas.nombreClase(sentencia).equals("ImprimirConsola")) {
+                flujoSentencia.setNodoActual(sentencia);
+                g.comprobacionSemantica(flujoSentencia);
             }
         }
         //terminado el ciclo eliminar las variables de dicho contexto y restar en el flujo 1     

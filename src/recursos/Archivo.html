@@ -4,12 +4,10 @@
            <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js"></script>
            <script>
 function main(){
-
-		axios.post('http://jsonplaceholder.typicode.com/posts', {"a": "3"})
-		.then( res => {
-		  console.log(res.data) } )
-		.catch(function (error) {
-		 console.log(error) })
+for (var i = 0;i < 10; i++) {
+console.log(i);
+}
+console.log(i);
 
 }
 

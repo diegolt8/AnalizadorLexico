@@ -5,6 +5,7 @@
  */
 package analizadorSintactico_modelo.sentencias;
 
+import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_modelo.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,17 @@ import java.util.List;
 public class ImprimirConsola extends Sentencia {
 
     private Sentencia expresion;
+    private Lexema identificador;
 
     public ImprimirConsola() {
+    }
+
+    public Lexema getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(Lexema identificador) {
+        this.identificador = identificador;
     }
 
     public Sentencia getExpresion() {
@@ -36,6 +46,10 @@ public class ImprimirConsola extends Sentencia {
             hijos.add(expresion);
         }
         
+        if (identificador != null) {
+            hijos.add(new Terminal(identificador));
+        }
+        
         return hijos;
     }
 
@@ -43,7 +57,12 @@ public class ImprimirConsola extends Sentencia {
     public String parse() {
         StringBuilder str = new StringBuilder();
         str.append("console.log").append("(");
-        str.append(expresion.parse());
+        if (expresion != null) {
+            str.append(expresion.parse());
+        }
+        if (identificador != null) {
+            str.append(identificador.getLexema());
+        }
         str.append(")").append(";");
         return str.toString();
     }

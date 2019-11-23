@@ -29,7 +29,8 @@ public class ComprobacionSemantica_Si implements ComprobacionSemantica {
         ComprobacionSemantica_Para d = new ComprobacionSemantica_Para();
         ComprobacionSemantica_Hacer e = new ComprobacionSemantica_Hacer();
         ComprobacionSemantica_Mientras f = new ComprobacionSemantica_Mientras();
-        
+        ComprobacionSemantica_Imprimir g = new ComprobacionSemantica_Imprimir();
+
         Si si = (Si) flujoSentencia.getNodoActual();
         ListaSentencias<Sentencia> listaSentencia = si.getListaSentencias();
         Sino sino = si.getSino();
@@ -65,6 +66,10 @@ public class ComprobacionSemantica_Si implements ComprobacionSemantica {
                 flujoSentencia.setNodoActual(sentencia);
                 f.comprobacionSemantica(flujoSentencia);
             }
+            if (reglasSemanticas.nombreClase(sentencia).equals("ImprimirConsola")) {
+                flujoSentencia.setNodoActual(sentencia);
+                g.comprobacionSemantica(flujoSentencia);
+            }
         }
         //terminado el ciclo eliminar las variables de dicho contexto y restar en el flujo 1     
         flujoSentencia.limpiarContexto();
@@ -74,7 +79,34 @@ public class ComprobacionSemantica_Si implements ComprobacionSemantica {
             flujoSentencia.aumentarContexto();
             //ciclo para las sentencias aumentando el contexto
             for (Sentencia sentencia : listaSentencia.getSentencias()) {
-
+                if (reglasSemanticas.nombreClase(sentencia).equals("DeclaracionVariable")) {
+                    flujoSentencia.setNodoActual(sentencia);
+                    a.comprobacionSemantica(flujoSentencia);
+                }
+                if (reglasSemanticas.nombreClase(sentencia).equals("DeclaranteVariable")) {
+                    flujoSentencia.setNodoActual(sentencia);
+                    b.comprobacionSemantica(flujoSentencia);
+                }
+                if (reglasSemanticas.nombreClase(sentencia).equals("Si")) {
+                    flujoSentencia.setNodoActual(sentencia);
+                    c.comprobacionSemantica(flujoSentencia);
+                }
+                if (reglasSemanticas.nombreClase(sentencia).equals("Para")) {
+                    flujoSentencia.setNodoActual(sentencia);
+                    d.comprobacionSemantica(flujoSentencia);
+                }
+                if (reglasSemanticas.nombreClase(sentencia).equals("Hacer")) {
+                    flujoSentencia.setNodoActual(sentencia);
+                    e.comprobacionSemantica(flujoSentencia);
+                }
+                if (reglasSemanticas.nombreClase(sentencia).equals("Mientras")) {
+                    flujoSentencia.setNodoActual(sentencia);
+                    f.comprobacionSemantica(flujoSentencia);
+                }
+                if (reglasSemanticas.nombreClase(sentencia).equals("ImprimirConsola")) {
+                    flujoSentencia.setNodoActual(sentencia);
+                    g.comprobacionSemantica(flujoSentencia);
+                }
             }
             //terminado el ciclo eliminar las variables de dicho contexto y restar en el flujo 1     
             flujoSentencia.limpiarContexto();

@@ -29,11 +29,14 @@ public class ComprobacionSemantica_Para implements ComprobacionSemantica {
         ComprobacionSemantica_Para d = new ComprobacionSemantica_Para();
         ComprobacionSemantica_Hacer e = new ComprobacionSemantica_Hacer();
         ComprobacionSemantica_Mientras f = new ComprobacionSemantica_Mientras();
+        ComprobacionSemantica_Imprimir g = new ComprobacionSemantica_Imprimir();
 
         ReglasSemanticas reglasSemanticas = new ReglasSemanticas();
         Para para = (Para) flujoSentencia.getNodoActual();
         ListaSentencias<Sentencia> listaSentencia = para.getListaSentencias();
 
+        flujoSentencia.aumentarContexto();
+        
         if (para.getDeclaracionVariable() != null) {
             flujoSentencia.setNodoActual(para.getDeclaracionVariable());
             a.comprobacionSemantica(flujoSentencia);
@@ -47,8 +50,8 @@ public class ComprobacionSemantica_Para implements ComprobacionSemantica {
 
         flujoSentencia.setNodoActual(para.getExpresionNumerica());
         dd.comprobacionSemantica(flujoSentencia);
-
-        flujoSentencia.aumentarContexto();
+        
+       
         //ciclo para las sentencias aumentando el contexto
         for (Sentencia sentencia : listaSentencia.getSentencias()) {
             if (reglasSemanticas.nombreClase(sentencia).equals("DeclaracionVariable")) {
@@ -75,11 +78,15 @@ public class ComprobacionSemantica_Para implements ComprobacionSemantica {
                 flujoSentencia.setNodoActual(sentencia);
                 f.comprobacionSemantica(flujoSentencia);
             }
+            if (reglasSemanticas.nombreClase(sentencia).equals("ImprimirConsola")) {
+                flujoSentencia.setNodoActual(sentencia);
+                g.comprobacionSemantica(flujoSentencia);
+            }
         }
         //terminado el ciclo eliminar las variables de dicho contexto y restar en el flujo 1     
         flujoSentencia.limpiarContexto();
         flujoSentencia.disminuirContexto();
-
+        
         return true;
     }
 

@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import analizadorLexico_modelo.ErrorLexico;
 import analizadorLexico_modelo.Lexema;
+import analizadorSemantico_controlador.AnalizadorSemantico;
 import analizadorSintactico_controlador.AnalizadorSintactico;
 import analizadorSintactico_modelo.sentencias.Archivo;
 import java.io.File;
@@ -210,6 +211,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnCorrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrerActionPerformed
+        System.out.println("sirve");
         String txt = jTALexico.getText();
         analizadorLexico.analizadorLexico(txt);
         lexemas.setModel(tablaLexemas(analizadorLexico.getListaLexema()));
@@ -219,6 +221,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Archivo a = analizadorSintactico.getArchivo();
         a.llenarHijos();
         arbolDerivacion.setModel(new DefaultTreeModel(a));
+        analizadorSemantico_controlador.AnalizadorSemantico analisis = new AnalizadorSemantico();
+        analisis.analizar(a);
         String documento = a.parse();
         String mensaje = cargar.GuardarArchivo(file, documento);
         if (mensaje != null) {

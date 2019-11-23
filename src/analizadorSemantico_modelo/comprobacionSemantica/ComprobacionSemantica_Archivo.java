@@ -30,7 +30,7 @@ public class ComprobacionSemantica_Archivo implements ComprobacionSemantica {
         ReglasSemanticas reglas = new ReglasSemanticas();
         
         ComprobacionSemantica_Main comprobacionMain = new ComprobacionSemantica_Main();
-        ComprobacionSemantica_Metodo comprobacionMetodo = new ComprobacionSemantica_Metodo();
+        ComprobacionSemantica_Metodo comprobacionMetodo = new ComprobacionSemantica_Metodo(); 
         
         Archivo archivo = (Archivo) flujoSentencia.getNodoActual();
         ListaMetodos<Metodo> listaMetodos = archivo.getListaMetodos();        
