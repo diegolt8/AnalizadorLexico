@@ -26,17 +26,17 @@ public class Gramatica_TerminoLiteral implements Gramatica {
         
         TerminoLiteral terminoLiteral = new TerminoLiteral();
         
-        LiteralNumerico literalNumerico = (LiteralNumerico) gramaticaLiteralNumerico.analizar(flujoLexema);
-        if (literalNumerico != null) {
-            terminoLiteral.setTerminoLiteral(literalNumerico);
-            return terminoLiteral;
-        }
-        
         if (flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.VALOR_CADENA) {
             terminoLiteral.setTerminoLiteral(new Terminal(flujoLexema.getLexema()));
             flujoLexema.avanzar();
             return terminoLiteral;
-        }        
+        }
+        
+        LiteralNumerico literalNumerico = (LiteralNumerico) gramaticaLiteralNumerico.analizar(flujoLexema);
+        if (literalNumerico != null) {
+            terminoLiteral.setTerminoLiteral(literalNumerico);
+            return terminoLiteral;
+        }               
         
         return null;
     }

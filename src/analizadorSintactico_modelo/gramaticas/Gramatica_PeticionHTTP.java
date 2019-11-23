@@ -26,20 +26,20 @@ public class Gramatica_PeticionHTTP implements Gramatica {
         
         PeticionHTTP peticionHTTP = new PeticionHTTP();
         
-        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.IDENTIFICADOR) {
-            return null;
-        }
-        peticionHTTP.setIdentificador(flujoLexema.getLexema());
-        flujoLexema.avanzar();
-        
-        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PUNTO) {
-            return null;
-        }
-        flujoLexema.avanzar();
+//        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.IDENTIFICADOR) {
+//            return null;
+//        }
+//        peticionHTTP.setIdentificador(flujoLexema.getLexema());
+//        flujoLexema.avanzar();
+//        
+//        if (flujoLexema.getLexema().getTipoLexema() != TipoLexemaEnum.PUNTO) {
+//            return null;
+//        }
+//        flujoLexema.avanzar();
         
         VerboHTTP verboHTTP = (VerboHTTP) gramaticaVerboHTTP.analizar(flujoLexema);
         if (verboHTTP == null) {
-            throw new SintacticException(flujoLexema.getLexema(), TipoLexemaEnum.VERBO_HTTP);
+            return null;
         }
         peticionHTTP.setVerboHTTP(verboHTTP);
         

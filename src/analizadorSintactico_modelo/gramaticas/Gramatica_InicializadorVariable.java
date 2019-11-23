@@ -5,6 +5,7 @@
  */
 package analizadorSintactico_modelo.gramaticas;
 
+import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.FlujoLexema;
 import analizadorSintactico_modelo.Gramatica;
 import analizadorSintactico_modelo.Sentencia;
@@ -28,6 +29,18 @@ public class Gramatica_InicializadorVariable implements Gramatica {
         InicializadorVariable inicializadorVariable = new InicializadorVariable();
         
         int posicion = flujoLexema.getPosActual();
+        
+        if (flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.IDENTIFICADOR) {
+            flujoLexema.avanzar();
+            if (flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.COMA || flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.PUNTO_Y_COMA) {
+                flujoLexema.setPosActual(posicion);
+                inicializadorVariable.setIdentificador(flujoLexema.getLexema());
+                flujoLexema.avanzar();
+                return inicializadorVariable;
+            } else {
+                flujoLexema.setPosActual(posicion);
+            }
+        }
         
         Sentencia expresion = gramaticaExpresion.analizar(flujoLexema);
         if (expresion != null) {
