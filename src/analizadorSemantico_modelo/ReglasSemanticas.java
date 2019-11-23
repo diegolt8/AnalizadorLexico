@@ -9,7 +9,6 @@ import analizadorLexico_modelo.Lexema;
 import analizadorLexico_modelo.TipoLexemaEnum;
 import analizadorSintactico_modelo.Sentencia;
 import analizadorSintactico_modelo.sentencias.LiteralNumerico;
-import analizadorSintactico_modelo.sentencias.Terminal;
 import analizadorSintactico_modelo.sentencias.TerminoLiteral;
 import java.util.ArrayList;
 

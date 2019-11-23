@@ -48,10 +48,14 @@ public class ComprobacionSemantica_DeclaracionVariable implements ComprobacionSe
                 InicializadorVariable inicializador = declarante.getInicializadorVariable();
                 if (inicializador.getExpresion() == null) {
                     // para un identificador
-                    
+
                     // validacion de que el indentificador exista
                     if (!reglas.unicidadNombreVariable(flujoSentencia.getListaVariables(), inicializador.getIdentificador().getLexema())) {
                         throw new SemanticError(inicializador.getIdentificador().getLexema(), true, inicializador.getIdentificador().getLinea());
+                    }
+
+                    if (reglas.unicidadNombreVariable(flujoSentencia.getListaVariables(), variable.getNombre())) {
+                        throw new SemanticError(variable.getNombre(), true, inicializador.getIdentificador().getLinea());
                     }
 
                     // validacion de que el identificadaor este inicializado
@@ -60,31 +64,42 @@ public class ComprobacionSemantica_DeclaracionVariable implements ComprobacionSe
                     }
 
                     // validacion de tipos
-                    if (!reglas.tiposDatosCompatiblesVariable(variable, (flujoSentencia.buscarVariable(inicializador.getIdentificador().getLexema())).getValor())) {
-                        throw new SemanticError(variable.getTipoDato(), inicializador.getIdentificador().getTipoLexema(), inicializador.getIdentificador().getLinea());
+//                    System.out.println(flujoSentencia.buscarVariable(inicializador.getIdentificador().getLexema()).getTipoDato());
+//                    System.out.println(variable.getTipoDato());
+                    Lexema terminal = inicializador.getIdentificador();
+                    if (variable.getTipoDato() != flujoSentencia.buscarVariable(terminal.getLexema()).getTipoDato()) {
+                        throw new SemanticError(variable.getTipoDato(), (flujoSentencia.buscarVariable(inicializador.getIdentificador().getLexema())).getValor().getTipoLexema(), inicializador.getIdentificador().getLinea());
                     }
-                    variable.setValor(flujoSentencia.buscarVariable(inicializador.getIdentificador().getLexema()).getValor());
+                    
+                    
+
+//                    if (!reglas.tiposDatosCompatiblesVariable(variable, (flujoSentencia.buscarVariable(inicializador.getIdentificador().getLexema())).getValor())) {
+//                        throw new SemanticError(variable.getTipoDato(), (flujoSentencia.buscarVariable(inicializador.getIdentificador().getLexema())).getValor().getTipoLexema(), inicializador.getIdentificador().getLinea());
+//                    }
+
+                    variable.setValor((flujoSentencia.buscarVariable(terminal.getLexema())).getValor());
                     flujoSentencia.añadirVariable(variable);
+                    System.out.println(flujoSentencia.buscarVariable("b").getValor().getLexema()+ " - " +flujoSentencia.buscarVariable("b").getNombre());
                 } else {
                     TerminoLiteral terminoLiteral = (TerminoLiteral) inicializador.getExpresion();
-                    System.out.println(terminoLiteral.getTerminoLiteral().getClass()+"");
-                    if ((terminoLiteral.getTerminoLiteral().getClass()+"").equals("class analizadorSintactico_modelo.sentencias.Terminal")) {
+                    System.out.println(terminoLiteral.getTerminoLiteral().getClass() + "");
+                    if ((terminoLiteral.getTerminoLiteral().getClass() + "").equals("class analizadorSintactico_modelo.sentencias.Terminal")) {
                         // para una cadena
 
                         // validacion de tipos
                         if (!reglas.tiposDatosCompatiblesAsigancion(variable, terminoLiteral)) {
-                             throw new SemanticError(variable.getTipoDato(), ((Terminal) terminoLiteral.getTerminoLiteral()).getLexema().getTipoLexema(), ((Terminal) terminoLiteral.getTerminoLiteral()).getLexema().getLinea());
+                            throw new SemanticError(variable.getTipoDato(), ((Terminal) terminoLiteral.getTerminoLiteral()).getLexema().getTipoLexema(), ((Terminal) terminoLiteral.getTerminoLiteral()).getLexema().getLinea());
                         }
                         variable.setValor(((Terminal) terminoLiteral.getTerminoLiteral()).getLexema());
                         flujoSentencia.añadirVariable(variable);
                     } else {
                         // para un numero VALIDAR PARA DECIMALES
-                        
+
                         // validacion de tipos
                         if (!reglas.tiposDatosCompatiblesAsigancion(variable, terminoLiteral)) {
                             throw new SemanticError(variable.getTipoDato(), ((Terminal) terminoLiteral.getTerminoLiteral()).getLexema().getTipoLexema(), ((Terminal) terminoLiteral.getTerminoLiteral()).getLexema().getLinea());
                         }
-                        
+
                         variable.setValor(((LiteralNumerico) terminoLiteral.getTerminoLiteral()).getParteEntera());
                         flujoSentencia.añadirVariable(variable);
                     }
