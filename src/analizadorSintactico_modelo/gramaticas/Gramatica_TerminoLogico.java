@@ -93,6 +93,7 @@ public class Gramatica_TerminoLogico implements Gramatica {
             
             if (flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.PARENTESIS_CERRADO || flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.COMA ||
                     flujoLexema.getLexema().getTipoLexema() == TipoLexemaEnum.PUNTO_Y_COMA) {
+
                 return null;
             }
             

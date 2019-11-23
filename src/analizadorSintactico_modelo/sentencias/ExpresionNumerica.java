@@ -46,37 +46,42 @@ public class ExpresionNumerica extends Sentencia {
     public void setExpresion(ExpresionNumerica expresion) {
         this.expresion = expresion;
     }
-    
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         if (termino != null) {
             hijos.add(termino);
         }
-        
+
         if (operador != null) {
             hijos.add(new Terminal(operador));
         }
-        
+
         if (expresion != null) {
             hijos.add(expresion);
         }
-       
+
         return hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        str.append(termino.parse());
+        
+        if(operador != null) {
+            str.append(operador.getLexema());
+            str.append(expresion.parse());
+        }
+
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Expresion numerica";
     }
-    
-    
-    
-    
+
 }

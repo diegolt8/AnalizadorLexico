@@ -13,8 +13,8 @@ import java.util.ArrayList;
  *
  * @author Pepe
  */
-public class Metodo extends Sentencia{
-    
+public class Metodo extends Sentencia {
+
     private Lexema nombreMetodo;
     private ListaParametros<Parametro> listaParametros;
     private ListaSentencias<Sentencia> listaSentencias;
@@ -47,32 +47,49 @@ public class Metodo extends Sentencia{
     public void setListaSentencias(ListaSentencias<Sentencia> listaSentencias) {
         this.listaSentencias = listaSentencias;
     }
-    
+
     @Override
     public ArrayList<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         hijos.add(new Terminal(nombreMetodo));
-        
+
         if (!listaParametros.getParametros().isEmpty()) {
             hijos.add(listaParametros);
         }
-        
+
         if (!listaSentencias.getSentencias().isEmpty()) {
             hijos.add(listaSentencias);
         }
-        
+
         return (ArrayList<Sentencia>) hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        str.append("\n\tfunction ").append(nombreMetodo.getLexema());
+        str.append("(");
+        if (!listaParametros.getParametros().isEmpty()) {
+            for (int i = 0; i < listaParametros.getParametros().size(); i++) {
+                str.append(listaParametros.getParametros().get(i).parse());
+                if (listaParametros.getParametros().size() != i + 1) {
+                    str.append(", ");
+                }
+
+            }
+        }
+        str.append(")");
+        str.append("{\n");
+        str.append(listaSentencias.parse());
+        str.append("\n\t}\n");
+        return str.toString();
+
     }
 
     @Override
     public String toString() {
         return "Metodo: " + nombreMetodo.getLexema();
     }
-    
+
 }

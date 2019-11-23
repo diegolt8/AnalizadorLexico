@@ -82,50 +82,69 @@ public class FactorNumerico extends Sentencia {
     public void setParentesisCerrado(Lexema parentesisCerrado) {
         this.parentesisCerrado = parentesisCerrado;
     }
-    
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         if (negativo != null) {
             hijos.add(new Terminal(negativo));
         }
-        
+
         if (literalNumerico != null) {
             hijos.add(literalNumerico);
         }
-        
+
         if (identificador != null) {
             hijos.add(new Terminal(identificador));
         }
-        
+
         if (operadorEspecial != null) {
             hijos.add(new Terminal(operadorEspecial));
         }
-        
+
         if (parentesisAbierto != null) {
             hijos.add(new Terminal(parentesisAbierto));
         }
-        
-        if(expresionNumerica != null) {
+
+        if (expresionNumerica != null) {
             hijos.add(expresionNumerica);
         }
-        
+
         if (parentesisCerrado != null) {
             hijos.add(new Terminal(parentesisCerrado));
         }
-        
+
         return hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        
+        if(negativo != null) {
+            str.append("-");
+        }
+        
+        if(literalNumerico != null) {
+            str.append(literalNumerico.parse());
+        } else if(identificador != null) {
+            str.append(identificador.getLexema());
+            if(operadorEspecial != null){
+                str.append(operadorEspecial.getLexema());
+            }
+        } else {
+            str.append("(");
+            str.append(expresionNumerica.parse());
+            str.append(")");
+        }
+
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Factor numerico";
     }
-    
+
 }

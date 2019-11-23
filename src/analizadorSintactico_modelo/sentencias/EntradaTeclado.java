@@ -42,7 +42,11 @@ public class EntradaTeclado extends Sentencia{
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        str.append("\t    ").append(identificador.getLexema());
+        str.append(" = ");
+        str.append("prompt();");
+        return str.toString();
     }
 
     @Override

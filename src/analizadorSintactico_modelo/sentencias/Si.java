@@ -46,32 +46,58 @@ public class Si extends Sentencia {
     public void setSino(Sino sino) {
         this.sino = sino;
     }
-    
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        
+
         hijos.add(condicion);
-        
+
         if (!listaSentencias.getSentencias().isEmpty()) {
             hijos.add(listaSentencias);
         }
-        
+
         if (sino != null) {
             hijos.add(sino);
         }
-        
+
         return hijos;
     }
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+
+        str.append("\t  if ").append("(");
+        str.append(condicion.parse());
+        str.append(") ");
+        str.append("{\n");
+
+        for (Sentencia sentencia : listaSentencias.getSentencias()) {
+            str.append("      ").append(sentencia.parse());
+        }
+        str.append("\n\t}");
+         if (sino != null) {
+             str.append(sino.parse());
+        }
+        return str.toString();
     }
+/*__main__()"
+Retorno 0;
+"
+
+Met metodo()"
+ Si(Verdadero)"
+   Ent i = 0;
+ "
+ Sino"
+ Ent e = 1; 
+"
+"    */
 
     @Override
     public String toString() {
         return "estructura de control SI";
     }
-    
+
 }

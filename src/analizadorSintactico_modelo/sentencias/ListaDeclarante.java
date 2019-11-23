@@ -21,11 +21,11 @@ public class ListaDeclarante<T extends Sentencia> extends Sentencia {
     public ListaDeclarante(List<T> listaDeclarante) {
         this.listaDeclarante = listaDeclarante;
     }
-    
+
     public ListaDeclarante() {
         this.listaDeclarante = new ArrayList<>();
     }
-        
+
     public void add(T sentencia) {
         listaDeclarante.add(sentencia);
     }
@@ -33,7 +33,7 @@ public class ListaDeclarante<T extends Sentencia> extends Sentencia {
     public List<T> getDeclarantes() {
         return listaDeclarante;
     }
-    
+
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
@@ -45,12 +45,16 @@ public class ListaDeclarante<T extends Sentencia> extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        for (T declarante : listaDeclarante) {
+            str.append(declarante.parse());
+        }
+        return str.toString();
     }
 
     @Override
     public String toString() {
         return "Lista declarantes";
     }
-    
+
 }

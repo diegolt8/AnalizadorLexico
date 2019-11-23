@@ -41,7 +41,11 @@ public class ImprimirConsola extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+        StringBuilder str = new StringBuilder();
+        str.append("\t\tconsole.log").append("(");
+        str.append(expresion.parse());
+        str.append(")").append(";");
+        return str.toString();
     }
 
     @Override

@@ -55,7 +55,16 @@ public class Hacer extends Sentencia {
 
     @Override
     public String parse() {
-        return "";
+       StringBuilder str = new StringBuilder();
+        str.append("\t    do ").append(" ").append("{\n");
+        for(Sentencia sentencia : listaSentencias.getSentencias()) {
+            str.append(sentencia.parse());
+        }
+        str.append("\n\t    } while").append("(");
+        str.append(expresionLogica.parse());
+        str.append(")");
+        
+        return str.toString();
     }
 
     @Override
