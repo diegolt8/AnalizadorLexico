@@ -44,11 +44,11 @@ public class Sino extends Sentencia {
     public String parse() {
         StringBuilder str = new StringBuilder();
         str.append(" else ");
-        str.append("{\n");
+        str.append("{");
         for (Sentencia sentencia : listaSentencias.getSentencias()) {
-            str.append("       ").append(sentencia.parse());
+            str.append("\n").append(sentencia.parse());
         }
-        str.append("\n\t  }");
+        str.append("\n}");
         return str.toString();
     }
 

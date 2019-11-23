@@ -68,32 +68,20 @@ public class Si extends Sentencia {
     public String parse() {
         StringBuilder str = new StringBuilder();
 
-        str.append("\t  if ").append("(");
+        str.append("if").append("(");
         str.append(condicion.parse());
         str.append(") ");
-        str.append("{\n");
+        str.append("{");
 
         for (Sentencia sentencia : listaSentencias.getSentencias()) {
-            str.append("      ").append(sentencia.parse());
+            str.append("\n").append("").append(sentencia.parse());
         }
-        str.append("\n\t}");
+        str.append("\n}");
          if (sino != null) {
              str.append(sino.parse());
         }
         return str.toString();
     }
-/*__main__()"
-Retorno 0;
-"
-
-Met metodo()"
- Si(Verdadero)"
-   Ent i = 0;
- "
- Sino"
- Ent e = 1; 
-"
-"    */
 
     @Override
     public String toString() {

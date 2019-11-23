@@ -56,14 +56,14 @@ public class Mientras extends Sentencia {
     @Override
     public String parse() {
         StringBuilder str = new StringBuilder();
-        str.append("\t    while").append("(");
+        str.append("while").append("(");
         str.append(expresionLogica.parse()).append(")");
         str.append(" ").append("{\n");
         for(Sentencia sentencia : listaSentencias.getSentencias()){
             str.append(sentencia.parse());
         }
 
-        str.append("\n\t\t}");
+        str.append("\n}");
         
         return str.toString();
     }

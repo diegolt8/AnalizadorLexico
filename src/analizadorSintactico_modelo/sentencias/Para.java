@@ -96,18 +96,18 @@ public class Para extends Sentencia {
     public String parse() {
        StringBuilder str = new StringBuilder();
 
-        str.append("\t   for").append(" ").append("(");
+        str.append("for").append(" ").append("(");
 
         if (declaracionVariable != null) {
             str.append(declaracionVariable.parse());
             str.append(expresionLogica.parse());
             str.append(";").append(" ");
             str.append(expresionNumerica.parse());
-            str.append(")").append(" ").append("{\n");
+            str.append(")").append(" ").append("{");
             for (Sentencia sentencia : listaSentencias.getSentencias()) {
-                str.append(sentencia.parse());
+                str.append("\n").append(sentencia.parse());
             }
-            str.append("\n\t\t}");
+            str.append("\n}");
         } 
         
         if (declaranteVariable != null) {

@@ -1,38 +1,21 @@
 <!DOCTYPE html>
    <html>
        <head>
-       </head>
-       <body>
            <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js"></script>
            <script>
+function main(){
 
 		axios.post('http://jsonplaceholder.typicode.com/posts', {"a": "3"})
 		.then( res => {
 		  console.log(res.data) } )
 		.catch(function (error) {
 		 console.log(error) })
-		axios.get('http://jsonplaceholder.typicode.com/posts', {
-		 params: 
-		{"id": "1"}})
-		.then( res => {
-		  console.log(res.data) } )
-		.catch(function (error) {
-		 console.log(error) })
-		axios.get('http://jsonplaceholder.typicode.com/posts')
-		.then( res => {
-		  console.log(res.data) } )
-		.catch(function (error) {
-		 console.log(error) })
-		axios.delete('http://jsonplaceholder.typicode.com/posts/1')
-		.then( res => {
-		  console.log(res.data) } )
-		.catch(function (error) {
-		 console.log(error) })
-		axios.put('http://jsonplaceholder.typicode.com/posts/1', {"userId": "2"})
-		.then( res => {
-		  console.log(res.data) } )
-		.catch(function (error) {
-		 console.log(error) })         
+
+}
+
+         
 	</script>
+       </head>
+       <body onload="main();">
        </body>
    </html>

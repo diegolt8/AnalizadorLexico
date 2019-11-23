@@ -15,6 +15,9 @@ import analizadorLexico_modelo.Lexema;
 import analizadorSintactico_controlador.AnalizadorSintactico;
 import analizadorSintactico_modelo.sentencias.Archivo;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
@@ -212,17 +215,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lexemas.setModel(tablaLexemas(analizadorLexico.getListaLexema()));
         ArrayList<Lexema> lista = analizadorLexico.getListaLexema();
         analizadorSintactico.analisar(lista);
-         File file = new File("/home/vi74ly/AnalizadorLexico/src/recursos/Archivo.html");
+        File file = new File("C:\\Users\\Pepe\\Desktop\\Nueva carpeta\\AnalizadorLexico\\src\\recursos\\Archivo.html");
         Archivo a = analizadorSintactico.getArchivo();
         a.llenarHijos();
         arbolDerivacion.setModel(new DefaultTreeModel(a));
         String documento = a.parse();
-                String mensaje = cargar.GuardarArchivo(file, documento);
-                if (mensaje != null) {
-                    JOptionPane.showMessageDialog(null, mensaje);
+        String mensaje = cargar.GuardarArchivo(file, documento);
+        if (mensaje != null) {
+            JOptionPane.showMessageDialog(null, mensaje);
         }
-        System.out.println(a.parse());
-        //errores.setModel(tablaErrorLexico(analizadorLexico.getListaErroresLexico()));
+        String url = "C:\\Users\\Pepe\\Desktop\\Nueva carpeta\\AnalizadorLexico\\src\\recursos\\Archivo.html";
+        try {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+            //System.out.println(a.parse());
+            //errores.setModel(tablaErrorLexico(analizadorLexico.getListaErroresLexico()));
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCorrerActionPerformed
 
     /**

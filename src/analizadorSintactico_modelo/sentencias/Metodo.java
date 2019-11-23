@@ -68,7 +68,7 @@ public class Metodo extends Sentencia {
     @Override
     public String parse() {
         StringBuilder str = new StringBuilder();
-        str.append("\n\tfunction ").append(nombreMetodo.getLexema());
+        str.append("\nfunction ").append(nombreMetodo.getLexema());
         str.append("(");
         if (!listaParametros.getParametros().isEmpty()) {
             for (int i = 0; i < listaParametros.getParametros().size(); i++) {
@@ -82,7 +82,7 @@ public class Metodo extends Sentencia {
         str.append(")");
         str.append("{\n");
         str.append(listaSentencias.parse());
-        str.append("\n\t}\n");
+        str.append("\n}\n");
         return str.toString();
 
     }

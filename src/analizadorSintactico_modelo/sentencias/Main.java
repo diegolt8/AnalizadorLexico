@@ -42,14 +42,14 @@ public class Main extends Sentencia {
     @Override
     public String parse() {
         StringBuilder str = new StringBuilder();
-        /*str.append("main");
+        str.append("function main");
         str.append("(").append(")");
-        str.append("\t{\n");*/
+        str.append("{");
         for (Sentencia sentencia : listaSentencia.getSentencias()) {
-            str.append(sentencia.parse());
+            str.append("\n").append(sentencia.parse());
         }
         
-        /*str.append("\n\n}\n\n");*/
+        str.append("\n\n}\n\n");
         return str.toString();
     }
 
